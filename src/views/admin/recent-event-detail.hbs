@@ -1,0 +1,26 @@
+{{#with data}}
+<div id="container" value="{{this.title}}">
+    <form action="/admin/save-recent-event?id={{this.id}}" method="POST" enctype="multipart/form-data">
+    <h1>
+    <p id="id">{{this.title}}</p> 
+    <div>
+        Hội đồng hương học sinh - sinh viên huyện Bình Sơn tại TP Đà Nẵng 
+    </div>
+    </h1>
+     <p >
+       Diễn ra ngày:  {{this.action_time}}
+    </p>
+    <div class="form-group purple-border">
+        <textarea class="form-control" id="exampleFormControlTextarea4" rows="15" name="description">{{this.description}}</textarea>
+    </div>
+    <div id="div_image">
+        <img src="/images/{{this.image_name}}" alt="" id="image">
+    </div>
+    <div>
+        <input type="file" name="uploaded_file"  >
+    </div>
+    <input type="submit" value="Click to save event" class="mt-4">
+    </form>
+</div>
+
+{{/with}}

@@ -1,0 +1,27 @@
+ <div class="container row">
+        {{>siderBarHappeningEvent}}
+        {{#with happeningEventData}}
+            <div class="col-9">
+                <form method="POST" enctype="multipart/form-data" action="edit-happening-event">
+                    <div class="form-group">
+                        <label for="exampleInputPassword1">Title of event</label>
+                        <input type="text" class="form-control" id="exampleInputPassword1" placeholder="Title of event" name="title" value="{{this.title}}">
+                    </div>
+                    <div class="form-group purple-border">
+                        <label for="exampleFormControlTextarea4">Description of event</label>
+                        <textarea class="form-control" id="exampleFormControlTextarea4" rows="15" name="description">{{this.description}}</textarea>
+                    </div>
+                    <div class="form-group purple-border">
+                        <input type="date" id="start" name="action_time" value="{{action_time}}">
+                    </div>
+                    <div id="div_image">
+                        <img src="/images/{{this.image_name}}" alt="" id="image">
+                    </div>
+                    <div>
+                        <input type="file" name="uploaded_file"  >
+                    </div>
+                    <input type="submit" value="Click to edit event" class="mt-4">
+                </form>
+            </div>
+        {{/with}}
+    </div>

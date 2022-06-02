@@ -1,0 +1,49 @@
+{{#with happeningEventData}}
+<div class="position-relative bg-success w-100" style="height:400px; background-image: url(/images/{{this.image_name}}); background-repeat: no-repeat; background-size: cover; background-position: center;" >
+  <h2 class="position-absolute text-light" style="top:40%; left:30%; cursor: pointer" id="myBtn">DANG KY SU KIEN</h2>
+    <a href="/happening-event/{{title}}" class="text-light position-absolute" style="top:60%; left:14%; font-size: 30px">{{title}}</a>
+</div>
+{{/with}}
+
+
+
+
+
+
+{{#with user }}
+<div id="myModal" class="modal">
+  <div class="modal-content">
+    <form action="register-event" method="POST">
+        <span class="close">&times;</span>
+        <div class="row d-flex">
+            <input type="text" placeholder="Email..." name="email" value="{{email}}">
+            <input type="text" placeholder="Name..." name="name">
+            <input type="text" placeholder="BirthDay..." name="birthday">
+            <input type="text" placeholder="Address..." name="address">
+            <input type="text" placeholder="Facebook Link..." name="facebookLink">
+            <input type="text" placeholder="Phone number..." name="phoneNumber">
+            <textarea class="form-control" placeholder="Hope..." rows="3" name="hope"></textarea>
+            <button type="submit" name="">DANG KY</button>
+        </div>
+    </form>
+  </div>
+</div>
+{{/with}}
+
+
+<script>
+var modal = document.getElementById("myModal");
+var btn = document.getElementById("myBtn");
+var span = document.getElementsByClassName("close")[0];
+btn.onclick = function() {
+  modal.style.display = "block";
+}
+span.onclick = function() {
+  modal.style.display = "none";
+}
+window.onclick = function(event) {
+  if (event.target == modal) {
+    modal.style.display = "none";
+  }
+}
+</script>

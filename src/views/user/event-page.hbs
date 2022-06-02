@@ -1,0 +1,68 @@
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Năm tổ chức</th>
+      <th scope="col">Tên sự kiện</th>
+    </tr>
+  </thead>
+  <tbody id="tbody">
+      {{!--  --}}
+      <div class="row">
+            <select class="form-select" aria-label="Default select example" name="yearEvent" id="yearEvent">
+                <option selected>Năm</option>
+                {{#each years}}
+                  <option value="{{this.year}}">{{this.year}}</option>
+                {{/each}}
+            </select>
+      </div>
+      {{!--  --}}
+    {{#each dataHappenEvents}}
+    <tr>
+      <th scope="row">{{this.action_time}}</th>
+      <td>
+          <a href="/events/action-year?year={{this.action_time}}&&event_name={{this.title}}">
+              {{this.title}}
+          </a>
+      </td>
+    </tr>
+    {{/each}}
+  </tbody>
+</table>
+
+
+<script>
+  const search = async() => {
+      var yearEvent = $("#yearEvent").val();
+
+      const data_filter = await fetch('http://localhost:3000/events/filterEvents',{
+        method: "POST",
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ year: yearEvent})
+      })
+      const events = await data_filter.json();
+      let eventTransformHtml = "";
+      events.map(event => {
+        eventTransformHtml += `<tr>
+                                <th scope="row">
+                                  ${event.action_time}
+                                </th>
+                                <td>
+                                    <a href="/events/action-year?year=${event.action_time}&&event_name=${event.title}">
+                                        ${event.title}
+                                    </a>
+                                </td>
+                              </tr>`
+      })
+      const listEvent = document.getElementById("tbody");
+      if(!eventTransformHtml) {
+        eventTransformHtml = `Năm ${yearEvent} đã không có bất kì sự kiện nào được diễn ra hoặc chưa được cập nhật`;
+      }
+      listEvent.innerHTML = eventTransformHtml;
+  }
+
+
+  {{!-- use function --}}
+  $("#yearEvent").change(function(){
+        search();
+  })
+</script>

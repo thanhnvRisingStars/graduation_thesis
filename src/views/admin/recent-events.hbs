@@ -1,0 +1,13 @@
+{{#if dataEvents}}
+    {{#each dataEvents }}
+    <h5>
+        <a href="recent-event-detail?title={{this.title}}">
+            {{this.title}}
+        </a>
+    </h5>
+    {{/each}}
+{{else}}
+    <h2>KHÔNG CÓ SỰ KIỆN NÀO GẦN ĐÂY CẦN SỬ LÝ</h2>
+    <h2>BẠN ĐÃ LÀM RẤT TỐT </h2>
+    <h2>XIN CẢM ƠN SỰ CỐNG HIẾN CỦA BẠN</h2>
+{{/if}}

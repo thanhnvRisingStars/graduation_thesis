@@ -1,0 +1,24 @@
+ <div class="container row">
+        {{>siderBarHappeningEvent}}
+        <div class="col-9">
+        {{#with happeningEvent}}
+        <div id="container" value="{{this.title}}">
+            <h1>
+            <p id="id">{{this.title}}</p> 
+            <div>
+                Hội đồng hương học sinh - sinh viên huyện Bình Sơn tại TP Đà Nẵng 
+            </div>
+            </h1>
+            <p>
+                Chương trình diễn ra ngày : {{this.action_time}}
+            </p>
+            <p id="textarea">
+                {{this.description}}
+            </p>
+            <div id="div_image">
+                <img src="/images/{{this.image_name}}" alt="" id="image">
+            </div>
+        </div>
+        {{/with}}
+        </div>
+    </div>

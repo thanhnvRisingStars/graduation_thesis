@@ -1,0 +1,20 @@
+ <div class="container row">
+        {{>siderBarHappeningEvent}}
+        <div class="col-9">
+            {{#if statusMail}}
+                <h1>Mail su kien lan nay da gui , thanks !!!</h1>
+            {{else}}
+                <form method="POST" action="/admin/send-mail">
+                <div class="form-group">
+                    <label for="exampleInputPassword1">Subject of mail</label>
+                    <input type="text" class="form-control" id="exampleInputPassword1" placeholder="Subject of event" name="subject">
+                </div>
+                <div class="form-group purple-border">
+                    <label for="exampleFormControlTextarea4">Content of mail</label>
+                    <textarea class="form-control" id="exampleFormControlTextarea4" rows="6" name="content"></textarea>
+                </div>
+                <input type="submit" value="Click to send mail" class="mt-4">
+                </form>
+            {{/if}}
+        </div>
+    </div>
