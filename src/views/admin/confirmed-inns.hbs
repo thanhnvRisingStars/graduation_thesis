@@ -1,16 +1,13 @@
-{{#with page_fetch}}
-    <a class="btn btn-primary text-light" href="/admin/inn/page/{{index}}">Lam moi day tro</a>
-{{/with}}
-{{#each posts}}
+{{#each inns}}
 <div class="row">
     <div class="col-4">
-        <a href="/admin/inn/detail{{this.url_detail_page}}">
-            <img src="{{this.image}}" alt=""
+        <a href="/admin/confirmed-inn?id={{this.id}}">
+            <img src="{{this.image_slide}}" alt=""
         style="width: 100%">
         </a>
     </div>
     <div class="col-8">
-        <a href="/admin/inn/detail{{this.url_detail_page}}">
+        <a href="/admin/confirmed-inn?id={{this.id}}">
             <h4>{{this.title}}</h4>
         </a>
         <div class="row">
@@ -28,8 +25,8 @@
             <p>{{this.author_name}}</p>
         </div>
     </div>
-    <form action="/admin/inn/new-inn{{this.url_detail_page}}?page={{this.index}}" method="POST">
-        <button type="submit" class="btn btn-primary">Duyet tro</button>
+    <form action="/admin/confirmed-inn/delete?id={{this.id}}" method="POST">
+        <button type="submit" class="btn btn-primary">Xoa tro</button>
     </form>
 </div>
 {{/each}}

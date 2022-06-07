@@ -1,18 +1,27 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <a class="navbar-brand" href="#">Navbar</a>
+  <a class="navbar-brand" href="#">Admin</a>
   {{!-- drop down --}}
     <ul class="d-flex mr-auto">
-      <li class="nav-item active">
-        <a class="nav-link" href="/admin/inn">Lay du lieu phong tro<span class="sr-only">(current)</span></a>
+      {{!--  --}}
+       <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-expanded="false">
+            Quan ly su kien
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <a class="dropdown-item" href="/admin/recent-events">Sự kiện cần được phê duyệt<span class="sr-only">(current)</span></a>
+              <a class="dropdown-item" href="/admin/happening-event">Sự kiện đang diễn ra</a>
+              <a class="dropdown-item" href="/admin/annual-events">Sự kiện hằng năm</a>
+          </div>
       </li>
-      <li class="nav-item active">
-        <a class="nav-link" href="/admin/recent-events">Sự kiện cần được phê duyệt<span class="sr-only">(current)</span></a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="/admin/happening-event">Sự kiện đang diễn ra</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="/admin/annual-events">Sự kiện hằng năm</a>
+      {{!--  --}}
+       <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-expanded="false">
+          Quan ly danh sach Tro
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <a class="dropdown-item" href="/admin/inn">Lay du lieu phong tro<span class="sr-only">(current)</span></a>
+            <a class="dropdown-item" href="/admin/confirmed-inns">Tro da duyet<span class="sr-only">(current)</span></a>
+        </div>
       </li>
     </ul>
     {{!-- form search --}}

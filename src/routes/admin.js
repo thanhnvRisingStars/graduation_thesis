@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const adminController = require('../controllers/admin/event.controller');
 const innAdminController = require('../controllers/admin/inn.controller');
+
 const { upload } = require('../helpers/multer')
  
 router.get('/annual-events', adminController.annualEvents);
@@ -21,6 +22,13 @@ router.get('/annual-event-detail', adminController.annualEventDetail);
 router.get('/recent-event-detail', adminController.recentEventDetail);
 
 // Inn
+router.post('/confirmed-inn/delete', innAdminController.deleteConfirmInn);
+router.get('/confirmed-inn', innAdminController.confirmedInnDetail);
+router.get('/confirmed-inns', innAdminController.confirmedInns);
+
+router.post('/inn/new-inn/:url', innAdminController.newInn);
+router.get('/inn/detail/:url', innAdminController.innDetail);
+router.get('/inn/page/:page', innAdminController.pageFetch);
 router.get('/inn', innAdminController.getInn);
 
 // Admin Main Page
