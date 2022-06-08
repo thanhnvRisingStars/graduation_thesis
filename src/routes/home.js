@@ -8,6 +8,7 @@ const { upload } = require('../helpers/multer')
 // inn
 router.get('/:googleId/edit/:id', InnController.editDetailPost);
 router.post('/delete-inn-post', InnController.deleteInnPost);
+router.post('/post/edit', upload.single('uploaded_file'), InnController.postEdit);
 router.post('/add-new-inn', upload.single('uploaded_file'), InnController.addNewInn);
 router.get('/account/:googleId/:id/', InnController.detailPost);
 router.get('/account/:googleId', InnController.getPost);

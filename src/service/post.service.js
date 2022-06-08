@@ -9,3 +9,5 @@ PostService.creatorOne = async(one)=> await post.create(one);
 PostService.deleteById = async(id) => await post.destroy({where: {id}})
 
 PostService.findById = async(id) => await post.findOne({where: {id}})
+
+PostService.updateById = async(option, id) => await post.update(option, {where: {id}})

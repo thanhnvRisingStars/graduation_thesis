@@ -45,3 +45,15 @@ InnController.editDetailPost = async(req, res) => {
 
     res.render('user/post-edit', { post });
 }
+
+InnController.postEdit = async(req, res) => {
+    const post = JSON.parse(JSON.stringify(req.body));
+    Object.assign(post, { 
+        creator_id: req.cookies['google_account_id'],
+        image_slide: req.file.filename
+    });
+
+    await postService.updateById(post, req.query.id);
+
+    res.redirect(`/account/${req.cookies['google_account_id']}/${req.query.id}`);
+}
