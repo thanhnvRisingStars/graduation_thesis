@@ -1,0 +1,30 @@
+{{#with user}}
+<form action="/edit-profile" method="POST" enctype="multipart/form-data">
+    <img src="{{avatar_link}}" alt="" style="width:200px">
+    <div>
+        <input type="file" name="uploaded_file"  >
+    </div>
+    <p>
+        email: <input type="text" name="email" value="{{email}}">
+    </p>
+    <p>
+        name: <input type="text" name="name" value="{{name}}">
+    </p>
+    <p>
+        address: <input type="text" name="address" value="{{address}}">
+    </p>
+    <p>
+        birthday: <input type="date" name="birthday" value="{{birthday}}">
+    </p>
+    <p>
+        phone number<input type="text" name="phoneNumber" value="{{phone_number}}">
+    </p>
+    <p>
+        facebook<input type="text" name="facebookLink" value="{{facebookLink}}">
+    </p>
+    <a href="/">cancel</a>
+    <button type="submit">
+        Click de thay doi thong tin
+    </button>
+</form>
+{{/with}}

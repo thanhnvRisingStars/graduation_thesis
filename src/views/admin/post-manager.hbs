@@ -1,15 +1,14 @@
-<a href="/create-inn" class="btn btn-primary">Tao moi tro</a>
 {{#if posts}}
     {{#each posts}}
     <div>
         <div class="row">
             <div class="col-4">
-            <a href="/account/{{this.creator_id}}/{{this.id}}">
+            <a href="/admin/post/detail?id={{this.id}}">
                 <img src="/images/{{this.image_slide}}" alt="" style="width:200px">      
             </a>
             </div>
             <div class="col-8">
-            <a href="/account/{{this.creator_id}}/{{this.id}}">
+            <a href="/admin/post/detail?id={{this.id}}">
                 <h4>{{this.title}}</h4>
             </a>
             <div class="row">
@@ -28,16 +27,7 @@
             </div>
         </div>
     </div>
-    {{#if this.reason}}
-        <p>Bai dang cua ban da bi tu choi vi lys do {{this.reason}}</p>
-    {{/if}}
-    <div class="row">
-        <form action="/delete-inn-post?id={{this.id}}" method="POST">
-            <button> Xoa </button>
-        </form>
-        <a href="/{{this.creator_id}}/edit/{{this.id}}">Chinh Sua</a>
-    </div>
 {{/each}}
 {{else}}
-    <h1>Ban chua dang tai bat ki bai nao !</h1>
+    <h1>Khong co bat ki bai dang nao can duoc phe duyet</h1>
 {{/if}}

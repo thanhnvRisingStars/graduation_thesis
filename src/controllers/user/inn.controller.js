@@ -1,5 +1,6 @@
 const _ = require('lodash');
 const { 
+    innService,
     postService
 } = require('../../service/index.service');
 
@@ -35,15 +36,17 @@ InnController.deleteInnPost = async(req, res) => {
 }
 
 InnController.detailPost =async(req, res) => {
+    const googleId = req.cookies['google_account_id'];
     const post = _.get(await postService.findById(req.params.id), 'dataValues');
 
-    res.render('user/post-detail', { post });
+    res.render('user/post-detail', { post, googleId });
 }
 
 InnController.editDetailPost = async(req, res) => {
+    const googleId = req.cookies['google_account_id'];
     const post = _.get(await postService.findById(req.params.id), 'dataValues');
 
-    res.render('user/post-edit', { post });
+    res.render('user/post-edit', { post, googleId });
 }
 
 InnController.postEdit = async(req, res) => {
@@ -56,4 +59,29 @@ InnController.postEdit = async(req, res) => {
     await postService.updateById(post, req.query.id);
 
     res.redirect(`/account/${req.cookies['google_account_id']}/${req.query.id}`);
+}
+
+InnController.DaNangInns = async(req, res) => {
+    const inns = (await innService.findAll()).map(post => _.get(post, 'dataValues'));
+
+
+    res.render('user/DaNangInns', { inns });
+}
+
+InnController.BinhSonInns = async(req, res) => {
+    const inns = (await postService.findAll()).map(post => _.get(post, 'dataValues'));
+ 
+    res.render('user/BinhSonInns', { inns });
+}
+
+InnController.allInns = async(req, res) => {
+    const post = (await postService.findAll()).map(post => {
+        _.set(post, 'dataValues.image_slide', `/images/${post.dataValues.image_slide}`)
+        return _.get(post, 'dataValues')
+    });
+    let inns = (await innService.findAll()).map(post => _.get(post, 'dataValues'));
+
+    inns = inns.concat(post);
+    
+    res.render('user/allInns', { inns });
 }

@@ -97,3 +97,31 @@ homeController.logout = async(req, res) => {
     res.redirect('/');
 }
 
+homeController.profile = async(req, res) => {
+    const googleId = req.cookies['google_account_id'];
+
+    const user = _.get((await userService.findByGoogleAccountId(req.cookies['google_account_id'])), 'dataValues');
+
+    const pattern = /http/g
+    if (!pattern.test(user.avatar_link)) {
+        user.avatar_link = `/images/${user.avatar_link}`;
+    }
+
+    res.render('user/profile', { googleId, user });
+}
+
+homeController.editProfile = async(req, res) => {
+    try {
+        const profile = JSON.parse(JSON.stringify(req.body));
+
+        Object.assign(profile, { avatar_link: req.file.filename });
+
+    
+        await userService.updateByGoogleAccountId(profile, req.cookies['google_account_id']);
+    } catch (err) {
+        console.error(err);
+    }
+
+    res.redirect('edit-profile');
+}
+

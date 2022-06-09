@@ -4,6 +4,10 @@ const homeController = require('../controllers/user/home.controller');
 const InnController = require('../controllers/user/inn.controller');
 
 const { upload } = require('../helpers/multer')
+
+// profile
+router.post('/edit-profile', upload.single('uploaded_file'), homeController.editProfile);
+router.get('/edit-profile', homeController.profile);
  
 // inn
 router.get('/:googleId/edit/:id', InnController.editDetailPost);
@@ -13,6 +17,11 @@ router.post('/add-new-inn', upload.single('uploaded_file'), InnController.addNew
 router.get('/account/:googleId/:id/', InnController.detailPost);
 router.get('/account/:googleId', InnController.getPost);
 router.get('/create-inn', InnController.pageCreateInn);
+
+router.get('/DaNang-inns', InnController.DaNangInns);
+router.get('/BinhSon-inns', InnController.BinhSonInns);
+router.get('/all-inns', InnController.allInns);
+
 
 // event
 router.get('/happening-event/:slug', homeController.happeningEvent);

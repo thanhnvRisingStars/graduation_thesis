@@ -22,8 +22,11 @@ router.get('/annual-event-detail', adminController.annualEventDetail);
 router.get('/recent-event-detail', adminController.recentEventDetail);
 
 // Inn
+router.get('/post/detail', innAdminController.postDetail);
+router.post('/delete-post', innAdminController.deletePost);
 router.post('/confirmed-inn/delete', innAdminController.deleteConfirmInn);
 router.get('/confirmed-inn', innAdminController.confirmedInnDetail);
+router.get('/confirm-inns', innAdminController.confirmInns);
 router.get('/confirmed-inns', innAdminController.confirmedInns);
 
 router.post('/inn/new-inn/:url', innAdminController.newInn);

@@ -1,4 +1,4 @@
-const event = require('./user');
+const event = require('./event');
 const admin = require('./admin');
 const home = require('./home');
 const auth = require('./auth');

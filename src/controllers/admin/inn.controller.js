@@ -7,7 +7,8 @@ const {
 } = require('../../service/index.service');
 
 const { 
-  innService
+  innService,
+  postService
 } = require('../../service/index.service');
 
 const InnController = module.exports
@@ -226,4 +227,26 @@ InnController.deleteConfirmInn = async(req, res) => {
   await innService.updateById({ deletedAt: true}, req.query.id)
 
   res.redirect('/admin/confirmed-inns');
+}
+
+InnController.confirmInns = async(req, res) => {
+  res.cookie('admin','admin');
+  const admin = req.cookies.admin;
+  const posts = (await postService.findAll({status: 1})).map(post => _.get(post, 'dataValues'));
+  
+  res.render('admin/post-manager', { admin, posts });
+}
+
+InnController.deletePost = async(req, res) => {
+  await postService.updateById({ reason: req.body.reason, status: 0}, req.query.id);
+
+  res.redirect('/admin/confirm-inns');
+}
+
+InnController.postDetail = async(req, res) => {
+  res.cookie('admin','admin');
+  const admin = req.cookies.admin;
+  const post = _.get((await postService.findById(req.query.id)), 'dataValues');
+
+  res.render('admin/post-detail', { admin, post });
 }

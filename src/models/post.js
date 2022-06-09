@@ -39,6 +39,14 @@ module.exports = function(sequelize, Sequelize) {
             type: Sequelize.TEXT('long'),
             notEmpty: true
         },
+        status: {
+            type: Sequelize.BOOLEAN,
+            defaultValue: true,
+        },
+        reason: {
+            type: Sequelize.STRING,
+            allowNull: true
+        },
     });
  
     return Post;
