@@ -1,59 +1,65 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <a class="navbar-brand" href="/">Logo</a>
-  {{!-- drop down --}}
-    <ul class="d-flex mr-auto">
-      <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-expanded="false">
-          Tim/Ghep tro
-        </a>
-        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <a class="dropdown-item" href="/DaNang-inns">Tim tro tu do o Da Nang</a>
-            <a class="dropdown-item" href="/BinhSon-inns">Tim tro voi nguoi Binh Son</a>
-            <a class="dropdown-item" href="/all-inns">Tat ca</a>
-        </div>
-      </li>
-      <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-expanded="false">
-          Sự kiện hằng năm
-        </a>
-        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          {{#each dataEvents}}
-            <a class="dropdown-item" href="/events/{{this.title}}">{{this.title}}</a>
-          {{/each}}
-          <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="/events">Xem tất cả các sự kiện đã diễn ra</a>
-        </div>
-      </li>
-    </ul>
-      {{#if googleId}}
-        <nav class="navbar navbar-dark bg-dark navbar-expand-sm">
-        <a class="navbar-brand" href="#">
-          Nguyen Van Thanh
-        </a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-list-4" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbar-list-4">
-          <ul class="navbar-nav">
-              <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <img src="https://s3.eu-central-1.amazonaws.com/bootstrapbaymisc/blog/24_days_bootstrap/fox.jpg" width="40" height="40" class="rounded-circle">
-              </a>
-              <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                <a class="dropdown-item" href="#">Dashboard</a>
-                <a class="dropdown-item" href="/edit-profile">Edit Profile</a>
-                <a class="dropdown-item" href="/account/{{googleId}}">Bai dang cua ban</a>
-                <a class="dropdown-item" href="/logout">Log Out</a>
-              </div>
-            </li>   
+<div class="">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      {{!-- ---- --}}
+        <div class="container">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0 align-middle w-100">
+            <li class="nav-item align-middle">
+                <a href="#" class="navbar-brand">
+                  <img src="/images/logo/LOGO.png" height="56" alt="CoolBrand">
+                </a>
+            </li>
+            <li class="nav-item flex-align-center">
+                <a class="nav-link" href="/">Trang chủ</a>
+            </li>
+            <li class="nav-item flex-align-center">
+                <a class="nav-link" href="#">Trang cá nhân</a>
+            </li>
+            <li class="nav-item dropdown flex-align-center">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Trọ sinh viên
+                </a>
+                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <li><a class="dropdown-item" href="/DaNang-inns">Trọ Đà Nẵng</a></li>
+                    <li><a class="dropdown-item" href="/BinhSon-inns">Trọ cùng người Bình Sơn - Quảng Ngãi</a></li>
+                    <li><hr class="dropdown-divider"></li>
+                    <li><a class="dropdown-item" href="/all-inns">Xem danh sách trọ</a></li>
+                </ul>
+            </li>
+            <li class="nav-item dropdown flex-align-center">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Sự kiện hằng năm
+                </a>
+                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    {{#each dataEvents}}
+                        <li><a class="dropdown-item" href="/events/{{this.title}}">{{this.title}}</a></li>
+                    {{/each}}
+                    <li><hr class="dropdown-divider"></li>
+                    <li><a class="dropdown-item" href="/events">Sự kiện đã diễn ra</a></li>
+                </ul>
+            </li>
+            {{!-- login --}}
+            <li class="nav-item d-flex flex-align-center flex-1">
+              <div class="flex-1"></div>
+              {{#if googleId}}
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0 align-middle flex-end">
+                  <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    <img src="https://s3.eu-central-1.amazonaws.com/bootstrapbaymisc/blog/24_days_bootstrap/fox.jpg" width="40" height="40" class="rounded-circle">
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <li><a class="dropdown-item" href="/edit-profile">Trang cá nhân</a></li>
+                        <li><a class="dropdown-item" href="/account/{{googleId}}">Quản lý bài đăng</a></li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li><a class="dropdown-item" href="/logout">Đăng xuất</a></li>
+                    </ul>
+                  </li>
+                </ul>
+              {{else}}
+                    <a href="/auth/google" class="nav-item nav-link">Login</a>
+              {{/if}}
+            </li>
           </ul>
         </div>
-      </nav>
-      {{else}}
-        <a class="btn btn-outline-success my-2 my-sm-0"  href="/auth/google">LOGIN</a>
-      {{/if}}
-
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-</nav>
+      {{!-- ---- --}}
+    </nav>
+</div>

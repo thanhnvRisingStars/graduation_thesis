@@ -1,7 +1,8 @@
 const _ = require('lodash');
 const { 
     innService,
-    postService
+    postService,
+    annualEventService
 } = require('../../service/index.service');
 
 
@@ -62,19 +63,27 @@ InnController.postEdit = async(req, res) => {
 }
 
 InnController.DaNangInns = async(req, res) => {
+    const googleId = req.cookies['google_account_id'];
     const inns = (await innService.findAll()).map(post => _.get(post, 'dataValues'));
+    const events = await annualEventService.findAll();
+    const dataEvents = events.map(event => event.dataValues);
 
-
-    res.render('user/DaNangInns', { inns });
+    res.render('user/DaNangInns', { inns, googleId, dataEvents });
 }
 
 InnController.BinhSonInns = async(req, res) => {
+    const googleId = req.cookies['google_account_id'];
     const inns = (await postService.findAll()).map(post => _.get(post, 'dataValues'));
+    const events = await annualEventService.findAll();
+    const dataEvents = events.map(event => event.dataValues);
  
-    res.render('user/BinhSonInns', { inns });
+    res.render('user/BinhSonInns', { inns, googleId, dataEvents});
 }
 
 InnController.allInns = async(req, res) => {
+    const googleId = req.cookies['google_account_id'];
+    const events = await annualEventService.findAll();
+    const dataEvents = events.map(event => event.dataValues);
     const post = (await postService.findAll()).map(post => {
         _.set(post, 'dataValues.image_slide', `/images/${post.dataValues.image_slide}`)
         return _.get(post, 'dataValues')
@@ -83,5 +92,5 @@ InnController.allInns = async(req, res) => {
 
     inns = inns.concat(post);
     
-    res.render('user/allInns', { inns });
+    res.render('user/allInns', { inns, googleId, dataEvents });
 }

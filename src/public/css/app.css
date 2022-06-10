@@ -48,3 +48,183 @@
 .bg-custom-2 {
 background-image: linear-gradient(15deg, #13547a 0%, #80d0c7 100%);
 }
+
+.flex-align-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.flex {
+  display: flex;
+}
+
+.flex-1 {
+  flex: 1;
+}
+
+.flex-end {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.swiper {
+  width: 100%;
+  height: 100%;
+}
+
+.swiper-slide {
+  text-align: center;
+  font-size: 18px;
+  background: rgb(133, 194, 238);
+
+  /* Center slide text vertically */
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  -webkit-align-items: center;
+  align-items: center;
+}
+
+.swiper-slide img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.slide-container,
+.slide-child-container {
+  position: relative;
+  height: 500px;
+}
+
+.slide-child-container {
+  background: #eee;
+  font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+  font-size: 14px;
+  color: #000;
+  margin: 0;
+  padding: 0;
+}
+
+.background-config {
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.flex-column {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.w-10 {
+  width: 10%
+}
+
+.t-c {
+  color: #6c757d
+}
+
+.t-j {
+  text-align: justify;
+}
+
+.w-k {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+}
+
+.overflow {
+  overflow: visible
+}
+
+.b-c {
+  background-color: #eeeeee !important
+}
+
+.m-10px {
+  margin: 10px;
+}
+
+.mr-ml-10px {
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+.bg-i-inn {
+  background-size: cover;
+  background-repeat: no-repeat;
+  border-radius: 5px;
+  width: 160px;
+  height: 160px;
+}
+
+.ml-20px {
+  margin-left: 20px;
+}
+
+.pl-0 {
+  padding-left: 0px !important;
+}
+.mb-0 {
+  margin-bottom: 0px;
+}
+
+.p-tb-0 {
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
+}
+
+.mb-20 {
+  margin-bottom: 20px !important;
+}
+.a {
+  text-decoration: none;
+  color: #1e1f21
+}
+
+.a-c {
+  text-decoration: none;
+  color: #6c757d
+}
+
+a:hover {
+  color: #595f64
+}
+
+.absolute {
+  position: absolute !important;
+  top: 24%;
+  left: 36%
+}
+
+.relative {
+  position: relative !important;
+}
+
+.z-index-10 {
+  z-index: 10;
+}
+
+.z-index-99 {
+  z-index: 99;
+}
+
+.mt-20 {
+  margin-top: 20px !important;
+}
+
+.min-height {
+  min-height: 100vh;
+}

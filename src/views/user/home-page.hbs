@@ -1,53 +1,87 @@
-{{#with happeningEventData}}
-<div class="position-relative bg-success w-100" style="height:400px; background-image: url(/images/{{this.image_name}}); background-repeat: no-repeat; background-size: cover; background-position: center;" >
-  <h2 class="position-absolute text-light" style="top:40%; left:30%; cursor: pointer" id="myBtn">DANG KY SU KIEN</h2>
-    <a href="/happening-event/{{title}}" class="text-light position-absolute" style="top:60%; left:14%; font-size: 30px">{{title}}</a>
-</div>
-{{/with}}
-<h1>Phong tro da nang</h1>
-{{#each inns}}
-<div>
-  <div class="row">
-    <div class="col-4">
-      <a href="/inns/{{this.id}}?title={{this.title}}">
-        <img src="{{this.image_slide}}" alt="" style="width:200px">      
-      </a>
+<div class="relative">
+  <div class="absolute z-index-10 flex-column">
+    <div>
+      <h1 class="t-c" style="cursor: pointer" id="myBtn">ĐĂNG KÝ SỰ KIỆN</h1>
     </div>
-    <div class="col-8">
-      <a href="/inns/{{this.id}}?title={{this.title}}">
-        <h4>{{this.title}}</h4>
-      </a>
-      <div class="row">
-        <p>{{this.price}}</p>
-        <p>{{this.acreage}}</p>
-        <p>{{this.address}}</p>
-        <p>Thoi gian tao</p>
+    {{#with happeningEventData}}
+    <h2 class="mt-20">
+      <a href="/happening-event/{{title}}" class="t-c a-c">{{title}}</a>
+    </h2>
+    {{/with}}
+  </div>
+  <div class="slide-container mr-ml-10px">
+  <div class="slide-child-container relative">
+    <div class="swiper mySwiper">
+      <div class="swiper-wrapper">
+        <div class="swiper-slide">
+          <div style="width:50px; height:50px; background-color:red">
+            Slide 1
+          </div>
+        </div>
+        <div class="swiper-slide">Slide 2</div>
+        <div class="swiper-slide">Slide 3</div>
+        <div class="swiper-slide">Slide 4</div>
+        <div class="swiper-slide">Slide 5</div>
       </div>
-      <div>
-        {{{this.description}}}
-      </div>
-      <div class="row">
-        <img src="https://jes.edu.vn/wp-content/uploads/2017/10/h%C3%ACnh-%E1%BA%A3nh.jpg" alt="" style="width:20px">      
-        <p>{{this.author_name}}</p>
+      <div class="swiper-button-next"></div>
+      <div class="swiper-button-prev"></div>
+      <div class="swiper-pagination"></div>
+    </div>
+  </div>
+</div>
+</div>
+<h2 class="t-c mr-ml-10px mt-4">Nhà trọ Đà Nẵng</h2>
+{{!--  --}}
+{{#each inns}}
+<div class=" shadow p-3 mb-5 bg-body rounded mr-ml-10px mb-0 p-tb-0">
+  <div class="card-body">
+    <div class="d-flex justify-content-between">
+      <div class="d-flex flex-row align-items-center">
+        <a href="/inns/{{this.id}}?title={{this.title}}">
+            <div
+            style="
+            background-image: url('{{this.image_slide}}');"
+            class="bg-i-inn"
+            >
+            </div>
+        </a>
+        <div class="ms-3">
+          <a href="/inns/{{this.id}}?title={{this.title}}" class="a">
+            <h5>{{this.title}}</h5>
+          </a>
+          <div class="flex">
+            <p class="small mb-0">{{this.price}}</p>
+            <p class="small mb-0 ml-20px">{{this.acreage}}</p>
+            <p class="small mb-0 ml-20px">{{this.address}}</p>
+          </div>
+          <p>Mo ta</p>
+          <div class="pl-0 flex">
+            <a class="nav-link dropdown-toggle pl-0" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              <img src="https://s3.eu-central-1.amazonaws.com/bootstrapbaymisc/blog/24_days_bootstrap/fox.jpg" width="40" height="40" class="rounded-circle">
+            </a>
+            <div class="flex-align-center">
+              <p class="mb-0">Nguoi dang</p>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
 </div>
 {{/each}}
-<h1>Thong tin ve hoi</h1>
-<div class="position-relative bg-success w-100" style="height:400px; background-image: url(/images/{{this.image_name}}); background-repeat: no-repeat; background-size: cover; background-position: center;" >
-  <h2 class="position-absolute text-light" style="top:10%; left:20%; cursor: pointer">HDH HS-SH H.BS Tai TP DANANG</h2>
-    <a class="text-light position-absolute" style="top:22%; left:6%; font-size: 12px">Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid quod cupiditate doloribus soluta pariatur enim commodi assumenda reprehenderit laborum magni amet harum deserunt earum nesciunt, fugit facere neque placeat ab labore dolores aspernatur. Distinctio reprehenderit laudantium aut? Aliquid cumque similique velit officiis, modi, corporis numquam est eum sequi nisi omnis illo aperiam harum rem alias quaerat. Nihil porro blanditiis ex quod deleniti animi nulla error, necessitatibus, corrupti recusandae voluptatibus dolores optio reiciendis maiores eligendi consequuntur. Soluta nulla in maiores, numquam similique illo culpa corrupti officia? Libero asperiores atque reprehenderit quibusdam voluptatibus, possimus earum porro molestias? Iusto nesciunt iure, inventore quo ducimus eum molestias obcaecati nisi adipisci, vitae voluptatibus recusandae suscipit dolor! Voluptates odio beatae necessitatibus quo debitis adipisci quos sunt, nobis deserunt. Quae, autem itaque omnis velit earum repudiandae consequatur harum dolorem ex eos aut laboriosam laudantium ratione corrupti commodi iure voluptatibus esse ipsum adipisci alias quasi. Accusamus quidem culpa corporis praesentium voluptate vero minima dolorem repellendus, eaque nulla rem reprehenderit, deserunt quae! Velit voluptatem excepturi repellendus veniam! Tempora sequi repellat a nesciunt. Porro perferendis vitae praesentium sequi error corrupti, at est quam quidem explicabo iusto magnam  numquam atque voluptas quod asperiores, dicta consequatur, corporis aspernatur tenetur eius. Eos distinctio asperiores a? Temporibus dolorem id numquam? Ut autem enim consequatur.</a>
+<div class="shadow p-3 mb-1 bg-body rounded background-config flex-column p-4 mt-5 mb-5 m-10px">
+  <h2 class="pt-8 t-c">Hội đồng hương</h2>
+  <h2 class="t-c">Học sinh - Sinh viên</h2>
+  <h2 class="pb-4 t-c"> Huyện Bình Sơn tại Thành phố Đà Nẵng</h2>
+  <img src="/images/logo/LOGO.png" alt="" class="w-10">
+  <div class="w-75 t-c t-j">
+    <p>
+      Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid quod cupiditate doloribus soluta pariatur enim commodi assumenda reprehenderit laborum magni amet harum deserunt earum nesciunt, fugit facere neque placeat ab labore dolores aspernatur. Distinctio reprehenderit laudantium aut? Aliquid cumque similique velit officiis, modi, corporis numquam est eum sequi nisi omnis illo aperiam harum rem alias quaerat. Nihil porro blanditiis ex quod deleniti animi nulla error, necessitatibus, corrupti recusandae voluptatibus dolores optio reiciendis maiores eligendi consequuntur. Soluta nulla in maiores, numquam similique illo culpa corrupti officia? Libero asperiores atque reprehenderit quibusdam voluptatibus, possimus earum porro molestias? Iusto nesciunt iure, inventore quo ducimus eum molestias obcaecati nisi adipisci, vitae voluptatibus recusandae suscipit dolor! Voluptates odio beatae necessitatibus quo debitis adipisci quos sunt, nobis deserunt. Quae, autem itaque omnis velit earum repudiandae consequatur harum dolorem ex eos aut laboriosam laudantium ratione corrupti commodi iure voluptatibus esse ipsum adipisci alias quasi. Accusamus quidem culpa corporis praesentium voluptate vero minima dolorem repellendus, eaque nulla rem reprehenderit, deserunt quae! Velit voluptatem excepturi repellendus veniam! Tempora sequi repellat a nesciunt. Porro perferendis vitae praesentium sequi error corrupti, at est quam quidem explicabo iusto magnam  numquam atque voluptas quod asperiores, dicta consequatur, corporis aspernatur tenetur eius. Eos distinctio asperiores a? Temporibus dolorem id numquam? Ut autem enim consequaturLorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid quod cupiditate doloribus soluta pariatur enim commodi assumenda reprehenderit laborum magni amet  
+    </p>
+  </div>
 </div>
-
-
-
-
-
-
-
 {{#with user }}
-<div id="myModal" class="modal">
+<div id="myModal" class="modal z-index-99">
   <div class="modal-content">
     <form action="register-event" method="POST">
         <span class="close">&times;</span>
@@ -83,3 +117,23 @@ window.onclick = function(event) {
   }
 }
 </script>
+{{!-- swiper --}}
+<script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+<script>
+      var swiper = new Swiper(".mySwiper", {
+        spaceBetween: 30,
+        centeredSlides: true,
+        autoplay: {
+          delay: 5000,
+          disableOnInteraction: false,
+        },
+        pagination: {
+          el: ".swiper-pagination",
+          clickable: true,
+        },
+        navigation: {
+          nextEl: ".swiper-button-next",
+          prevEl: ".swiper-button-prev",
+        },
+      });
+    </script>
