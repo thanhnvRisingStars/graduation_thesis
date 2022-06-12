@@ -1,21 +1,26 @@
 <table class="table">
   <thead>
     <tr>
-      <th scope="col">Năm tổ chức</th>
-      <th scope="col">Tên sự kiện</th>
+      <th scope="col" class="w-50">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0 w-100">
+          <li class="nav-item dropdown flex-align-center">
+              <a class="nav-link dropdown-toggle p-0" href="#" id="fetch" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Năm tổ chức
+              </a>
+              <ul class="dropdown-menu" aria-labelledby="fetch">
+                  {{#each years}}
+                    <li onclick="showEvent(this)"><a class="dropdown-item">{{this.year}}</a></li>
+                  {{/each}}
+                  <li><hr class="dropdown-divider"></li>
+                  <li><a class="dropdown-item" href="">Tất cả</a></li>
+              </ul>
+          </li>
+        </ul>
+      </th>
+      <th scope="col" class="w-50">Sự kiện</th>
     </tr>
   </thead>
   <tbody id="tbody">
-      {{!--  --}}
-      <div class="row">
-            <select class="form-select" aria-label="Default select example" name="yearEvent" id="yearEvent">
-                <option selected>Năm</option>
-                {{#each years}}
-                  <option value="{{this.year}}">{{this.year}}</option>
-                {{/each}}
-            </select>
-      </div>
-      {{!--  --}}
     {{#each dataHappenEvents}}
     <tr>
       <th scope="row">{{this.action_time}}</th>
@@ -28,11 +33,14 @@
     {{/each}}
   </tbody>
 </table>
-
+<p id="noEvent"></p>
 
 <script>
-  const search = async() => {
-      var yearEvent = $("#yearEvent").val();
+  const showEvent = async(e) => {
+      const yearEvent = e.childNodes[0].innerHTML
+
+      const ulId = document.getElementById('fetch');
+      ulId.innerHTML = yearEvent;
 
       const data_filter = await fetch('http://localhost:3000/events/filterEvents',{
         method: "POST",
@@ -54,8 +62,11 @@
                               </tr>`
       })
       const listEvent = document.getElementById("tbody");
+      const noEvent = document.getElementById("noEvent")
+      noEvent.innerHTML = '';
       if(!eventTransformHtml) {
-        eventTransformHtml = `Năm ${yearEvent} đã không có bất kì sự kiện nào được diễn ra hoặc chưa được cập nhật`;
+        eventTransformHtml = '';
+        noEvent.innerHTML = `Năm ${yearEvent} đã không có bất kì sự kiện nào được diễn ra hoặc chưa được cập nhật`
       }
       listEvent.innerHTML = eventTransformHtml;
   }

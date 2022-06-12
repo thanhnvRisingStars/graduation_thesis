@@ -1,43 +1,56 @@
-<a href="/create-inn" class="btn btn-primary">Tao moi tro</a>
+<div class="shadow w-100 p-container pb-1">
 {{#if posts}}
     {{#each posts}}
-    <div>
-        <div class="row">
-            <div class="col-4">
-            <a href="/account/{{this.creator_id}}/{{this.id}}">
-                <img src="/images/{{this.image_slide}}" alt="" style="width:200px">      
-            </a>
+      <div class="container shadow p-3 mb-5 bg-body rounded mb-0 p-tb-0">
+        <div class="card-body">
+          <div class="d-flex justify-content-between w-100">
+            <div class="d-flex flex-row align-items-center w-100">
+              <a href="/account/{{this.creator_id}}/{{this.id}}">
+                  <div
+                  style="
+                  background-image: url('/images/{{this.image_slide}}');"
+                  class="bg-i-inn"
+                  >
+                  </div>
+              </a>
+              <div class="ms-3 flex-1">
+                <a href="/account/{{this.creator_id}}/{{this.id}}" class="a">
+                  <h5>{{this.title}}</h5>
+                </a>
+                <div class="flex">
+                  <p class="small mb-0">{{this.price}}</p>
+                  <p class="small mb-0 ml-20px">{{this.acreage}}</p>
+                  <p class="small mb-0 ml-20px">{{this.address}}</p>
+                </div>
+                <p>Mo ta</p>
+                <div class="pl-0 flex">
+                  <div class="flex-align-center w-100">
+                      <a class="nav-link dropdown-toggle pl-0" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                          <img src="https://s3.eu-central-1.amazonaws.com/bootstrapbaymisc/blog/24_days_bootstrap/fox.jpg" width="40" height="40" class="rounded-circle">
+                      </a>
+                      <p class="mb-0">{{this.author_name}}</p>
+                      <div class="flex flex-1 flex-end">
+                          <form action="/delete-inn-post?id={{this.id}}" method="POST">
+                              <button class="btn btn-dark b-c a mr-ml-10px"> Xóa </button>
+                          </form>
+                          <a href="/{{this.creator_id}}/edit/{{this.id}}" class="btn btn-dark b-c a">Chỉnh sửa</a>
+                      </div>
+                  </div>
+                </div>
+              </div>
             </div>
-            <div class="col-8">
-            <a href="/account/{{this.creator_id}}/{{this.id}}">
-                <h4>{{this.title}}</h4>
-            </a>
-            <div class="row">
-                <p>{{this.price}}</p>
-                <p>{{this.acreage}}</p>
-                <p>{{this.address}}</p>
-                <p>Thoi gian tao</p>
-            </div>
-            <div>
-                {{{this.description}}}
-            </div>
-            <div class="row">
-                <img src="https://jes.edu.vn/wp-content/uploads/2017/10/h%C3%ACnh-%E1%BA%A3nh.jpg" alt="" style="width:20px">      
-                <p>{{this.author_name}}</p>
-            </div>
-            </div>
+          </div>
         </div>
-    </div>
+      </div>
     {{#if this.reason}}
         <p>Bai dang cua ban da bi tu choi vi lys do {{this.reason}}</p>
     {{/if}}
-    <div class="row">
-        <form action="/delete-inn-post?id={{this.id}}" method="POST">
-            <button> Xoa </button>
-        </form>
-        <a href="/{{this.creator_id}}/edit/{{this.id}}">Chinh Sua</a>
-    </div>
-{{/each}}
+    {{/each}}
 {{else}}
     <h1>Ban chua dang tai bat ki bai nao !</h1>
 {{/if}}
+  <div class="w-100 flex-align-center">
+      <a href="/create-inn" class="btn btn-dark b-c a">Tạo mới dãy trọ</a>
+  </div>
+</div>
+

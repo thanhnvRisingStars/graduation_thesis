@@ -11,13 +11,13 @@ router.get('/recent-events', adminController.recentEventPage);
 router.get('/edit-happening-event', adminController.editHappeningEventPage);
 router.get('/send-mail-happening-event', adminController.setupMailEvent);
 router.post('/send-mail', adminController.sendMailHappeningEvent);
-router.post('/edit-happening-event', upload.single('uploaded_file'), adminController.editHappeningEventPagePost);
-router.post('/save-recent-event', upload.single('uploaded_file'), adminController.saveRecentEvent);
-router.post('/change-new-event', upload.single('uploaded_file'), adminController.changeNewEventPost);
+router.post('/edit-happening-event', upload.array('uploaded_file'), adminController.editHappeningEventPagePost);
+router.post('/save-recent-event', upload.array('uploaded_file'), adminController.saveRecentEvent);
+router.post('/change-new-event', upload.array('uploaded_file'), adminController.changeNewEventPost);
 router.get('/happening-event', adminController.happeningEvent);
-router.post('/update-annual-event', upload.single('uploaded_file'),adminController.updateAnnualEvent);
+router.post('/update-annual-event', upload.array('uploaded_file'),adminController.updateAnnualEvent);
 router.get('/add-annual-event', adminController.addAnnualEventPage);
-router.post('/add-annual-event', upload.single('uploaded_file'),adminController.addAnnualEvent);
+router.post('/add-annual-event', upload.array('uploaded_file'),adminController.addAnnualEvent);
 router.get('/annual-event-detail', adminController.annualEventDetail);
 router.get('/recent-event-detail', adminController.recentEventDetail);
 

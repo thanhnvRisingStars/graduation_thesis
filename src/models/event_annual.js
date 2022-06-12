@@ -17,7 +17,7 @@ module.exports = function(sequelize, Sequelize) {
             type: Sequelize.TEXT('long'),
             notEmpty: true
         },
-        image_name: {
+        video_id: {
             type: Sequelize.STRING,
             notEmpty: true
         },

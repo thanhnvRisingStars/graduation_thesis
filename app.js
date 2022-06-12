@@ -25,6 +25,7 @@ app.set('views', path.join(__dirname,'src/views'))
 app.engine('.hbs', exp_hbs.engine({ extname: '.hbs', defaultLayout: "main"}));
 app.set('view engine', '.hbs');
 app.use(express.static(path.join(__dirname,'src/public')))
+app.use('/js', express.static(__dirname + 'src/public/js'));
 app.use(cookieParser());
 
 var authRoute = require('./src/routes/index.route');

@@ -1,10 +1,56 @@
+<div class="shadow w-100 p-container pb-1">
 {{#with data}}
-<h1>
-    <p>{{this.title}}</p> 
-    Hội đồng hương học sinh - sinh viên huyện Bình Sơn tại TP Đà Nẵng 
-</h1>
-<p>
-    {{this.description}}
-</p>
-<img src="/images/{{this.image_name}}" alt="">
+<div class="row bg-c-w">
+    <div class="w-100 t-align-center t-c">
+        <h3 class="t-upper">
+            <p>{{this.title}}</p> 
+        </h3>
+        <p>Hội đồng hương <br>
+        Học sinh - Sinh viên huyện Bình Sơn tại thành phố Đà Nẵng
+        </p>
+    </div>
+    <div class="flex-align-center">
+        <div class="w-75">
+            <div class="border-side">
+                <p class="t-c t-j">
+                    {{!-- {{this.description}} --}}
+                    Lorem ipsum, dolor sit amet consectetur adipisicing elit. Repudiandae velit animi facere tempore sequi voluptatum accusamus, repellat aliquid quidem accusantium cum modi necessitatibus! Illum odio autem voluptatum, obcaecati, numquam eos aliquam, esse ducimus quaerat error magnam est! Sint, maxime temporibus aperiam dolor necessitatibus maiores nulla, debitis fugiat quam quisquam modi porro? Eligendi harum at animi. Quam exercitationem.
+                    Lorem ipsum, dolor sit amet consectetur adipisicing elit. Repudiandae velit animi facere tempore sequi voluptatum accusamus, repellat aliquid quidem accusantium cum modi necessitatibus! Illum odio autem voluptatum, obcaecati, numquam eos aliquam, esse ducimus quaerat error magnam est! Sint, maxime temporibus aperiam dolor necessitatibus maiores nulla, debitis fugiat quam quisquam modi porro? Eligendi harum at animi. Quam exercitationem. 
+                </p>
+                
+                <p class="mt-20">
+                    commodi magni expedita. Maiores obcaecati quidem quaerat laudantium natus eveniet ipsa minus aperiam aspernatur deserunt quas illum numquam commodi architecto cum eligendi, vero facere ducimus reprehenderit optio? Rem nobis tenetur reiciendis. Molestias fugit laborum rerum molestiae est incidunt maxime, animi quam similique pariatur? Ducimus porro dicta, iusto asperiores soluta error pariatur quisquam natus provident eligendi maxime, nemo ab reiciendis 
+                    commodi magni expedita. Maiores obcaecati quidem quaerat laudantium natus eveniet ipsa minus aperiam aspernatur deserunt quas illum numquam commodi architecto cum eligendi, vero facere ducimus reprehenderit optio? Rem nobis tenetur reiciendis. Molestias fugit laborum rerum molestiae est incidunt maxime, animi quam similique pariatur? Ducimus porro dicta, iusto asperiores soluta error pariatur quisquam natus provident eligendi maxime, nemo ab reiciendis 
+                <p>
+            </div>
+        </div>
+    </div>
+<div class="w-100">
+    <div class="video-container flex-align-start">
+        <iframe width="60%" height="332" src="https://www.youtube.com/embed/{{video_id}}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    </div>
+</div>
+</div>
 {{/with}}
+</div>
+ <!-- Swiper JS -->
+<script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+
+<!-- Initialize Swiper -->
+<script>
+    var swiper = new Swiper(".mySwiper", {
+    slidesPerView: 3,
+    spaceBetween: 30,
+    slidesPerGroup: 3,
+    loop: true,
+    loopFillGroupWithBlank: true,
+    pagination: {
+        el: ".swiper-pagination",
+        clickable: true,
+    },
+    navigation: {
+        nextEl: ".swiper-button-next",
+        prevEl: ".swiper-button-prev",
+    },
+    });
+</script>

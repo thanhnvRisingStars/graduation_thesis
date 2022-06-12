@@ -2,20 +2,27 @@ const _ = require('lodash');
 const { 
     innService,
     postService,
-    annualEventService
+    annualEventService,
+    events
 } = require('../../service/index.service');
 
 
 const InnController = module.exports
 
 InnController.getPost = async(req, res) => {
+    const googleId = req.cookies['google_account_id'];
     const posts = (await postService.filterByCreatorId(req.params.googleId)).map((post) => _.get(post, 'dataValues'));
+    const events = await annualEventService.findAll();
+    const dataEvents = events.map(event => event.dataValues);
 
-    res.render('user/post-manager', { posts });
+    res.render('user/post-manager', { posts, dataEvents, googleId});
 }
 
 InnController.pageCreateInn = async(req, res) => {
-    res.render('user/create-inn-page');
+    const googleId = req.cookies['google_account_id'];
+    const events = await annualEventService.findAll();
+    const dataEvents = events.map(event => event.dataValues);
+    res.render('user/create-inn-page' , { googleId, dataEvents });
 }
 
 InnController.addNewInn = async(req, res) => {
@@ -39,15 +46,20 @@ InnController.deleteInnPost = async(req, res) => {
 InnController.detailPost =async(req, res) => {
     const googleId = req.cookies['google_account_id'];
     const post = _.get(await postService.findById(req.params.id), 'dataValues');
+    const events = await annualEventService.findAll();
+    const dataEvents = events.map(event => event.dataValues);
 
-    res.render('user/post-detail', { post, googleId });
+    res.render('user/post-detail', { post, googleId , dataEvents});
 }
 
 InnController.editDetailPost = async(req, res) => {
+    
     const googleId = req.cookies['google_account_id'];
     const post = _.get(await postService.findById(req.params.id), 'dataValues');
+    const events = await annualEventService.findAll();
+    const dataEvents = events.map(event => event.dataValues);
 
-    res.render('user/post-edit', { post, googleId });
+    res.render('user/post-edit', { post, googleId, dataEvents});
 }
 
 InnController.postEdit = async(req, res) => {

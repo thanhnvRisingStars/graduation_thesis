@@ -85,6 +85,7 @@ adminController.changeNewEvent = async(req, res) => {
 
 adminController.changeNewEventPost = async(req, res) => {
     try {
+        console.log(req.files);
         const event = {
             title: req.body.title,
             description: req.body.description,

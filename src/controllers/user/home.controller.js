@@ -4,7 +4,8 @@ const {
     userService,
     googleService,
     happeningEventService,
-    innService
+    innService,
+    postService
 } = require('../../service/index.service');
 
 
@@ -81,15 +82,14 @@ homeController.happeningEvent = async(req, res) => {
 
 homeController.innDetail = async(req, res) => {
     const googleId = req.cookies['google_account_id'];
-
-    const inn = _.get(await innService.findById(req.params.id), 'dataValues');
+    const post = _.get(await postService.findById(req.params.id), 'dataValues');
     const events = await annualEventService.findAll();
     const dataEvents = events.map(event => event.dataValues);
     let user= {
         email: ''
     };
 
-    res.render('user/inn-detail', { dataEvents, user, inn, googleId });
+    res.render('user/post-detail', { dataEvents, user, post, googleId });
 }
 
 homeController.logout = async(req, res) => {
@@ -99,6 +99,8 @@ homeController.logout = async(req, res) => {
 
 homeController.profile = async(req, res) => {
     const googleId = req.cookies['google_account_id'];
+    const events = await annualEventService.findAll();
+    const dataEvents = events.map(event => event.dataValues);
 
     const user = _.get((await userService.findByGoogleAccountId(req.cookies['google_account_id'])), 'dataValues');
 
@@ -107,7 +109,7 @@ homeController.profile = async(req, res) => {
         user.avatar_link = `/images/${user.avatar_link}`;
     }
 
-    res.render('user/profile', { googleId, user });
+    res.render('user/profile', { googleId, user, dataEvents });
 }
 
 homeController.editProfile = async(req, res) => {

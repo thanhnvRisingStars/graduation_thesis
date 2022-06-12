@@ -1,3 +1,30 @@
+ 
+ <script>
+     $(function() {
+    // Multiple images preview in browser
+    var imagesPreview = function(input, placeToInsertImagePreview) {
+
+        if (input.files) {
+            var filesAmount = input.files.length;
+
+            for (i = 0; i < filesAmount; i++) {
+                var reader = new FileReader();
+
+                reader.onload = function(event) {
+                    $($.parseHTML('<img>')).attr('src', event.target.result).appendTo(placeToInsertImagePreview);
+                }
+
+                reader.readAsDataURL(input.files[i]);
+            }
+        }
+
+    };
+
+    $('#gallery-photo-add').on('change', function() {
+        imagesPreview(this, 'div.gallery');
+    });
+});
+ </script>
  <div class="container row">
         {{>siderBarHappeningEvent}}
         <div class="col-9">
@@ -15,9 +42,9 @@
                         <input type="date" id="start" name="action_time" value="{{date}}" min="{{date}}">
                     </div>
                 {{/with}}
-                <div>
-                    <input type="file" name="uploaded_file"  >
-                </div>
+                <input type="file" multiple id="gallery-photo-add" name="uploaded_file">
+                <div class="gallery"></div>
+
                 <input type="submit" value="Change new event" class="mt-4">
             </form>
         </div>
