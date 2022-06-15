@@ -1,30 +1,73 @@
+<div class="shadow p-60">
 {{#with post}}
-<div>
-    <img src="{{image_slide}}" alt="" style="width:100%; height: 400px">
-</div>
-<div>
-    <h1>
-        {{title}}
-    </h1>
-    <h4>
-        Dia chi: 
-        {{address}}
-    </h4>
-    <div class="row">
-        <p>{{price}}</p>
-        <p>{{acreage}}</p>
+<div class="relative">
+  <div class="slide-container mr-ml-10px">
+  <div class="slide-child-container relative">
+    <div class="swiper mySwiper">
+      <div class="swiper-wrapper">
+        <div class="swiper-slide bg-i-slide-home" style="background-image: url('{{image_slide}}')">
+        </div>
+        <div class="swiper-slide bg-i-slide-home" style="background-image: url('/images/teambuilding2.jpeg')"></div>
+        <div class="swiper-slide bg-i-slide-home" style="background-image: url('/images/teambuilding.jpeg')"></div>
+        <div class="swiper-slide bg-i-slide-home" style="background-image: url('/images/teambuilding2.jpeg')"></div>
+        <div class="swiper-slide bg-i-slide-home" style="background-image: url('/images/teambuilding.jpeg')"></div>
+      </div>
+      <div class="swiper-button-next"></div>
+      <div class="swiper-button-prev"></div>
+      <div class="swiper-pagination"></div>
     </div>
+  </div>
 </div>
-<div>
-    <h3>Thong tin mo ta</h3>
-    <div>{{{description}}}</div>
 </div>
-<div>
-    <h3>Dia diem dang tin</h3>
-    <p>{{{postPlace}}}</p>
-</div>
-<div>
-    <h3>Thong tin lien he</h3>
-    <p>{{{contact}}}</p>
+<div class="ml-20px">
+        <div class="mt-4">
+        <h5 class="t-c">
+            {{title}}
+        </h5>
+        <div class="ml-20px">
+            <p class="p">
+            Địa chỉ: 
+            {{address}}
+            </p>
+            <p>Giá: {{price}}</p>
+            <p>Diện tích: {{acreage}}</p>
+        </div>
+        </div>
+        <div>
+            <h5 class="t-c">Thông tin mô tả</h5>
+            <div class="ml-20px">{{{description}}}</div>
+        </div>
+        <h5 class="t-c">Địa điểm đăng tin: </h5>
+        <div class="ml-10">
+            <p >{{{postPlace}}}</p>
+        </div>
+        <h5 class="t-c">Thông tin liên hệ: </h5>
+        <div class="ml-10">
+            <p>{{{contact}}}</p>
+        </div>
 </div>
 {{/with}}
+</div>
+
+{{!-- swiper --}}
+<script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+<script>
+      var swiper = new Swiper(".mySwiper", {
+        spaceBetween: 30,
+        centeredSlides: true,
+        speed: 500,
+        autoplay: {
+          delay: 500000,
+          disableOnInteraction: false,
+        },
+        pagination: {
+          el: ".swiper-pagination",
+          clickable: true,
+        },
+        effect: 'slide',
+        navigation: {
+          nextEl: ".swiper-button-next",
+          prevEl: ".swiper-button-prev",
+        },
+      });
+    </script>

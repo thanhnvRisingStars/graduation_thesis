@@ -1,27 +1,42 @@
- <div class="container row">
-        {{>siderBarHappeningEvent}}
-        {{#with happeningEventData}}
-            <div class="col-9">
+<div class="shadow p-4 pl-10 happening-event-height">
+<div class="container flex">
+{{>siderBarHappeningEvent}}
+        <div class="col-10 p-4 shadow">
+            {{#with happeningEventData}}
+            <div class="col-12">
                 <form method="POST" enctype="multipart/form-data" action="edit-happening-event">
                     <div class="form-group">
-                        <label for="exampleInputPassword1">Title of event</label>
-                        <input type="text" class="form-control" id="exampleInputPassword1" placeholder="Title of event" name="title" value="{{this.title}}">
+                        <label for="exampleInputPassword1"><h6 class="t-c m-f-20 mb-0">Tiêu đề thư sự kiện</h6></label>
+                        <input type="text" class="form-control mt-1" id="exampleInputPassword1" placeholder="Tiêu đề" name="title" value="{{this.title}}">
                     </div>
-                    <div class="form-group purple-border">
-                        <label for="exampleFormControlTextarea4">Description of event</label>
+                    <div class="flex w-100">
+                    <div class="form-group mt-4 width-160">
+                        <label for="exampleInputPassword1"><h6 class="t-c m-f-20 mb-0">Thời gian</h6></label>
+                        <input type="date" class="form-control mt-1" ame="action_time" value="{{action_time}}">
+                    </div>
+                    <div class="form-group mt-4 ml-20px flex-1">
+                        <label for="exampleInputPassword1"><h6 class="t-c m-f-20 mb-0">Địa điểm</h6></label>
+                        <input type="text" class="form-control mt-1" id="exampleInputPassword1" placeholder="Địa điểm" name="title" value="{{this.place}}">
+                    </div>
+                    </div>
+                    {{!--  --}}
+                    <div class="form-group purple-border mt-4">
+                        <label for="exampleInputPassword1"><h6 class="t-c m-f-20 mb-0">Mô tả sự kiện</h6></label>
                         <textarea class="form-control" id="exampleFormControlTextarea4" rows="15" name="description">{{this.description}}</textarea>
                     </div>
-                    <div class="form-group purple-border">
-                        <input type="date" id="start" name="action_time" value="{{action_time}}">
+                
+                    <div class="mt-4">
+                        <label class="custom-file-upload">
+                        <input type="file" name="uploaded_file"/>
+                        Thay đổi ảnh mới
+                        </label>
                     </div>
-                    <div id="div_image">
-                        <img src="/images/{{this.image_name}}" alt="" id="image">
+                    <div class="wrap mt-4 w-100">
+                        <input type="submit" value="Nhấn để chỉnh sửa sự kiện" class="button flex-align-center button-width">
                     </div>
-                    <div>
-                        <input type="file" name="uploaded_file"  >
-                    </div>
-                    <input type="submit" value="Click to edit event" class="mt-4">
                 </form>
             </div>
         {{/with}}
     </div>
+</div>
+</div>

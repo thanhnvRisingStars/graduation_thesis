@@ -1,14 +1,19 @@
-<form method="POST" enctype="multipart/form-data" action="add-annual-event">
-    <div class="form-group">
-        <label for="exampleInputPassword1">Title of event</label>
-        <input type="text" class="form-control" id="exampleInputPassword1" placeholder="Title of event" name="title">
+<div class="shadow p-120">
+<form method="POST" enctype="multipart/form-data" action="add-annual-event" class="t-c">
+    <div class="">
+        <label for="exampleInputPassword1">Tiêu đề sự kiện</label>
+        <input type="text" class="form-control" id="exampleInputPassword1" placeholder="Tiêu đề sự kiện" name="title">
     </div>
-    <div class="form-group purple-border">
-        <label for="exampleFormControlTextarea4">Description of event</label>
-        <textarea class="form-control" id="exampleFormControlTextarea4" rows="3" name="description"></textarea>
+    <div class="form-group purple-border mt-4">
+        <label for="exampleFormControlTextarea4">Mô tả sự kiện</label>
+        <textarea class="form-control" id="exampleFormControlTextarea4" rows="8" name="description"></textarea>
     </div>
-    <div>
-        <input type="file" name="uploaded_file"  >
+    <div class="mt-4">
+        <label for="exampleInputPassword1">Liên kết youtube sự kiện</label>
+        <input type="text" class="form-control" id="exampleInputPassword1" placeholder="Liên kết sự kiện" name="title">
     </div>
-    <input type="submit" value="Add new annual event" class="mt-4">
+    <div class="flex-align-center">
+        <input type="submit" class="mt-4 button flex-align-center button-width" value="Thêm mới sự kiện hàng năm"/>
+    </div>
 </form>
+</div>

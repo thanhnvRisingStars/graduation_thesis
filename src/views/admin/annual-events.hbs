@@ -1,9 +1,29 @@
-{{#each dataEvents }}
-<h5>
-    <a href="annual-event-detail?title={{this.title}}">
-        {{this.title}}
-    </a>
-</h5>
-{{/each}}
+<div class="shadow p-100">
+    <table class="table">
+        <thead>
+            <tr>
+            <th scope="col">STT</th>
+            <th scope="col">Tên sự kiện</th>
+            </tr>
+        </thead>
+        <tbody>
 
-<a type="button" class="btn btn-primary text-white" href="add-annual-event">Add new event</a>
+            {{#each dataEvents }}
+            <tr>
+                <th scope="row">{{@index}}</th>
+                <td>
+                    <a href="annual-event-detail?title={{this.title}}" class="a-c">
+                    {{this.title}}
+                    </a>
+                </td>
+            </tr>
+            {{/each}}
+        </tbody>
+    </table>
+    <div class="wrap mt-4">
+        <div class="button flex-align-center">
+            <a   href="add-annual-event" class="a">Thêm mới</a>
+        </div>
+    </div>
+</div>
+

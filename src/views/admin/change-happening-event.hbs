@@ -1,51 +1,40 @@
- 
- <script>
-     $(function() {
-    // Multiple images preview in browser
-    var imagesPreview = function(input, placeToInsertImagePreview) {
-
-        if (input.files) {
-            var filesAmount = input.files.length;
-
-            for (i = 0; i < filesAmount; i++) {
-                var reader = new FileReader();
-
-                reader.onload = function(event) {
-                    $($.parseHTML('<img>')).attr('src', event.target.result).appendTo(placeToInsertImagePreview);
-                }
-
-                reader.readAsDataURL(input.files[i]);
-            }
-        }
-
-    };
-
-    $('#gallery-photo-add').on('change', function() {
-        imagesPreview(this, 'div.gallery');
-    });
-});
- </script>
- <div class="container row">
-        {{>siderBarHappeningEvent}}
-        <div class="col-9">
-            <form method="POST" enctype="multipart/form-data" action="change-new-event">
-                <div class="form-group">
-                    <label for="exampleInputPassword1">Title of event</label>
-                    <input type="text" class="form-control" id="exampleInputPassword1" placeholder="Title of event" name="title">
-                </div>
-                <div class="form-group purple-border">
-                    <label for="exampleFormControlTextarea4">Description of event</label>
-                    <textarea class="form-control" id="exampleFormControlTextarea4" rows="3" name="description"></textarea>
-                </div>
-                {{#with time}}
-                    <div class="form-group purple-border">
-                        <input type="date" id="start" name="action_time" value="{{date}}" min="{{date}}">
+<div class="shadow p-4 pl-10 happening-event-height">
+<div class="container flex">
+{{>siderBarHappeningEvent}}
+        <div class="col-10 p-4 shadow">
+            <div class="col-12">
+                <form method="POST" enctype="multipart/form-data" action="change-new-event">
+                    <div class="form-group">
+                        <label for="exampleInputPassword1"><h6 class="t-c m-f-20 mb-0">Tiêu đề thư sự kiện</h6></label>
+                        <input type="text" class="form-control mt-1" id="exampleInputPassword1" placeholder="Tiêu đề" name="title">
                     </div>
-                {{/with}}
-                <input type="file" multiple id="gallery-photo-add" name="uploaded_file">
-                <div class="gallery"></div>
-
-                <input type="submit" value="Change new event" class="mt-4">
-            </form>
-        </div>
+                    <div class="flex w-100">
+                    <div class="form-group mt-4 width-160">
+                        <label for="exampleInputPassword1"><h6 class="t-c m-f-20 mb-0">Thời gian</h6></label>
+                        <input type="date" class="form-control mt-1" ame="action_time">
+                    </div>
+                    <div class="form-group mt-4 ml-20px flex-1">
+                        <label for="exampleInputPassword1"><h6 class="t-c m-f-20 mb-0">Địa điểm</h6></label>
+                        <input type="text" class="form-control mt-1" id="exampleInputPassword1" placeholder="Địa điểm" name="title">
+                    </div>
+                    </div>
+                    {{!--  --}}
+                    <div class="form-group purple-border mt-4">
+                        <label for="exampleInputPassword1"><h6 class="t-c m-f-20 mb-0">Mô tả sự kiện</h6></label>
+                        <textarea class="form-control" id="exampleFormControlTextarea4" rows="15" name="description"></textarea>
+                    </div>
+                
+                    <div class="mt-4">
+                        <label class="custom-file-upload">
+                        <input type="file" name="uploaded_file"/>
+                        Thay đổi ảnh mới
+                        </label>
+                    </div>
+                    <div class="wrap mt-4 w-100">
+                        <input type="submit" value="Nhấn để thay đổi sự kiện mới" class="button flex-align-center button-width">
+                    </div>
+                </form>
+            </div>
     </div>
+</div>
+</div>

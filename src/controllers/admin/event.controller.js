@@ -164,15 +164,9 @@ adminController.recentEventPage = async(req, res) => {
     const dataEvents = events.map(event => event.dataValues);
     const admin = req.cookies.admin;
 
-    res.render('admin/recent-events', { admin, dataEvents })
-}
+    const data = _.head(dataEvents);
 
-adminController.recentEventDetail = async(req, res) => {
-    const event = await recentEventService.findByTitle(req.query.title)
-    const data = event.dataValues
-    const admin = req.cookies.admin;
-
-    res.render('admin/recent-event-detail', { admin, data })
+    res.render('admin/recent-events', { admin, data })
 }
 
 adminController.saveRecentEvent = async(req, res) => {

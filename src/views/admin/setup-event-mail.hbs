@@ -1,20 +1,27 @@
- <div class="container row">
-        {{>siderBarHappeningEvent}}
-        <div class="col-9">
+
+
+<div class="shadow p-4 pl-10 happening-event-height">
+<div class="container flex">
+{{>siderBarHappeningEvent}}
+        <div class="col-10 p-4 shadow">
             {{#if statusMail}}
                 <h1>Mail su kien lan nay da gui , thanks !!!</h1>
             {{else}}
                 <form method="POST" action="/admin/send-mail">
                 <div class="form-group">
-                    <label for="exampleInputPassword1">Subject of mail</label>
-                    <input type="text" class="form-control" id="exampleInputPassword1" placeholder="Subject of event" name="subject">
+                    <label for="exampleInputPassword1"><h6 class="t-c m-f-20 mb-0">Tiêu đề thư sự kiện</h6></label>
+                    <input type="text" class="form-control mt-1" id="exampleInputPassword1" placeholder="Tiêu đề" name="title">
                 </div>
-                <div class="form-group purple-border">
-                    <label for="exampleFormControlTextarea4">Content of mail</label>
-                    <textarea class="form-control" id="exampleFormControlTextarea4" rows="6" name="content"></textarea>
+                <div class="form-group mt-4">
+                    <label for="exampleFormControlTextarea4"><h6 class="t-c m-f-20 mb-0">Nội dung thư sự kiện</h6></label>
+                    <textarea class="form-control" id="exampleFormControlTextarea4" rows="12" name="content"></textarea>
                 </div>
-                <input type="submit" value="Click to send mail" class="mt-4">
+
+                <div class="wrap mt-4">
+                    <input type="submit" value="Nhấn để gửi thư" class="button flex-align-center">
+                </div>
                 </form>
             {{/if}}
-        </div>
     </div>
+</div>
+</div>

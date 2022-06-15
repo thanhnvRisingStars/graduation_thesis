@@ -1,10 +1,13 @@
+
+
+<div class="shadow p-60">
 {{#with post}}
 <div class="relative">
   <div class="slide-container mr-ml-10px">
   <div class="slide-child-container relative">
     <div class="swiper mySwiper">
       <div class="swiper-wrapper">
-        <div class="swiper-slide bg-i-slide-home" style="background-image: url('/images/{{image_slide}}')">
+        <div class="swiper-slide bg-i-slide-home" style="background-image: url('{{image_slide}}')">
         </div>
         <div class="swiper-slide bg-i-slide-home" style="background-image: url('/images/teambuilding2.jpeg')"></div>
         <div class="swiper-slide bg-i-slide-home" style="background-image: url('/images/teambuilding.jpeg')"></div>
@@ -20,9 +23,9 @@
 </div>
 <div class="ml-20px">
         <div class="mt-4">
-        <h3 class="t-c">
+        <h5 class="t-c">
             {{title}}
-        </h3>
+        </h5>
         <div class="ml-20px">
             <p class="p">
             Địa chỉ: 
@@ -33,19 +36,26 @@
         </div>
         </div>
         <div>
-            <h3 class="t-c">Thông tin mô tả</h3>
-            <div class="ml-20px">{{{description}}}</div>
+            <h5 class="t-c">Thông tin mô tả</h5>
+            <div class="ml-20px">
+              {{{description}}}
+              <p>Liên hệ a Khoa 0905077430</p><p>Khu vực gần cầu Rồng (đi bộ 5phut), bệnh viện, trường học và chợ.</p><p>Khu trọ liền kề mới vừa xây xong tháng 6 năm 2021</p><p>Diện tích: phòng nhỏ nhất là 30m2 kể cả gác lửng và ban công.</p><p>Có ban công thoáng mát đón gió và ánh sáng.</p><p>Có bếp riêng, toilet riêng, xây trong phòng.</p><p>Tường ốp gạch men sạch sẽ.</p><p>Khu trọ có chỗ để xe an toàn.</p><p>Giá: chỉ từ 2.2M cho phòng 30m2.</p><p>Các phòng có diện tích lớn hơn thì giá cao hơn 1 chút.</p><p>Do dịch nên có thể thương lượng.</p>
+            </div>
         </div>
-        <h3 class="t-c">Địa điểm đăng tin: </h3>
+        <h5 class="t-c">Địa điểm đăng tin: </h5>
         <div class="ml-10">
-            <p >{{{postPlace}}}</p>
+            <table class="table"><tbody><tr><td class="name">Mã tin:</td><td>#589874</td></tr><tr><td class="name">Khu vực</td><td> Cho thuê phòng trọ Đà Nẵng </td></tr>
+            <tr><td class="name">Mục đích: </td><td> Tìm người ở ghép</td></tr>
+            <tr><td class="name">Loại tin rao:</td><td>Phòng trọ, nhà trọ</td></tr><tr><td class="name">Đối tượng thuê:</td><td>Tất cả</td></tr><tr><td class="name">Gói tin:</td><td><span style="color: #055699;">Tin thường</span></td></tr><tr><td class="name">Ngày đăng:</td><td><time title="Thứ 2, 12:04 06/06/2022">Thứ 2, 12:04 06/06/2022</time></td></tr><tr><td class="name">Ngày hết hạn:</td><td><time title="Thứ 5, 12:04 16/06/2022">Thứ 5, 12:04 16/06/2022</time></td></tr></tbody></table>
         </div>
-        <h3 class="t-c">Thông tin liên hệ: </h3>
+        <h5 class="t-c">Thông tin liên hệ: </h5>
         <div class="ml-10">
-            <p>{{{contact}}}</p>
+            <table class="table"><tbody><tr><td class="name">Liên hệ:</td><td> Khoa Ngo</td></tr><tr><td class="name">Điện thoại:</td><td> 0905077430</td></tr><tr><td class="name">Zalo</td><td> 0905077430</td></tr></tbody></table>
         </div>
 </div>
 {{/with}}
+</div>
+
 {{!-- swiper --}}
 <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
 <script>

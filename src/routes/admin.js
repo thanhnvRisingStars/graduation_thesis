@@ -19,7 +19,6 @@ router.post('/update-annual-event', upload.array('uploaded_file'),adminControlle
 router.get('/add-annual-event', adminController.addAnnualEventPage);
 router.post('/add-annual-event', upload.array('uploaded_file'),adminController.addAnnualEvent);
 router.get('/annual-event-detail', adminController.annualEventDetail);
-router.get('/recent-event-detail', adminController.recentEventDetail);
 
 // Inn
 router.get('/post/detail', innAdminController.postDetail);

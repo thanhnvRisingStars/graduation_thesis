@@ -1,7 +1,7 @@
 <div class="shadow w-100 p-container pb-1">
 {{#if posts}}
     {{#each posts}}
-      <div class="container shadow p-3 mb-5 bg-body rounded mb-0 p-tb-0">
+      <div class="container shadow p-3 mb-5 bg-body rounded mb-0 p-tb-0 mt-4">
         <div class="card-body">
           <div class="d-flex justify-content-between w-100">
             <div class="d-flex flex-row align-items-center w-100">
@@ -29,12 +29,23 @@
                           <img src="https://s3.eu-central-1.amazonaws.com/bootstrapbaymisc/blog/24_days_bootstrap/fox.jpg" width="40" height="40" class="rounded-circle">
                       </a>
                       <p class="mb-0">{{this.author_name}}</p>
+                      {{!--  --}}
                       <div class="flex flex-1 flex-end">
-                          <form action="/delete-inn-post?id={{this.id}}" method="POST">
-                              <button class="btn btn-dark b-c a mr-ml-10px"> Xóa </button>
-                          </form>
-                          <a href="/{{this.creator_id}}/edit/{{this.id}}" class="btn btn-dark b-c a">Chỉnh sửa</a>
+          
+                          <div class="wrap mt-4">
+                              <form action="/delete-inn-post?id={{this.id}}" method="POST">
+                                <button class="button flex-align-center"> Xóa </button>
+                              </form>
+                          </div>
+                          {{!--  --}}
+                          <div class="wrap mt-4">
+                              <div class="button flex-align-center">
+                                    <a href="/{{this.creator_id}}/edit/{{this.id}}" class="a-c">Chỉnh sửa</a>
+                              </div>
+                          </div>
+                          {{!--  --}}
                       </div>
+                      {{!--  --}}
                   </div>
                 </div>
               </div>
@@ -49,8 +60,10 @@
 {{else}}
     <h1>Ban chua dang tai bat ki bai nao !</h1>
 {{/if}}
-  <div class="w-100 flex-align-center">
-      <a href="/create-inn" class="btn btn-dark b-c a">Tạo mới dãy trọ</a>
+  <div class="wrap mt-4">
+      <div class="button flex-align-center">
+            <a href="/create-inn" class="a-c">Tạo mới dãy trọ</a>
+      </div>
   </div>
 </div>
 

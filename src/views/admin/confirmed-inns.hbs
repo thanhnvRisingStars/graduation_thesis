@@ -1,32 +1,48 @@
+<div class="shadow w-100 p-container pb-1">
 {{#each inns}}
-<div class="row">
-    <div class="col-4">
+<div class=" shadow bg-body rounded mb-4 p-tb-0 w-100">
+  <div class="card-body p-2 pl-4 w-100">
+    <div class="d-flex justify-content-between w-100">
+      <div class="d-flex flex-row align-items-center w-100">
         <a href="/admin/confirmed-inn?id={{this.id}}">
-            <img src="{{this.image_slide}}" alt=""
-        style="width: 100%">
+            <div
+            style="
+            background-image: url('{{this.image_slide}}');"
+            class="bg-i-inn"
+            >
+            </div>
         </a>
+        <div class="ms-3 w-100">
+          <a href="/admin/confirmed-inn?id={{this.id}}" class="a">
+            <h5>{{this.title}}</h5>
+          </a>
+          <div class="flex">
+            <p class="small mb-0">{{this.price}}</p>
+            <p class="small mb-0 ml-20px">{{this.acreage}}</p>
+            <p class="small mb-0 ml-20px">{{this.address}}</p>
+          </div>
+          <p>{{this.summary}}</p>
+          <div class="pl-0 flex">
+            <div class="pl-0 flex">
+                <a class="nav-link dropdown-toggle pl-0" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    <img src="{{this.author_avatar}}" width="40" height="40" class="rounded-circle">
+                </a>
+                <div class="flex-align-center">
+                    <p class="mb-0">{{this.author_name}}</p>
+                </div>
+            </div>
+            <div class="flex-1 flex-end mr-4">
+                <form action="/admin/confirmed-inn/delete?id={{this.id}}" method="POST" class="flex-align-center">
+                    <div class="flex-align-center">
+                        <button type="submit" class="button">Xóa bài đăng</button>
+                    </div>
+                </form>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
-    <div class="col-8">
-        <a href="/admin/confirmed-inn?id={{this.id}}">
-            <h4>{{this.title}}</h4>
-        </a>
-        <div class="row">
-            <h5>{{this.price}}</h5>
-            <h5>{{this.acreage}}</h5>
-            <h5>{{this.address}}</h5>
-            <h5>18 gio truoc</h5>
-        </div>
-        <div>
-            <p>{{this.summary}}</p>
-        </div>
-        <div class="row">
-            <img src="{{this.author_avatar}}" alt=""
-        style="width: 50px">
-            <p>{{this.author_name}}</p>
-        </div>
-    </div>
-    <form action="/admin/confirmed-inn/delete?id={{this.id}}" method="POST">
-        <button type="submit" class="btn btn-primary">Xoa tro</button>
-    </form>
+  </div>
 </div>
 {{/each}}
+</div>

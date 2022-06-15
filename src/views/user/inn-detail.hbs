@@ -1,5 +1,6 @@
 
 
+<div class="shadow p-60">
 {{#with inn}}
 <div class="relative">
   <div class="slide-container mr-ml-10px">
@@ -22,9 +23,9 @@
 </div>
 <div class="ml-20px">
         <div class="mt-4">
-        <h3 class="t-c">
+        <h5 class="t-c">
             {{title}}
-        </h3>
+        </h5>
         <div class="ml-20px">
             <p class="p">
             Địa chỉ: 
@@ -35,19 +36,21 @@
         </div>
         </div>
         <div>
-            <h3 class="t-c">Thông tin mô tả</h3>
+            <h5 class="t-c">Thông tin mô tả</h5>
             <div class="ml-20px">{{{description}}}</div>
         </div>
-        <h3 class="t-c">Địa điểm đăng tin: </h3>
+        <h5 class="t-c">Địa điểm đăng tin: </h5>
         <div class="ml-10">
             <p >{{{postPlace}}}</p>
         </div>
-        <h3 class="t-c">Thông tin liên hệ: </h3>
+        <h5 class="t-c">Thông tin liên hệ: </h5>
         <div class="ml-10">
             <p>{{{contact}}}</p>
         </div>
 </div>
 {{/with}}
+</div>
+
 {{!-- swiper --}}
 <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
 <script>

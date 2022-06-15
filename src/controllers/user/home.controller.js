@@ -17,13 +17,15 @@ homeController.homepage = async(req, res) => {
         const googleId = req.cookies['google_account_id'];
         const events = await annualEventService.findAll();
         const dataEvents = events.map(event => event.dataValues);
-        let user= {
-            email: ''
-        };
+        
 
         const inns = (await innService.deletedFilter()).map((inn) => inn.dataValues);
         const happeningEvent = await happeningEventService.findOne();
         const happeningEventData = _.get(happeningEvent, 'dataValues');
+
+        let user= {
+            email: ''
+        };
 
         if(req.cookies.google_account_id) {
             user = _.get(await userService.findByGoogleAccountId(req.cookies.google_account_id), 'dataValues');
@@ -70,17 +72,34 @@ homeController.happeningEvent = async(req, res) => {
 
     const events = await annualEventService.findAll();
     const dataEvents = events.map(event => event.dataValues);
+
+    const happeningEvent = await happeningEventService.findOne();
+    const happeningEventData = _.get(happeningEvent, 'dataValues');
+
     let user= {
         email: ''
     };
 
-    const happeningEvent = await happeningEventService.findOne();
-    const happeningEventData = _.get(happeningEvent, 'dataValues');
+    if(req.cookies.google_account_id) {
+        user = _.get(await userService.findByGoogleAccountId(req.cookies.google_account_id), 'dataValues');
+    }
 
     res.render('user/happening-event', { dataEvents, user, happeningEventData, googleId })
 }
 
 homeController.innDetail = async(req, res) => {
+    const googleId = req.cookies['google_account_id'];
+    const inn = _.get(await innService.findById(req.params.id), 'dataValues');
+    const events = await annualEventService.findAll();
+    const dataEvents = events.map(event => event.dataValues);
+    let user= {
+        email: ''
+    };
+
+    res.render('user/inn-detail', { dataEvents, user, inn, googleId });
+}
+
+homeController.postDetail = async(req,res) => {
     const googleId = req.cookies['google_account_id'];
     const post = _.get(await postService.findById(req.params.id), 'dataValues');
     const events = await annualEventService.findAll();

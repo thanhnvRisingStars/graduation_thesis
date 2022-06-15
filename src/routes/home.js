@@ -26,6 +26,7 @@ router.get('/all-inns', InnController.allInns);
 // event
 router.get('/happening-event/:slug', homeController.happeningEvent);
 router.get('/inns/:id', homeController.innDetail);
+router.get('/post/:id', homeController.postDetail);
 router.post('/register-event', homeController.registerEvent);
 router.get('/logout', homeController.logout);
 router.get('/:slug', homeController.slug);

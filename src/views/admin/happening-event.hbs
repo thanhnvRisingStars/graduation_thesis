@@ -1,24 +1,127 @@
- <div class="container row">
-        {{>siderBarHappeningEvent}}
-        <div class="col-9">
-        {{#with happeningEvent}}
-        <div id="container" value="{{this.title}}">
-            <h1>
-            <p id="id">{{this.title}}</p> 
-            <div>
-                Hội đồng hương học sinh - sinh viên huyện Bình Sơn tại TP Đà Nẵng 
-            </div>
-            </h1>
-            <p>
-                Chương trình diễn ra ngày : {{this.action_time}}
-            </p>
-            <p id="textarea">
-                {{this.description}}
-            </p>
-            <div id="div_image">
-                <img src="/images/{{this.image_name}}" alt="" id="image">
-            </div>
-        </div>
-        {{/with}}
+<style>
+    .container-div {
+        position: relative;
+        height: 460px;
+        background: #eee;
+        font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+        font-size: 14px;
+        color: #000;
+        margin: 0;
+        padding: 0;
+    }
+    .swiper {
+        width: 100%;
+        height: 100%;
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      .swiper-slide {
+        text-align: center;
+        font-size: 18px;
+        background: #fff;
+        height: calc((100% - 30px) / 2) !important;
+
+        /* Center slide text vertically */
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: -webkit-flex;
+        display: flex;
+        -webkit-box-pack: center;
+        -ms-flex-pack: center;
+        -webkit-justify-content: center;
+        justify-content: center;
+        -webkit-box-align: center;
+        -ms-flex-align: center;
+        -webkit-align-items: center;
+        align-items: center;
+      }
+      .bg-i-slide-home {
+        background-size: contain;
+        background-position: center;
+        background-repeat: no-repeat;
+      }
+      .w-160 {
+        width:160px
+      }
+</style>
+
+
+<div class="shadow p-4 pl-10">
+<div class="container flex">
+{{>siderBarHappeningEvent}}
+    {{!--  --}}
+    {{#with happeningEvent}}
+    <div class="col-10 p-4 shadow">
+<div class="t-c">
+    <div class="w-100 t-align-center">
+      <h3>
+        <p>{{this.title}}</p> 
+      </h3>
+    </div>
+    <p>
+        Đơn vị tổ chức: Hội đồng hương học sinh - sinh viên huyện Bình Sơn tại thành phố Đà Nẵng
+        <br>
+        Thời gian: {{this.action_time}}
+        <br>
+        Địa điểm: Nhà hàng Anh Hoàng Long, lô 7 đường 30/4 phường Thạch Tín , quận Hải Châu, thành phố Đà Nẵng
+        <br>
+        Thành phần tham dự: học sinh - sinh viên Bình Sơn đang sinh sống và làm việc tại thành phố Đà Nẵng
+    </p>
+    <p>
+        Với sự góp mặt của nhiều đơn vị có tầm vỡ trong và ngoài huyện nhà, đơn vị tại thành phố Đà Nẵng điển hình như 
+        {{this.description}}
+    </p>
+    <div class="wrap mt-20 p-2">
+  </div>
+    <div class="shadow p-4 mt-20">
+        <div class="container-div">
+        <div class="swiper mySwiper bg-c-w">
+          <div class="swiper-wrapper">
+            <div class="swiper-slide bg-i-slide-home" style="background-image: url('/images/{{this.image_name}}')">Slide 1</div>
+            <div class="swiper-slide bg-i-slide-home" style="background-image: url('/images/teambuilding2.jpeg')">Slide 2</div>
+            <div class="swiper-slide bg-i-slide-home" style="background-image: url('/images/teambuilding2.jpeg')">Slide 3</div>
+            <div class="swiper-slide bg-i-slide-home" style="background-image: url('/images/teambuilding2.jpeg')">Slide 4</div>
+            <div class="swiper-slide">Slide 5</div>
+            <div class="swiper-slide">Slide 6</div>
+            <div class="swiper-slide bg-i-slide-home" style="background-image: url('/images/teambuilding2.jpeg')">Slide 7</div>
+            <div class="swiper-slide">Slide 8</div>
+            <div class="swiper-slide">Slide 9</div>
+          </div>
+          <div class="swiper-button-next"></div>
+          <div class="swiper-button-prev"></div>
+          <div class="swiper-pagination"></div>
         </div>
     </div>
+</div>
+</div>
+    </div>
+{{/with}}
+    {{!--  --}}
+</div>
+</div>
+
+
+
+<!-- Swiper JS -->
+<script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+
+<!-- Initialize Swiper -->
+<script>
+    var swiper = new Swiper(".mySwiper", {
+    slidesPerView: 3,
+    grid: {
+        rows: 2,
+    },
+    spaceBetween: 30,
+    pagination: {
+        el: ".swiper-pagination",
+        clickable: true,
+    },
+    effect: 'slide',
+    navigation: {
+        nextEl: ".swiper-button-next",
+        prevEl: ".swiper-button-prev",
+    },
+    });
+</script>

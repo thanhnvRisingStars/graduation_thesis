@@ -1,32 +1,34 @@
-<div class="relative">
-  <div class="absolute z-index-10 flex-column">
-    <div>
-      <h1 class="t-c t-b-c t-border-coder" style="cursor: pointer" data-toggle="modal" data-target="#exampleModalCenter">ĐĂNG KÝ SỰ KIỆN</h1>
-    </div>
-    {{#with happeningEventData}}
-    <h2 class="mt-20">
-      <a href="/happening-event/{{title}}" class="t-c a-c t-border-coder">{{title}}</a>
-    </h2>
-    {{/with}}
-  </div>
-  <div class="slide-container mr-ml-10px">
-  <div class="slide-child-container relative">
-    <div class="swiper mySwiper">
-      <div class="swiper-wrapper">
-        <div class="swiper-slide bg-i-slide-home" style="background-image: url('/images/teambuilding.jpeg')">
-            Slide 1
-        </div>
-        <div class="swiper-slide bg-i-slide-home" style="background-image: url('/images/teambuilding2.jpeg')">Slide 2</div>
-        <div class="swiper-slide bg-i-slide-home" style="background-image: url('/images/teambuilding.jpeg')">Slide 3</div>
-        <div class="swiper-slide bg-i-slide-home" style="background-image: url('/images/teambuilding2.jpeg')">Slide 4</div>
-        <div class="swiper-slide bg-i-slide-home" style="background-image: url('/images/teambuilding.jpeg')">Slide 5</div>
+<div class="shadow p-4">
+  <div class="relative">
+    <div class="absolute z-index-10 flex-column">
+      <div>
+        <h1 class="t-c t-b-c t-border-coder" style="cursor: pointer" data-toggle="modal" data-target="#exampleModalCenter">ĐĂNG KÝ SỰ KIỆN</h1>
       </div>
-      <div class="swiper-button-next"></div>
-      <div class="swiper-button-prev"></div>
-      <div class="swiper-pagination"></div>
+      {{#with happeningEventData}}
+      <h2 class="mt-20">
+        <a href="/happening-event/{{title}}" class="t-c a-c t-border-coder">{{title}}</a>
+      </h2>
+      {{/with}}
+    </div>
+    <div class="slide-container mr-ml-10px">
+    <div class="slide-child-container relative">
+      <div class="swiper mySwiper">
+        <div class="swiper-wrapper">
+          <div class="swiper-slide bg-i-slide-home" style="background-image: url('/images/teambuilding.jpeg')">
+              Slide 1
+          </div>
+          <div class="swiper-slide bg-i-slide-home" style="background-image: url('/images/teambuilding2.jpeg')">Slide 2</div>
+          <div class="swiper-slide bg-i-slide-home" style="background-image: url('/images/teambuilding.jpeg')">Slide 3</div>
+          <div class="swiper-slide bg-i-slide-home" style="background-image: url('/images/teambuilding2.jpeg')">Slide 4</div>
+          <div class="swiper-slide bg-i-slide-home" style="background-image: url('/images/teambuilding.jpeg')">Slide 5</div>
+        </div>
+        <div class="swiper-button-next"></div>
+        <div class="swiper-button-prev"></div>
+        <div class="swiper-pagination"></div>
+      </div>
     </div>
   </div>
-</div>
+  </div>
 </div>
 <style>
   .swiper {
@@ -204,7 +206,7 @@ function up() {
         centeredSlides: true,
         speed: 2000,
         autoplay: {
-          delay: 5000,
+          delay: 4000,
           disableOnInteraction: false,
         },
         pagination: {
@@ -231,7 +233,7 @@ function up() {
 
 {{!-- modal --}}
 {{#with user}}	
-<div class="modal fade pt-0" id="exampleModalCenter" tabindex="-1">
+<div class="modal fade pt-0" id="exampleModalCenter" tabindex="1">
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -292,7 +294,6 @@ function up() {
   </div>
 </div>
 {{/with}}
-</script>
 <script src="js/jquery.min.js"></script>
 <script src="js/popper.js"></script>
 <script src="js/bootstrap.min.js"></script>

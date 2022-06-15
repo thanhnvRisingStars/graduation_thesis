@@ -1,35 +1,55 @@
 {{#with page_fetch}}
-    <a class="btn btn-primary text-light" href="/admin/inn/page/{{index}}">Lam moi day tro</a>
+  <div class="wrap mt-4">
+    <div class="button flex-align-center button-width">
+        <a class="t-upper" href="/admin/inn/page/{{index}}">Làm mới dãy trọ</a>
+    </div>
+</div>
 {{/with}}
+<div class="shadow w-100 p-container pb-1 mt-4">
 {{#each posts}}
-<div class="row">
-    <div class="col-4">
+<div class=" shadow bg-body rounded mb-4 p-tb-0 w-100">
+  <div class="card-body p-2 pl-4">
+    <div class="d-flex justify-content-between">
+      <div class="d-flex flex-row align-items-center">
         <a href="/admin/inn/detail{{this.url_detail_page}}">
-            <img src="{{this.image}}" alt=""
-        style="width: 100%">
+            <div
+            style="
+            background-image: url('{{this.image}}');"
+            class="bg-i-inn"
+            >
+            </div>
         </a>
+        <div class="ms-3">
+          <a href="/admin/inn/detail{{this.url_detail_page}}" class="a">
+            <h5>{{this.title}}</h5>
+          </a>
+          <div class="flex">
+            <p class="small mb-0">{{this.price}}</p>
+            <p class="small mb-0 ml-20px">{{this.acreage}}</p>
+            <p class="small mb-0 ml-20px">{{this.address}}</p>
+          </div>
+          <p>{{this.summary}}</p>
+          <div class="pl-0 flex">
+            <div class="pl-0 flex">
+                <a class="nav-link dropdown-toggle pl-0" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    <img src="{{this.author_avatar}}" width="40" height="40" class="rounded-circle">
+                </a>
+                <div class="flex-align-center">
+                    <p class="mb-0">{{this.author_name}}</p>
+                </div>
+            </div>
+            <div class="flex-1 flex-end mr-4">
+                <form action="/admin/inn/new-inn{{this.url_detail_page}}?page={{this.index}}" method="POST">
+                    <div class="flex-align-center">
+                        <button type="submit" class="button">Duyệt trọ</button>
+                    </div>
+                </form>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
-    <div class="col-8">
-        <a href="/admin/inn/detail{{this.url_detail_page}}">
-            <h4>{{this.title}}</h4>
-        </a>
-        <div class="row">
-            <h5>{{this.price}}</h5>
-            <h5>{{this.acreage}}</h5>
-            <h5>{{this.address}}</h5>
-            <h5>18 gio truoc</h5>
-        </div>
-        <div>
-            <p>{{this.summary}}</p>
-        </div>
-        <div class="row">
-            <img src="{{this.author_avatar}}" alt=""
-        style="width: 50px">
-            <p>{{this.author_name}}</p>
-        </div>
-    </div>
-    <form action="/admin/inn/new-inn{{this.url_detail_page}}?page={{this.index}}" method="POST">
-        <button type="submit" class="btn btn-primary">Duyet tro</button>
-    </form>
+  </div>
 </div>
 {{/each}}
+</div>
