@@ -23,6 +23,8 @@ homeController.homepage = async(req, res) => {
         const happeningEvent = await happeningEventService.findOne();
         const happeningEventData = _.get(happeningEvent, 'dataValues');
 
+        const image_names = happeningEventData.image_name
+
         let user= {
             email: ''
         };
@@ -31,7 +33,7 @@ homeController.homepage = async(req, res) => {
             user = _.get(await userService.findByGoogleAccountId(req.cookies.google_account_id), 'dataValues');
         }
 
-        res.render('user/home-page', { dataEvents, user, happeningEventData, inns, googleId })
+        res.render('user/home-page', { dataEvents, user, happeningEventData, inns, googleId , image_names})
     } catch (err) {
         console.log(err);
     }

@@ -602,3 +602,12 @@ body {
 .width-160 {
   width: 260px
 }
+
+.image-container-height {
+  min-height: 200px
+}
+
+.image-wh {
+  width:200px;
+  height: 200px
+}

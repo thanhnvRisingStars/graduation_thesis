@@ -37,9 +37,9 @@ happeningEventService.removeEvent = async (event) =>
     truncate: true,
   });
 
-happeningEventService.updateEvent = async (event) =>
+happeningEventService.updateEvent = async (event, id) =>
   happening_event.update(event, {
     where: {
-      id: 1,
+      id
     },
   });

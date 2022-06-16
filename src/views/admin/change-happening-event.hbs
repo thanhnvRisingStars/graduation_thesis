@@ -11,11 +11,11 @@
                     <div class="flex w-100">
                     <div class="form-group mt-4 width-160">
                         <label for="exampleInputPassword1"><h6 class="t-c m-f-20 mb-0">Thời gian</h6></label>
-                        <input type="date" class="form-control mt-1" ame="action_time">
+                        <input type="date" class="form-control mt-1" name="action_time">
                     </div>
                     <div class="form-group mt-4 ml-20px flex-1">
                         <label for="exampleInputPassword1"><h6 class="t-c m-f-20 mb-0">Địa điểm</h6></label>
-                        <input type="text" class="form-control mt-1" id="exampleInputPassword1" placeholder="Địa điểm" name="title">
+                        <input type="text" class="form-control mt-1" id="exampleInputPassword1" placeholder="Địa điểm" name="place">
                     </div>
                     </div>
                     {{!--  --}}
@@ -24,12 +24,17 @@
                         <textarea class="form-control" id="exampleFormControlTextarea4" rows="15" name="description"></textarea>
                     </div>
                 
-                    <div class="mt-4">
-                        <label class="custom-file-upload">
-                        <input type="file" name="uploaded_file"/>
-                        Thay đổi ảnh mới
-                        </label>
+                    <div class="flex">
+                        <div class="mt-4">
+                            <label class="custom-file-upload">
+                            <input type="file" multiple name="uploaded_file" id="gallery-photo-add"/>
+                            Thay đổi ảnh mới
+                            </label>
+                        </div>
+                        <div class="flex-1 form-control ml-20px image-container-height mt-4 gallery">
+                        </div>
                     </div>
+
                     <div class="wrap mt-4 w-100">
                         <input type="submit" value="Nhấn để thay đổi sự kiện mới" class="button flex-align-center button-width">
                     </div>
@@ -38,3 +43,33 @@
     </div>
 </div>
 </div>
+
+<script>
+    $(function() {
+    // Multiple images preview in browser
+    var imagesPreview = function(input, placeToInsertImagePreview) {
+
+        if (input.files) {
+            var filesAmount = input.files.length;
+
+            for (i = 0; i < filesAmount; i++) {
+                var reader = new FileReader();
+
+                reader.onload = function(event) {
+                    $($.parseHTML('<img>'))
+                    .attr('src', event.target.result)
+                    .attr('class', 'image-wh')
+                    .appendTo(placeToInsertImagePreview);
+                }
+
+                reader.readAsDataURL(input.files[i]);
+            }
+        }
+
+    };
+
+    $('#gallery-photo-add').on('change', function() {
+        imagesPreview(this, 'div.gallery');
+    });
+});
+</script>

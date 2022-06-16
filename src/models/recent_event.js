@@ -17,10 +17,14 @@ module.exports = function(sequelize, Sequelize) {
             notEmpty: true
         },
         image_name: {
-            type: Sequelize.STRING,
+            type: Sequelize.JSON,
             notEmpty: true
         },
         action_time: {
+            type: Sequelize.STRING,
+            notEmpty: true
+        },
+        place: {
             type: Sequelize.STRING,
             notEmpty: true
         },

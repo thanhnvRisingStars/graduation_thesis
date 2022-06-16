@@ -52,18 +52,14 @@ adminController.addAnnualEventPage = async(req, res) => {
 }
 
 adminController.addAnnualEvent = async(req, res) => {
-    if (!req.file) {
-        console.log("No file upload");
-    } else {
-        const event = {
-            title: req.body.title,
-            description: req.body.description,
-            image_name: req.file.filename,
-        }
-
-        await annualEventService.createOne(event);
-        res.redirect('/admin/annual-events')
+    const event = {
+        title: req.body.title,
+        description: req.body.description,
+        video_id: req.body.video_id,
     }
+
+    await annualEventService.createOne(event);
+    res.redirect('/admin/annual-events')
 }
 
 adminController.happeningEvent = async(req, res) => {
@@ -71,7 +67,9 @@ adminController.happeningEvent = async(req, res) => {
 
     const happeningEvent = _.get((await happeningEventService.findOne()), 'dataValues');
 
-    res.render('admin/happening-event', { admin, happeningEvent })
+    const image_names = happeningEvent.image_name
+
+    res.render('admin/happening-event', { admin, happeningEvent, image_names })
 }
 
 adminController.changeNewEvent = async(req, res) => {
@@ -85,13 +83,17 @@ adminController.changeNewEvent = async(req, res) => {
 
 adminController.changeNewEventPost = async(req, res) => {
     try {
-        console.log(req.files);
+        let files = [];
+        await req.files.map((file) => files.push(file.filename));
+
         const event = {
             title: req.body.title,
             description: req.body.description,
-            image_name: req.file.filename,
-            action_time: req.body.action_time
+            image_name: files,
+            action_time: req.body.action_time,
+            place: req.body.place
         }
+
         const happeningEvent = await happeningEventService.findOne();
         const happeningEventData = _.get(happeningEvent, 'dataValues');
 
@@ -112,18 +114,26 @@ adminController.editHappeningEventPage = async(req, res) => {
     const happeningEvent = await happeningEventService.findOne();
     const happeningEventData = _.get(happeningEvent, 'dataValues');
 
-    res.render('admin/edit-happening-event', { admin, happeningEventData })
+    const image_names = happeningEventData.image_name
+
+    res.render('admin/edit-happening-event', { admin, happeningEventData, image_names })
 }
 
 adminController.editHappeningEventPagePost = async(req, res) => {
-    let event = {
+    let files = [];
+    await req.files.map((file) => files.push(file.filename));
+
+    const event = {
         title: req.body.title,
         description: req.body.description,
+        image_name: files,
+        action_time: req.body.action_time,
+        place: req.body.place
     }
-    if (req.file) {
-        Object.assign(event, { image_name: req.file.filename })
-    }
-    await happeningEventService.updateEvent(event);
+
+    const id = req.query.id
+
+    await happeningEventService.updateEvent(event, id);
 
     res.redirect('/admin/happening-event');
 }
@@ -166,7 +176,9 @@ adminController.recentEventPage = async(req, res) => {
 
     const data = _.head(dataEvents);
 
-    res.render('admin/recent-events', { admin, data })
+    const image_names = data.image_name
+
+    res.render('admin/recent-events', { admin, data, image_names })
 }
 
 adminController.saveRecentEvent = async(req, res) => {
