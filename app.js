@@ -28,6 +28,7 @@ app.use(express.static(path.join(__dirname,'src/public')))
 app.use('/js', express.static(__dirname + 'src/public/js'));
 app.use(cookieParser());
 
+
 var authRoute = require('./src/routes/index.route');
 authRoute(app);
 

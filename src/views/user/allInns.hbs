@@ -1,9 +1,31 @@
 <div class="shadow w-100 p-container pb-1">
+  <div class="flex-align-center">
+      <div class="flex shadow p-2 border-radius">
+          <div class="t-c">
+            <select class="form-select form-select-lg border-none t-c" aria-label=".form-select-lg example">
+              <option selected>Khu vực</option>
+              <option value="1">One</option>
+            </select>
+          </div>
+          <div class="ml-4 t-c">
+                <select class="form-select form-select-lg border-none t-c" aria-label=".form-select-lg example">
+                  <option selected>Giá thuê</option>
+                  <option value="1">One</option>
+                </select>
+          </div>
+          <div class="ml-4 t-c">
+                  <select class="form-select form-select-lg border-none t-c" aria-label=".form-select-lg example">
+                    <option selected>Diện tích</option>
+                    <option value="1">One</option>
+                  </select>
+          </div>
+      </div>
+  </div>
 {{#each inns}}
-<div class=" shadow bg-body rounded mb-4 p-tb-0 w-100">
+<div class=" shadow bg-body rounded mb-4 p-tb-0 w-100 mt-4">
   <div class="card-body p-2 pl-4">
     <div class="d-flex justify-content-between">
-      <div class="d-flex flex-row align-items-center">
+      <div class="d-flex flex-row align-items-center t-align-left">
         <a href="/inns/{{this.id}}?title={{this.title}}">
             <div
             style="
@@ -13,21 +35,24 @@
             </div>
         </a>
         <div class="ms-3">
-          <a href="/inns/{{this.id}}?title={{this.title}}" class="a">
-            <h5>{{this.title}}</h5>
-          </a>
+          <div class="flex">
+            <a href="/inns/{{this.id}}?title={{this.title}}" class="a flex-1">
+              <h6>{{this.title}}</h6>
+            </a>
+            <i class="material-icons t-c-b z-index-100 cursor" style="font-size:24px" aria-hidden="true">more_vert</i>
+          </div>
           <div class="flex">
             <p class="small mb-0">{{this.price}}</p>
             <p class="small mb-0 ml-20px">{{this.acreage}}</p>
             <p class="small mb-0 ml-20px">{{this.address}}</p>
           </div>
-          <p>Mo ta</p>
+          <p>{{this.description_short}}</p>
           <div class="pl-0 flex">
             <a class="nav-link dropdown-toggle pl-0" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-              <img src="https://s3.eu-central-1.amazonaws.com/bootstrapbaymisc/blog/24_days_bootstrap/fox.jpg" width="40" height="40" class="rounded-circle">
+              <img src="{{this.avatar}}" width="40" height="40" class="rounded-circle">
             </a>
             <div class="flex-align-center">
-              <p class="mb-0">Nguoi dang</p>
+              <p class="mb-0">{{this.author}}</p>
             </div>
           </div>
         </div>
@@ -36,4 +61,25 @@
   </div>
 </div>
 {{/each}}
+<div class="flex-align-center">
+  <nav aria-label="Page navigation example shadow">
+  <ul class="pagination t-c">
+    <li class="page-item">
+      <a class="page-link" href="#" aria-label="Previous">
+        <span aria-hidden="true">&laquo;</span>
+        <span class="sr-only">Previous</span>
+      </a>
+    </li>
+    <li class="page-item"><a class="page-link t-c" href="#">1</a></li>
+    <li class="page-item"><a class="page-link" href="#">2</a></li>
+    <li class="page-item"><a class="page-link" href="#">3</a></li>
+    <li class="page-item">
+      <a class="page-link" href="#" aria-label="Next">
+        <span aria-hidden="true">&raquo;</span>
+        <span class="sr-only">Next</span>
+      </a>
+    </li>
+  </ul>
+</nav>
+</div>
 </div>

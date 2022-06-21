@@ -74,6 +74,7 @@ InnController.getInn = async(req, res) => {
         })
       });
 
+
       posts = posts.filter((el) => el != null)
       const page_fetch = { index: 2}
       res.render('admin/inn-page', { admin, posts, page_fetch });
@@ -129,6 +130,7 @@ InnController.pageFetch = async(req, res) => {
     posts.map((el) => Object.assign(el, { index: page.index}));
 
     const page_fetch = { index: page.index }
+
     res.render('admin/inn-page', { admin, posts, page_fetch});
 }
 
@@ -195,6 +197,8 @@ InnController.newInn = async(req, res) => {
       title, price,acreage, address, image_slide, description, postPlace, contact
     }
   });
+
+  Object.assign(post, req.query);
   await innService.createOne(post);
 
   if (req.query.page.length !== 0) {

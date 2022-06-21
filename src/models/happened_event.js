@@ -18,7 +18,7 @@ module.exports = function(sequelize, Sequelize) {
             notEmpty: true
         },
         image_name: {
-            type: Sequelize.STRING,
+            type: Sequelize.JSON,
             notEmpty: true
         },
 
@@ -26,11 +26,21 @@ module.exports = function(sequelize, Sequelize) {
             type: Sequelize.STRING,
             notEmpty: true
         },
-        year: {
-            type: Sequelize.INTEGER,
+        place: {
+            type: Sequelize.STRING,
             notEmpty: true
         },
- 
+        event_type_id: {
+            type: Sequelize.INTEGER,
+            allowNull: false,
+        },
+        year: {
+            type: Sequelize.STRING,
+            notEmpty: true
+        },
+        total_register: {
+            type: Sequelize.INTEGER
+        }
     });
  
     return EventAnnual;

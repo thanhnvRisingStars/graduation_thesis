@@ -5,50 +5,48 @@
     <div class="row bg-c-w">
         <div class="col-md-3 border-right mt-50">
             <div class="flex-align-center">
-                <div class="avatar shadow-4 bg-i-inn d-flex flex-column align-items-center text-center p-3 py-5" style="background-image: url('{{avatar_link}}')">
+                <div class="avatar overflow shadow gallery3" id="image-avatar">
+                    <img src="{{avatar_link}}" alt="" class="image shadow-4">
             </div>
             </div class="mt-50">
                 <p class="font-weight-bold mt-4 mb-0">{{name}}</p>
                 <p class="text-black-50">{{email}}</p><span> </span>
             <label class="custom-file-upload">
-                <input type="file" name="uploaded_file"/>
+                <input type="file" name="uploaded_file" id="gallery-photo-add3"/>
                 Thay đổi ảnh đại diện
             </label>
         </div>
         <div class="col-md-5 border-right">
             <div class="p-3 py-5">
                 <div class="d-flex justify-content-between align-items-center mb-3">
-                    <h4 class="text-right">Profile Settings</h4>
+                    <h4 class="text-right">Cài đặt trang cá nhân</h4>
                 </div>
                 <div class="row mt-3 bg-c-w">
                     <div class="col-md-12">
                         <label class="labels">Email</label>
-                        <input type="text" class="form-control" placeholder="Your Email" value="{{email}}">
+                        <input type="text" class="form-control" placeholder="Email" value="{{email}}" name="email" disabled>
                     </div>
-                    <div class="col-md-12"><label class="labels">Name</label><input type="text" class="form-control" placeholder="Your Name" value="{{name}}"></div>
-                    <div class="col-md-12"><label class="labels">Birthday</label><input type="text" class="form-control" placeholder="Your Facebook" value="{{birthday}}"></div>
-                    <div class="col-md-12"><label class="labels">Address</label><input type="text" class="form-control" placeholder="Your Address" value="{{address}}"></div>
-                    <div class="col-md-12"><label class="labels">Phone number</label><input type="text" class="form-control" placeholder="Your Phone Number" value="{{phone_number}}"></div>
-                    <div class="col-md-12"><label class="labels">Facebook</label><input type="text" class="form-control" placeholder="Your Facebook" value="{{facebookLink}}"></div>
-                </div>
-                <div class="row mt-3 bg-c-w">
-                    <div class="col-md-6"><label class="labels">Country</label><input type="text" class="form-control" placeholder="country" value=""></div>
-                    <div class="col-md-6"><label class="labels">State/Region</label><input type="text" class="form-control" value="" placeholder="state"></div>
+                    <div class="col-md-12"><label class="labels">Tên</label><input type="text" class="form-control" placeholder="Họ và tên" value="{{name}}" name="name"></div>
+                    <div class="col-md-12"><label class="labels">Ngày sinh</label><input type="text" class="form-control" placeholder="Ngày sinh" value="{{birthday}}" name="birthday"></div>
+                    <div class="col-md-12"><label class="labels">Địa chỉ</label><input type="text" class="form-control" placeholder="Địa chỉ" value="{{address}}" name="address"></div>
+                    <div class="col-md-12"><label class="labels">Số điện thoại</label><input type="text" class="form-control" placeholder="Số điện thoại" value="{{phone_number}}" name="phone_number"></div>
+                    <div class="col-md-12"><label class="labels">Zalo</label><input type="text" class="form-control" placeholder="Zalo" value="{{zalo}}" name="zalo"></div>
+                    <div class="col-md-12"><label class="labels">Facebook</label><input type="text" class="form-control" placeholder="Facebook" value="{{facebook}}" name="facebook"></div>
                 </div>
                 <div class="flex ml-10">
                     <div class="mt-5 text-center">
                         <button class="btn btn-primary profile-button" type="button">
-                            <a href="/" class="a t-c-w">Cancel</a>
+                            <a href="/" class="a t-c-w">Hủy bỏ</a>
                         </button>
                     </div>
-                    <div class="mt-5 text-center ml-20px"><button class="btn btn-primary profile-button" type="submit">Save Profile</button></div>
+                    <div class="mt-5 text-center ml-20px"><button class="btn btn-primary profile-button" type="submit">Lưu chỉnh sửa</button></div>
 
                 </div>
             </div>
         </div>
         <div class="col-md-4">
             <div class="p-3 py-5">
-                <div class="d-flex justify-content-between align-items-center experience"><span class="border px-3 p-1 add-experience"><i class="fa fa-plus"></i>&nbsp;History</span></div><br>
+                <div class="d-flex justify-content-between align-items-center experience"><span class="border px-3 p-1 add-experience"><i class="fa fa-plus"></i>&nbsp;Lịch sử</span></div><br>
             </div>
         </div>
     </div>
@@ -57,3 +55,36 @@
 {{/with}}
 
 </div>
+
+
+<script>
+    $(function() {
+    // Multiple images preview in browser
+    var imagesPreview = function(input, placeToInsertImagePreview) {
+
+        if (input.files) {
+            var filesAmount = input.files.length;
+
+            for (i = 0; i < filesAmount; i++) {
+                var reader = new FileReader();
+
+                reader.onload = function(event) {
+                    $($.parseHTML('<img>'))
+                    .attr('src', event.target.result)
+                    .attr('class', 'image shadow-4')
+                    .appendTo(placeToInsertImagePreview);
+                }
+
+                reader.readAsDataURL(input.files[i]);
+            }
+        }
+
+    };
+
+    $('#gallery-photo-add3').on('change', function() {
+        document.getElementById('image-avatar').innerHTML = ''
+        imagesPreview(this, 'div.gallery3');
+    });
+});
+</script>
+

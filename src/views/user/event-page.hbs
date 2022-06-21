@@ -7,7 +7,7 @@
   <table class="table mt-4">
   <thead>
     <tr>
-      <th scope="col" class="w-50">
+      <th scope="col" class="w-20">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0 w-100">
           <li class="nav-item dropdown flex-align-center">
               <a class="nav-link dropdown-toggle p-0" href="#" id="fetch" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -23,7 +23,23 @@
           </li>
         </ul>
       </th>
-      <th scope="col" class="w-50">Sự kiện</th>
+      <th scope="col" class="w-40">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0 w-100">
+          <li class="nav-item dropdown flex-align-center">
+              <a class="nav-link dropdown-toggle p-0" href="#" id="fetchEvent" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Loại sự kiện
+              </a>
+              <ul class="dropdown-menu" aria-labelledby="fetch">
+                  {{#each dataEvents}}
+                    <li onclick="showEvent(this)"><a class="dropdown-item">{{this.title}}</a></li>
+                  {{/each}}
+                  <li><hr class="dropdown-divider"></li>
+                  <li><a class="dropdown-item" href="">Tất cả</a></li>
+              </ul>
+          </li>
+        </ul>
+      </th>
+      <th scope="col" class="w-40">Sự kiện</th>
     </tr>
   </thead>
   <tbody id="tbody">
@@ -47,6 +63,8 @@
       const yearEvent = e.childNodes[0].innerHTML
 
       const ulId = document.getElementById('fetch');
+      const ulId2 = document.getElementById('fetchEvent');
+      console.log(ulId2);
       ulId.innerHTML = yearEvent;
 
       const data_filter = await fetch('http://localhost:3000/events/filterEvents',{

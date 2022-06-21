@@ -3,26 +3,50 @@ const {
     innService,
     postService,
     annualEventService,
-    events
+    userService
 } = require('../../service/index.service');
 
 
 const InnController = module.exports
 
-InnController.getPost = async(req, res) => {
+InnController.managerMotel = async(req, res) => {
     const googleId = req.cookies['google_account_id'];
     const posts = (await postService.filterByCreatorId(req.params.googleId)).map((post) => _.get(post, 'dataValues'));
     const events = await annualEventService.findAll();
     const dataEvents = events.map(event => event.dataValues);
+    let user= {
+        email: ''
+    };
 
-    res.render('user/post-manager', { posts, dataEvents, googleId});
+    if(req.cookies.google_account_id) {
+        user = _.get(await userService.findByGoogleAccountId(req.cookies.google_account_id), 'dataValues');
+    }
+
+    const pattern = /http/g
+    if (!pattern.test(user.avatar_link)) {
+        user.avatar_link = `/images/${user.avatar_link}`;
+    }
+
+    res.render('user/motelManager', { posts, dataEvents, googleId, user});
 }
 
 InnController.pageCreateInn = async(req, res) => {
     const googleId = req.cookies['google_account_id'];
     const events = await annualEventService.findAll();
     const dataEvents = events.map(event => event.dataValues);
-    res.render('user/create-inn-page' , { googleId, dataEvents });
+    let user= {
+        email: ''
+    };
+
+    if(req.cookies.google_account_id) {
+        user = _.get(await userService.findByGoogleAccountId(req.cookies.google_account_id), 'dataValues');
+    }
+
+    const pattern = /http/g
+    if (!pattern.test(user.avatar_link)) {
+        user.avatar_link = `/images/${user.avatar_link}`;
+    }
+    res.render('user/create-inn-page' , { googleId, dataEvents , user});
 }
 
 InnController.addNewInn = async(req, res) => {
@@ -32,25 +56,61 @@ InnController.addNewInn = async(req, res) => {
         image_slide: req.file.filename
     });
 
+    console.log(post);
+
     await postService.creatorOne(post)
-    res.redirect(`/account/${req.cookies['google_account_id']}`);
+    res.redirect(`/manager/${req.cookies['google_account_id']}`);
 }
 
 InnController.deleteInnPost = async(req, res) => {
     const postId = req.query.id;
     await postService.deleteById(postId);
 
-    res.redirect(`/account/${req.cookies['google_account_id']}`);
+    res.redirect(`/manager/${req.cookies['google_account_id']}`);
 }
 
-InnController.detailPost =async(req, res) => {
+InnController.detailPost = async(req, res) => {
     const googleId = req.cookies['google_account_id'];
     const post = _.get(await postService.findById(req.params.id), 'dataValues');
     const events = await annualEventService.findAll();
     const dataEvents = events.map(event => event.dataValues);
+    let user= {
+        email: ''
+    };
 
-    res.render('user/post-detail', { post, googleId , dataEvents});
+    if(req.cookies.google_account_id) {
+        user = _.get(await userService.findByGoogleAccountId(req.cookies.google_account_id), 'dataValues');
+    }
+
+    const pattern = /http/g
+    if (!pattern.test(user.avatar_link)) {
+        user.avatar_link = `/images/${user.avatar_link}`;
+    }
+
+    res.render('user/post-detail', { post, googleId , dataEvents, user});
 }
+
+InnController.detailMotel = async(req, res) => {
+    const googleId = req.cookies['google_account_id'];
+    const post = _.get(await postService.findById(req.params.id), 'dataValues');
+    const events = await annualEventService.findAll();
+    const dataEvents = events.map(event => event.dataValues);
+    let user= {
+        email: ''
+    };
+
+    if(req.cookies.google_account_id) {
+        user = _.get(await userService.findByGoogleAccountId(req.cookies.google_account_id), 'dataValues');
+    }
+
+    const pattern = /http/g
+    if (!pattern.test(user.avatar_link)) {
+        user.avatar_link = `/images/${user.avatar_link}`;
+    }
+
+    res.render('user/detailMotel', { post, googleId , dataEvents, user});
+}
+
 
 InnController.editDetailPost = async(req, res) => {
     
@@ -58,8 +118,20 @@ InnController.editDetailPost = async(req, res) => {
     const post = _.get(await postService.findById(req.params.id), 'dataValues');
     const events = await annualEventService.findAll();
     const dataEvents = events.map(event => event.dataValues);
+    let user= {
+        email: ''
+    };
 
-    res.render('user/post-edit', { post, googleId, dataEvents});
+    if(req.cookies.google_account_id) {
+        user = _.get(await userService.findByGoogleAccountId(req.cookies.google_account_id), 'dataValues');
+    }
+
+    const pattern = /http/g
+    if (!pattern.test(user.avatar_link)) {
+        user.avatar_link = `/images/${user.avatar_link}`;
+    }
+
+    res.render('user/post-edit', { post, googleId, dataEvents, user});
 }
 
 InnController.postEdit = async(req, res) => {
@@ -79,8 +151,20 @@ InnController.DaNangInns = async(req, res) => {
     const inns = (await innService.findAll()).map(post => _.get(post, 'dataValues'));
     const events = await annualEventService.findAll();
     const dataEvents = events.map(event => event.dataValues);
+    let user= {
+        email: ''
+    };
 
-    res.render('user/DaNangInns', { inns, googleId, dataEvents });
+    if(req.cookies.google_account_id) {
+        user = _.get(await userService.findByGoogleAccountId(req.cookies.google_account_id), 'dataValues');
+    }
+
+    const pattern = /http/g
+    if (!pattern.test(user.avatar_link)) {
+        user.avatar_link = `/images/${user.avatar_link}`;
+    }
+
+    res.render('user/DaNangInns', { inns, googleId, dataEvents, user});
 }
 
 InnController.BinhSonInns = async(req, res) => {
@@ -88,8 +172,20 @@ InnController.BinhSonInns = async(req, res) => {
     const inns = (await postService.findAll()).map(post => _.get(post, 'dataValues'));
     const events = await annualEventService.findAll();
     const dataEvents = events.map(event => event.dataValues);
+    let user= {
+        email: ''
+    };
+
+    if(req.cookies.google_account_id) {
+        user = _.get(await userService.findByGoogleAccountId(req.cookies.google_account_id), 'dataValues');
+    }
+
+    const pattern = /http/g
+    if (!pattern.test(user.avatar_link)) {
+        user.avatar_link = `/images/${user.avatar_link}`;
+    }
  
-    res.render('user/BinhSonInns', { inns, googleId, dataEvents});
+    res.render('user/BinhSonInns', { inns, googleId, dataEvents, user});
 }
 
 InnController.allInns = async(req, res) => {
@@ -103,6 +199,18 @@ InnController.allInns = async(req, res) => {
     let inns = (await innService.findAll()).map(post => _.get(post, 'dataValues'));
 
     inns = inns.concat(post);
+    let user= {
+        email: ''
+    };
+
+    if(req.cookies.google_account_id) {
+        user = _.get(await userService.findByGoogleAccountId(req.cookies.google_account_id), 'dataValues');
+    }
+
+    const pattern = /http/g
+    if (!pattern.test(user.avatar_link)) {
+        user.avatar_link = `/images/${user.avatar_link}`;
+    }
     
-    res.render('user/allInns', { inns, googleId, dataEvents });
+    res.render('user/allInns', { inns, googleId, dataEvents, user });
 }

@@ -9,7 +9,14 @@ happenedEventService.findEventByTimeAndTitle = async(action_time, title) => happ
     }
 });
 
-happenedEventService.findAll = async() => happened_event.findAll();
+happenedEventService.findAll = async() => {
+    try {
+        console.log(happened_event);
+        return happened_event.findAll();
+    } catch (err) {
+        console.log(err);
+    }
+};
 
 happenedEventService.filter = async(condition) => happened_event.findAll({
     where: condition

@@ -78,7 +78,10 @@ adminController.changeNewEvent = async(req, res) => {
         date: moment().format("YYYY-MM-DD"),
     };
 
-    res.render('admin/change-happening-event', { admin, time })
+    const events = await annualEventService.findAll();
+    const dataEvents = events.map(event => event.dataValues);
+
+    res.render('admin/change-happening-event', { admin, time, dataEvents })
 }
 
 adminController.changeNewEventPost = async(req, res) => {
@@ -91,7 +94,8 @@ adminController.changeNewEventPost = async(req, res) => {
             description: req.body.description,
             image_name: files,
             action_time: req.body.action_time,
-            place: req.body.place
+            place: req.body.place,
+            event_type_id: req.body.event_type_id
         }
 
         const happeningEvent = await happeningEventService.findOne();
@@ -199,3 +203,14 @@ adminController.saveRecentEvent = async(req, res) => {
     res.redirect('/admin/recent-events');
 }
 
+adminController.chartEvent = async(req,res) => {
+    const admin = req.cookies.admin;
+    
+    res.render('admin/chartEvent', { admin });
+}
+
+adminController.login = async(req,res) => {
+    const login = { login: 'login' }
+
+    res.render('admin/login', { login })
+}

@@ -33,6 +33,11 @@ homeController.homepage = async(req, res) => {
             user = _.get(await userService.findByGoogleAccountId(req.cookies.google_account_id), 'dataValues');
         }
 
+        const pattern = /http/g
+        if (!pattern.test(user.avatar_link)) {
+            user.avatar_link = `/images/${user.avatar_link}`;
+        }
+
         res.render('user/home-page', { dataEvents, user, happeningEventData, inns, googleId , image_names})
     } catch (err) {
         console.log(err);
@@ -77,6 +82,7 @@ homeController.happeningEvent = async(req, res) => {
 
     const happeningEvent = await happeningEventService.findOne();
     const happeningEventData = _.get(happeningEvent, 'dataValues');
+    const image_names = happeningEventData.image_name
 
     let user= {
         email: ''
@@ -85,8 +91,12 @@ homeController.happeningEvent = async(req, res) => {
     if(req.cookies.google_account_id) {
         user = _.get(await userService.findByGoogleAccountId(req.cookies.google_account_id), 'dataValues');
     }
+    const pattern = /http/g
+    if (!pattern.test(user.avatar_link)) {
+        user.avatar_link = `/images/${user.avatar_link}`;
+    }
 
-    res.render('user/happening-event', { dataEvents, user, happeningEventData, googleId })
+    res.render('user/happening-event', { dataEvents, user, happeningEventData, googleId, image_names })
 }
 
 homeController.innDetail = async(req, res) => {
@@ -94,9 +104,18 @@ homeController.innDetail = async(req, res) => {
     const inn = _.get(await innService.findById(req.params.id), 'dataValues');
     const events = await annualEventService.findAll();
     const dataEvents = events.map(event => event.dataValues);
+
     let user= {
         email: ''
     };
+
+    if(req.cookies.google_account_id) {
+        user = _.get(await userService.findByGoogleAccountId(req.cookies.google_account_id), 'dataValues');
+    }
+    const pattern = /http/g
+    if (!pattern.test(user.avatar_link)) {
+        user.avatar_link = `/images/${user.avatar_link}`;
+    }
 
     res.render('user/inn-detail', { dataEvents, user, inn, googleId });
 }
@@ -109,6 +128,14 @@ homeController.postDetail = async(req,res) => {
     let user= {
         email: ''
     };
+
+    if(req.cookies.google_account_id) {
+        user = _.get(await userService.findByGoogleAccountId(req.cookies.google_account_id), 'dataValues');
+    }
+    const pattern = /http/g
+    if (!pattern.test(user.avatar_link)) {
+        user.avatar_link = `/images/${user.avatar_link}`;
+    }
 
     res.render('user/post-detail', { dataEvents, user, post, googleId });
 }
@@ -137,9 +164,10 @@ homeController.editProfile = async(req, res) => {
     try {
         const profile = JSON.parse(JSON.stringify(req.body));
 
-        Object.assign(profile, { avatar_link: req.file.filename });
+        if (req.file) {
+            Object.assign(profile, { avatar_link: req.file.filename });
+        }
 
-    
         await userService.updateByGoogleAccountId(profile, req.cookies['google_account_id']);
     } catch (err) {
         console.error(err);

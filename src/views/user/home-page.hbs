@@ -1,16 +1,16 @@
-<div class="shadow p-4">
+<div class="shadow border-radius overflow">
   <div class="relative">
     <div class="absolute z-index-10 flex-column">
       <div>
-        <h1 class="t-c t-b-c t-border-coder" style="cursor: pointer" data-toggle="modal" data-target="#exampleModalCenter">ĐĂNG KÝ SỰ KIỆN</h1>
+        <h1 class=" t-border-coder t-c-w t-fs" style="cursor: pointer" data-toggle="modal" data-target="#exampleModalCenter">ĐĂNG KÝ SỰ KIỆN</h1>
       </div>
       {{#with happeningEventData}}
       <h2 class="mt-20">
-        <a href="/happening-event/{{title}}" class="t-c a-c t-border-coder">{{title}}</a>
+        <a href="/happening-event/{{title}}" class="t-border-coder-2 t-c-w ">{{title}}</a>
       </h2>
       {{/with}}
     </div>
-    <div class="slide-container mr-ml-10px">
+    <div class="slide-container">
     <div class="slide-child-container relative">
       <div class="swiper mySwiper">
         <div class="swiper-wrapper">
@@ -18,8 +18,8 @@
           <div class="swiper-slide bg-i-slide-home" style="background-image: url('/images/{{this}}')"></div>
           {{/each}}
         </div>
-        <div class="swiper-button-next"></div>
-        <div class="swiper-button-prev"></div>
+        <div class="swiper-button-next "></div>
+        <div class="swiper-button-prev "></div>
         <div class="swiper-pagination"></div>
       </div>
     </div>
@@ -79,13 +79,13 @@
                       <p class="small mb-0 ml-20px">{{this.acreage}}</p>
                       <p class="small mb-0 ml-20px">{{this.address}}</p>
                     </div>
-                    <p>Mo ta</p>
+                    <p class="small mb-0">{{this.description_short}}</p>
                     <div class="pl-0 flex">
-                      <div class="avatar-poster mb-1">
-
+                      <div class="avatar-poster mb-1 overflow">
+                        <img src="{{this.avatar}}" alt="">
                       </div>
                       <div class="flex-align-center ml-2">
-                        <p class="mb-0">Nguoi dang</p>
+                        <p class="small mb-0">{{this.author}}</p>
                       </div>
                     </div>
                   </div>
@@ -114,7 +114,7 @@
     <a class="button-2 t-upper">giới thiệu về hội</a>
   </div>
 </div>
-<div class="shadow p-3 mb-1 bg-body rounded background-config flex-column p-4 mt-5 mb-5 m-10px">
+<div class="shadow mb-1 bg-body rounded background-config flex-column p-4 mt-5 mb-5">
   <h5 class="pt-8 t-c t-upper">Hội đồng hương</h5>
   <h4 class="pb-1 t-c t-upper">Học sinh - Sinh viên huyện Bình Sơn tại Thành phố Đà Nẵng</h4>
   <img src="/images/logo/LOGO.png" alt="" class="w-10">
@@ -123,51 +123,23 @@
     <div class="swiper mySwiper2">
       <div class="swiper-wrapper">
         <div class="swiper-slide flex-column swiper-slide-background t-j pt-0">
-          <p>
-            Curabitur sed sodales leo. Nulla facilisi. Etiam condimentum, nisi
-            id tempor vulputate, nisi justo cursus justo, pellentesque
-            condimentum diam arcu sit amet leo. Cum sociis natoque penatibus et
-            magnis dis parturient montes, nascetur ridiculus mus. In placerat
-            tellus a posuere vehicula. Donec diam massa, efficitur vitae mattis
-            et, pretium in augue. Fusce iaculis mi quis ante venenatis, sit amet
-            pellentesque orci aliquam. Vestibulum elementum posuere vehicula.
-          </p>
-          <p>
-            Curabitur sed sodales leo. Nulla facilisi. Etiam condimentum, nisi
-            id tempor vulputate, nisi justo cursus justo, pellentesque
-            condimentum diam arcu sit amet leo. Cum sociis natoque penatibus et
-            magnis dis parturient montes, nascetur ridiculus mus. In placerat
-            tellus a posuere vehicula. Donec diam massa, efficitur vitae mattis
-            et, pretium in augue. Fusce iaculis mi quis ante venenatis, sit amet
-            pellentesque orci aliquam. Vestibulum elementum posuere vehicula.
-          </p>
-          <p>
-            Curabitur sed sodales leo. Nulla facilisi. Etiam condimentum, nisi
-            id tempor vulputate, nisi justo cursus justo, pellentesque
-            condimentum diam arcu sit amet leo. Cum sociis natoque penatibus et
-            magnis dis parturient montes, nascetur ridiculus mus. In placerat
-            tellus a posuere vehicula. Donec diam massa, efficitur vitae mattis
-            et, pretium in augue. Fusce iaculis mi quis ante venenatis, sit amet
-            pellentesque orci aliquam. Vestibulum elementum posuere vehicula.
-          </p>
-          <p>
-            Curabitur sed sodales leo. Nulla facilisi. Etiam condimentum, nisi
-            id tempor vulputate, nisi justo cursus justo, pellentesque
-            condimentum diam arcu sit amet leo. Cum sociis natoque penatibus et
-            magnis dis parturient montes, nascetur ridiculus mus. In placerat
-            tellus a posuere vehicula. Donec diam massa, efficitur vitae mattis
-            et, pretium in augue. Fusce iaculis mi quis ante venenatis, sit amet
-            pellentesque orci aliquam. Vestibulum elementum posuere vehicula.
-          </p>
-          <p>
-            Curabitur sed sodales leo. Nulla facilisi. Etiam condimentum, nisi
-            id tempor vulputate, nisi justo cursus justo, pellentesque
-            condimentum diam arcu sit amet leo. Cum sociis natoque penatibus et
-            magnis dis parturient montes, nascetur ridiculus mus. In placerat
-            tellus a posuere vehicula. Donec diam massa, efficitur vitae mattis
-            et, pretium in augue. Fusce iaculis mi quis ante venenatis, sit amet
-            pellentesque orci aliquam. Vestibulum elementum posuere vehicula.
-          </p>
+          Có lẽ phụ huynh nào cũng từng xuất hiện trong bài văn của con mình với vẻ ngoài và tính tình hoàn toàn không giống mình nhưng lại rất giống nhau.
+
+Ngày mới ra trường, khi chấm bài kiểm tra tập làm văn lớp sáu với đề bài "kể lại một việc tốt em đã làm", tôi đã ngạc nhiên khi hầu như cả lớp chỉ làm có hai việc tốt, một là dẫn bà cụ qua đường, hai là nhặt được chiếc ví và trả lại người mất. <br>
+
+Điều khiến tôi không biết nên cười hay nên khóc là bà cụ trong bài nào cũng đứng ở ngã tư, cũng "tóc bạc phơ, dáng người gầy gầy, lưng cong cong, đôi mắt hiền từ". Chiếc ví nào cũng nhặt được trên đường đi học về, cũng "màu nâu đậm, hình vuông, bên trong có chứa nhiều giấy tờ quan trọng và một số tiền lớn".
+
+Chẳng lẽ cả lớp 40 em lại gặp đúng một bà cụ, nhặt được cùng một chiếc ví? Tất nhiên ai cũng biết là không thể. Đó là một minh chứng cho việc học sinh bị lệ thuộc vào văn mẫu.
+<br>
+Thực trạng trên ở các lớp nhỏ, lên đến các lớp lớn hơn, khi chuyển sang các dạng văn khó hơn như nghị luận xã hội, nghị luận văn học, đề bài cũng phong phú hơn. Các em không thể chỉ học thuộc một vài bài văn mẫu tả cha mẹ, thầy cô, việc tốt, kỷ niệm vui buồn nữa mà phải phân tích, trình bày quan điểm của mình về các sự việc, hiện tượng trong xã hội hoặc các tư tưởng, đạo lý, tác phẩm văn họ <br>
+
+Tưởng chừng văn mẫu sẽ không còn đất dụng võ ở các khối lớp lớn cấp hai, cấp ba, nhưng chúng vẫn chi phối rất nhiều khi học sinh học thuộc những mở bài với cấu trúc giới thiệu tác giả, tác phẩm, vấn đề nghị luận... Đối với đoạn thơ đó, câu chuyện đó, nhiều em biết cần phải thuộc được những câu văn phân tích có sẵn để dễ lấy điểm hơn.
+<br>
+Tôi từng đọc được bình luận của học trò: "Đề thi thì ghi nêu cảm nhận của em, nhưng đáp án lại chấm theo ý của thầy cô". Thực ra, không phải chúng tôi chấm theo ý của thầy cô mà là chấm theo khung đáp án của Bộ, và để có điểm, ý tứ trong bài văn của các em phải phù hợp với đáp án. Đa số học sinh đều lựa chọn cách nhanh nhất để làm được điều đó, đó là học từ văn mẫu. <br>
+
+Không phải đến thế hệ giáo viên chúng tôi, văn mẫu mới trở thành đề tài gây nhiều tranh cãi trong việc dạy và học. Văn mẫu có cả "công" và "tội".
+
+Văn mẫu trước hết là những bài văn hay. Đọc một bài văn hay, con người có thể nâng tầm nhận thức và thẩm mĩ, có thể nảy sinh những cảm xúc bồi đắp tâm hồn, được gợi cảm hứng để làm điều tốt đẹp. Học sinh có thể nhìn vào đó học hỏi được cách triển khai bài của mình, cách dẫn dắt ý, dùng từ ngữ, gạn lọc ý tâm đắc hoặc diễn đạt sáng tạo. Nó giúp ích rất nhiều cho khả năng viết của các em.
         </div>
       </div>
       <div class="swiper-scrollbar2"></div>
@@ -202,7 +174,7 @@ function up() {
         centeredSlides: true,
         speed: 2000,
         autoplay: {
-          delay: 4000,
+          delay: 40000,
           disableOnInteraction: false,
         },
         pagination: {
@@ -231,55 +203,60 @@ function up() {
 {{#with user}}	
 <div class="modal fade pt-0" id="exampleModalCenter" tabindex="1">
   <div class="modal-dialog modal-dialog-centered" role="document">
-    <div class="modal-content">
+    <div class="modal-content c-color">
       <div class="modal-header">
         <button type="button" class="close d-flex align-items-center justify-content-center bg-c-b" data-dismiss="modal" aria-label="Close">
           <i class="material-icons t-c-b z-index-100" style="font-size:24px" aria-hidden="true">close</i>
         </button>
       </div>
-      <div class="row no-gutters">
+      <div class="flex no-gutters bg-c-w p-4">
         <div class="col-md-6 d-flex">
-          <div class="modal-body p-5 img d-flex color-1 text-center d-flex align-items-center">
+          <div class="modal-body p-5 img d-flex text-center d-flex align-items-center bg-c-w">
             <div class="text w-100">
               <span class="icon-2 ion-ios-beer"></span>
-              <h5>Plan your activities and control your progress online</h5>
+              <h5 class="c-modal">Hội đồng hương học sinh - sinh viên huyện Bình Sơn tại thành phố Đà Nẵng</h5>
               <div class="icon">
-                <span class="ion-ios-bicycle"></span>
+                <img src="/images/logo/LOGO.png" alt="" class="w-100">
               </div>
             </div>
           </div>
         </div>
         <div class="col-md-6 d-flex">
-          <div class="modal-body p-5 img d-flex align-items-center color-2">
+          <div class="modal-body p-5 img d-flex align-items-center p-4 bg-c-w shadow">
             <div class="text w-100 py-0 py-md-5 pb-0 pt-0">
-              <h3 class="mb-4">Registis event</h3>
+              <h3 class="mb-4 c-modal">Đăng ký sự kiện</h3>
               <form action="register-event" method="POST" class="signup-form">
-                <div class="form-group mb-3 t-a-l">
-                  <label class="label" for="name">Full Name</label>
-                  <input type="text" class="form-control" placeholder="your name" value="{{name}}">
+                <div class="form-group mb-3 t-a-l c-modal">
+                  <label class="label c-modal" for="name">Họ và tên</label>
+                  <input type="text" class="form-control c-modal" style="color:#5eb7b7 !important; border-bottom: 1px solid #5eb7b7" placeholder="your name" value="{{name}}">
                 </div>
                 <div class="form-group mb-3 t-a-l">
-                  <label class="label" for="email">Email Address</label>
-                  <input type="text" class="form-control" placeholder="@gmail.com" value="{{email}}">
+                  <label class="label c-modal" for="email">Email</label>
+                  <input type="text" class="form-control" placeholder="@gmail.com" value="{{email}}" style="color:#5eb7b7 !important ; border-bottom: 1px solid #5eb7b7">
                 </div>
                 <div class="form-group mb-3 t-a-l">
-                  <label class="label" for="name">Birthday</label>
-                  <input type="text" class="form-control" placeholder="your birthday" value="{{birthday}}">
+                  <label class="label c-modal" for="name">Ngày sinh</label>
+                  <input type="text" class="form-control" placeholder="" value="{{birthday}}" style="color:#5eb7b7 !important ; border-bottom: 1px solid #5eb7b7">
                 </div>
                  <div class="form-group mb-3 t-a-l">
-                  <label class="label" for="name">Address</label>
-                  <input type="text" class="form-control" placeholder="your address" value="{{address}}">
-                </div>
-                 <div class="form-group mb-3 t-a-l">
-                  <label class="label" for="name">Facebook link</label>
-                  <input type="text" class="form-control" placeholder="your facebook link" value="{{facebookLink}}">
+                  <label class="label c-modal" for="name">Địa chỉ</label>
+                  <input type="text" class="form-control" placeholder="" value="{{address}}" style="color:#5eb7b7 !important ; border-bottom: 1px solid #5eb7b7">
                 </div>
                 <div class="form-group mb-3 t-a-l">
-                  <label class="label" for="name">Phone number</label>
-                  <input type="text" class="form-control" placeholder="your phone number" value="{{phone_number}}">
+                  <label class="label c-modal" for="name">Số điện thoại</label>
+                  <input type="text" class="form-control" placeholder="" value="{{phone_number}}" style="color:#5eb7b7 !important ; border-bottom: 1px solid #5eb7b7">
                 </div>
+                 <div class="form-group mb-3 t-a-l">
+                  <label class="label c-modal" for="name">Facebook</label>
+                  <input type="text" class="form-control" placeholder="" value="{{facebookLink}}" style="color:#5eb7b7 !important ; border-bottom: 1px solid #5eb7b7">
+                </div>
+                <div class="form-group mb-3 t-a-l">
+                  <label class="label c-modal" for="name">Zalo</label>
+                  <input type="text" class="form-control" placeholder="" value="{{facebookLink}}" style="color:#5eb7b7 !important ; border-bottom: 1px solid #5eb7b7">
+                </div>
+                
                 <div class="form-group">
-                  <button type="submit" class="form-control btn btn-primary rounded submit px-3">REGISTIS</button>
+                  <button type="submit" class="form-control btn btn-primary rounded submit px-3">ĐĂNG KÝ</button>
                 </div>
               </form>
             </div>

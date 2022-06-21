@@ -28,6 +28,10 @@ module.exports = function(sequelize, Sequelize) {
             type: Sequelize.STRING,
             notEmpty: true
         },
+        event_type_id: {
+            type: Sequelize.INTEGER,
+            allowNull: false,
+        },
     });
  
     return recentEvent;

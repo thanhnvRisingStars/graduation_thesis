@@ -41,6 +41,10 @@ module.exports = function(sequelize, Sequelize) {
             type: Sequelize.BOOLEAN,
             defaultValue: false,
         },
+        event_type_id: {
+            type: Sequelize.INTEGER,
+            allowNull: false,
+        },
  
     });
  

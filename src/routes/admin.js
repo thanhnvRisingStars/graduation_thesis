@@ -33,6 +33,11 @@ router.get('/inn/detail/:url', innAdminController.innDetail);
 router.get('/inn/page/:page', innAdminController.pageFetch);
 router.get('/inn', innAdminController.getInn);
 
+// chart
+router.get('/chart', adminController.chartEvent);
+router.get('/login', adminController.login);
+
+
 // Admin Main Page
 router.get('/', adminController.adminPage);
 

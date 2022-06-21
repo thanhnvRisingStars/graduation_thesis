@@ -28,7 +28,19 @@ module.exports = function(sequelize, Sequelize) {
             type: Sequelize.STRING,
             notEmpty: true
         },
+        author: {
+            type: Sequelize.STRING,
+            notEmpty: true
+        },
+        avatar: {
+            type: Sequelize.STRING,
+            notEmpty: true
+        },
         description: {
+            type: Sequelize.TEXT('long'),
+            notEmpty: true
+        },
+        description_short: {
             type: Sequelize.TEXT('long'),
             notEmpty: true
         },

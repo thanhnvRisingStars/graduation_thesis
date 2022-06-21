@@ -15,8 +15,9 @@ router.post('/delete-inn-post', InnController.deleteInnPost);
 router.post('/post/edit', upload.single('uploaded_file'), InnController.postEdit);
 router.post('/add-new-inn', upload.single('uploaded_file'), InnController.addNewInn);
 router.get('/account/:googleId/:id/', InnController.detailPost);
-router.get('/account/:googleId', InnController.getPost);
 router.get('/create-inn', InnController.pageCreateInn);
+router.get('/manager/:googleId', InnController.managerMotel);
+router.get('/detail/:googleId/:id', InnController.detailMotel);
 
 router.get('/DaNang-inns', InnController.DaNangInns);
 router.get('/BinhSon-inns', InnController.BinhSonInns);

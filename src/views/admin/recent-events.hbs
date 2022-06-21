@@ -43,8 +43,13 @@
 }
 
 </style>
+  <div class="wrap mt-4">
+    <div class=" flex-align-center" style="width: 400px">
+      <button class=" t-upper button" href="/all-inns" style="width: 400px">sự kiện vừa diễn ra cần phê duyệt</button>
+    </div>
+</div>
 {{#with data}}
-<div class="t-c shadow p-120">
+<div class="t-c shadow p-120 mt-50">
     <form action="/admin/save-recent-event?id={{this.id}}" method="POST" enctype="multipart/form-data">
 
     <h3>

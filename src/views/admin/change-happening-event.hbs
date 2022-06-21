@@ -4,6 +4,13 @@
         <div class="col-10 p-4 shadow">
             <div class="col-12">
                 <form method="POST" enctype="multipart/form-data" action="change-new-event">
+                    <label for="exampleInputPassword1"><h6 class="t-c m-f-20 mb-0">Loại sự kiện</h6></label>
+                    <select class="form-select" aria-label="Default select example" name="event_type_id">
+                        <option selected></option>
+                        {{#each dataEvents}}
+                        <option value="{{this.id}}">{{this.title}}</option>
+                        {{/each}}
+                    </select>
                     <div class="form-group">
                         <label for="exampleInputPassword1"><h6 class="t-c m-f-20 mb-0">Tiêu đề thư sự kiện</h6></label>
                         <input type="text" class="form-control mt-1" id="exampleInputPassword1" placeholder="Tiêu đề" name="title">
