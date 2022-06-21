@@ -1,8 +1,11 @@
 <div class="shadow border-radius overflow">
   <div class="relative">
-    <div class="absolute z-index-10 flex-column">
+    <div class="div-opacity position-absolute z-index-5">
+
+    </div>
+    <div class="absolute z-index-10 flex-column ">
       <div>
-        <h1 class=" t-border-coder t-c-w t-fs" style="cursor: pointer" data-toggle="modal" data-target="#exampleModalCenter">ĐĂNG KÝ SỰ KIỆN</h1>
+        <h1 class=" t-border-coder t-c-w t-fs " style="cursor: pointer" data-toggle="modal" data-target="#exampleModalCenter">ĐĂNG KÝ SỰ KIỆN</h1>
       </div>
       {{#with happeningEventData}}
       <h2 class="mt-20">
@@ -10,17 +13,17 @@
       </h2>
       {{/with}}
     </div>
-    <div class="slide-container">
-    <div class="slide-child-container relative">
-      <div class="swiper mySwiper">
+    <div class="slide-container ">
+    <div class="slide-child-container relative ">
+      <div class="swiper mySwiper ">
         <div class="swiper-wrapper">
           {{#each image_names}}
           <div class="swiper-slide bg-i-slide-home" style="background-image: url('/images/{{this}}')"></div>
           {{/each}}
         </div>
-        <div class="swiper-button-next "></div>
-        <div class="swiper-button-prev "></div>
-        <div class="swiper-pagination"></div>
+        {{!-- <div class="swiper-button-next z-index-20"></div> --}}
+        {{!-- <div class="swiper-button-prev z-index-20"></div> --}}
+        <div class="swiper-pagination z-index-20"></div>
       </div>
     </div>
   </div>
@@ -174,7 +177,7 @@ function up() {
         centeredSlides: true,
         speed: 2000,
         autoplay: {
-          delay: 40000,
+          delay: 4000,
           disableOnInteraction: false,
         },
         pagination: {
@@ -228,31 +231,31 @@ function up() {
               <form action="register-event" method="POST" class="signup-form">
                 <div class="form-group mb-3 t-a-l c-modal">
                   <label class="label c-modal" for="name">Họ và tên</label>
-                  <input type="text" class="form-control c-modal" style="color:#5eb7b7 !important; border-bottom: 1px solid #5eb7b7" placeholder="your name" value="{{name}}">
+                  <input type="text" class="form-control c-modal" style="color:#5eb7b7 !important; border-bottom: 1px solid #5eb7b7" placeholder="your name" value="{{name}}" name="name">
                 </div>
                 <div class="form-group mb-3 t-a-l">
                   <label class="label c-modal" for="email">Email</label>
-                  <input type="text" class="form-control" placeholder="@gmail.com" value="{{email}}" style="color:#5eb7b7 !important ; border-bottom: 1px solid #5eb7b7">
+                  <input type="text" class="form-control" placeholder="@gmail.com" value="{{email}}" style="color:#5eb7b7 !important ; border-bottom: 1px solid #5eb7b7"  name="email">
                 </div>
                 <div class="form-group mb-3 t-a-l">
                   <label class="label c-modal" for="name">Ngày sinh</label>
-                  <input type="text" class="form-control" placeholder="" value="{{birthday}}" style="color:#5eb7b7 !important ; border-bottom: 1px solid #5eb7b7">
+                  <input type="text" class="form-control" placeholder="" value="{{birthday}}" style="color:#5eb7b7 !important ; border-bottom: 1px solid #5eb7b7" name="birthday">
                 </div>
                  <div class="form-group mb-3 t-a-l">
                   <label class="label c-modal" for="name">Địa chỉ</label>
-                  <input type="text" class="form-control" placeholder="" value="{{address}}" style="color:#5eb7b7 !important ; border-bottom: 1px solid #5eb7b7">
+                  <input type="text" class="form-control" placeholder="" value="{{address}}" style="color:#5eb7b7 !important ; border-bottom: 1px solid #5eb7b7" name="address">
                 </div>
                 <div class="form-group mb-3 t-a-l">
                   <label class="label c-modal" for="name">Số điện thoại</label>
-                  <input type="text" class="form-control" placeholder="" value="{{phone_number}}" style="color:#5eb7b7 !important ; border-bottom: 1px solid #5eb7b7">
+                  <input type="text" class="form-control" placeholder="" value="{{phone_number}}"style="color:#5eb7b7 !important ; border-bottom: 1px solid #5eb7b7" name="phoneNumber">
                 </div>
                  <div class="form-group mb-3 t-a-l">
                   <label class="label c-modal" for="name">Facebook</label>
-                  <input type="text" class="form-control" placeholder="" value="{{facebookLink}}" style="color:#5eb7b7 !important ; border-bottom: 1px solid #5eb7b7">
+                  <input type="text" class="form-control" placeholder="" value="{{facebook}}" style="color:#5eb7b7 !important ; border-bottom: 1px solid #5eb7b7" name="facebook">
                 </div>
                 <div class="form-group mb-3 t-a-l">
                   <label class="label c-modal" for="name">Zalo</label>
-                  <input type="text" class="form-control" placeholder="" value="{{facebookLink}}" style="color:#5eb7b7 !important ; border-bottom: 1px solid #5eb7b7">
+                  <input type="text" class="form-control" placeholder="" value="{{zalo}}" style="color:#5eb7b7 !important ; border-bottom: 1px solid #5eb7b7" name="zalo">
                 </div>
                 
                 <div class="form-group">

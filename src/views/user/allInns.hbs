@@ -61,25 +61,55 @@
   </div>
 </div>
 {{/each}}
-<div class="flex-align-center">
-  <nav aria-label="Page navigation example shadow">
-  <ul class="pagination t-c">
-    <li class="page-item">
-      <a class="page-link" href="#" aria-label="Previous">
-        <span aria-hidden="true">&laquo;</span>
-        <span class="sr-only">Previous</span>
-      </a>
-    </li>
-    <li class="page-item"><a class="page-link t-c" href="#">1</a></li>
-    <li class="page-item"><a class="page-link" href="#">2</a></li>
-    <li class="page-item"><a class="page-link" href="#">3</a></li>
-    <li class="page-item">
-      <a class="page-link" href="#" aria-label="Next">
-        <span aria-hidden="true">&raquo;</span>
-        <span class="sr-only">Next</span>
-      </a>
-    </li>
-  </ul>
-</nav>
-</div>
+
+
+{{#if length}}
+  <div class="flex-align-center">
+    <nav aria-label="Page navigation example shadow">
+      {{#with pageNum}}
+    <ul class="pagination t-c">
+      <li class="page-item" >
+        <a class="page-link" href="/all-inns?page={{pre}}" aria-label="Previous" >
+          <span aria-hidden="true">&laquo;</span>
+          <span class="sr-only">Trang sau</span>
+        </a>
+      </li>
+      <li class="page-item"><a class="page-link t-c" href="/all-inns?page={{now}}">{{now}}</a></li>
+      <li class="page-item"><a class="page-link" href="/all-inns?page={{next}}">{{next}}</a></li>
+      <li class="page-item"><a class="page-link" href="/all-inns?page={{next2}}">{{next2}}</a></li>
+      <li class="page-item">
+        <a class="page-link" href="/all-inns?page={{next}}" aria-label="Next">
+          <span aria-hidden="true">&raquo;</span>
+          <span class="sr-only">Trang sau</span>
+        </a>
+      </li>
+    </ul>
+    {{/with}}
+  </nav>
+  </div>
+{{else}}
+  <div class="flex-align-center">
+    <nav aria-label="Page navigation example shadow">
+    <ul class="pagination t-c">
+      <li class="page-item" >
+        <a class="page-link disabled a-c" href="#" aria-label="Previous" >
+          <span aria-hidden="true">&laquo;</span>
+          <span class="sr-only">Previous</span>
+        </a>
+      </li>
+      <li class="page-item"><a class="page-link t-c" href="/all-inns?page=1">1</a></li>
+      <li class="page-item"><a class="page-link" href="/all-inns?page=2">2</a></li>
+      <li class="page-item"><a class="page-link" href="/all-inns?page=3">3</a></li>
+      <li class="page-item">
+        <a class="page-link" href="/all-inns?page=2" aria-label="Next">
+          <span aria-hidden="true">&raquo;</span>
+          <span class="sr-only">Next</span>
+        </a>
+      </li>
+    </ul>
+  </nav>
+  </div>
+{{/if}}
+
+
 </div>

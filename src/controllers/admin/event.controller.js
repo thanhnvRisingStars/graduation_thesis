@@ -1,240 +1,240 @@
 const _ = require('lodash');
 const moment = require('moment');
-const { 
-    annualEventService,
-    happeningEventService,
-    googleService,
-    recentEventService,
-    happenedEventService
+const {
+  annualEventService,
+  happeningEventService,
+  googleService,
+  recentEventService,
+  happenedEventService,
 } = require('../../service/index.service');
 const mailHelper = require('../../helpers/mail');
 
-const { admin } = require('../../models')
+const { admin } = require('../../models');
 
-const adminController = module.exports
+const adminController = module.exports;
 
-adminController.adminPage = async(req, res) => {
-    res.cookie('admin','admin');
-    const admin = req.cookies.admin;
+adminController.adminPage = async (req, res) => {
+  res.cookie('admin', 'admin');
+  const admin = req.cookies.admin;
 
-    res.render('admin/homepage', { admin });
-}
+  res.render('admin/homepage', { admin });
+};
 
-adminController.annualEvents = async(req, res) => {
-    const events = await annualEventService.findAll()
-    const dataEvents = events.map(event => event.dataValues);
-    const admin = req.cookies.admin;
-    res.render('admin/annual-events', { admin, dataEvents })
-}
+adminController.annualEvents = async (req, res) => {
+  const events = await annualEventService.findAll();
+  const dataEvents = events.map(event => event.dataValues);
+  const admin = req.cookies.admin;
+  res.render('admin/annual-events', { admin, dataEvents });
+};
 
-adminController.updateAnnualEvent = async(req, res) => {
-    const title = req.body.title;
-    const description = req.body.description;
-    let event = {
-        title,
-        description
-    }
-    if (req.file) {
-        Object.assign(event, { image_name: req.file.filename })
-    } 
-    await annualEventService.updateById(event, req.query.id);
-    res.redirect('/admin');
-}
+adminController.updateAnnualEvent = async (req, res) => {
+  const title = req.body.title;
+  const description = req.body.description;
+  let event = {
+    title,
+    description,
+  };
+  if (req.file) {
+    Object.assign(event, { image_name: req.file.filename });
+  }
+  await annualEventService.updateById(event, req.query.id);
+  res.redirect('/admin');
+};
 
-adminController.annualEventDetail = async(req, res) => {
-    const event = await annualEventService.findByTitle(req.query.title)
-    const data = event.dataValues
+adminController.annualEventDetail = async (req, res) => {
+  const event = await annualEventService.findByTitle(req.query.title);
+  const data = event.dataValues;
 
-    const admin = req.cookies.admin;
-    res.render('admin/event-annual-detail', { admin, data })
-}
+  const admin = req.cookies.admin;
+  res.render('admin/event-annual-detail', { admin, data });
+};
 
-adminController.addAnnualEventPage = async(req, res) => {
-    const admin = req.cookies.admin;
-    res.render('admin/add-annual-event', { admin })
-}
+adminController.addAnnualEventPage = async (req, res) => {
+  const admin = req.cookies.admin;
+  res.render('admin/add-annual-event', { admin });
+};
 
-adminController.addAnnualEvent = async(req, res) => {
+adminController.addAnnualEvent = async (req, res) => {
+  const event = {
+    title: req.body.title,
+    description: req.body.description,
+    video_id: req.body.video_id,
+  };
+
+  await annualEventService.createOne(event);
+  res.redirect('/admin/annual-events');
+};
+
+adminController.happeningEvent = async (req, res) => {
+  const admin = req.cookies.admin;
+
+  const happeningEvent = _.get(await happeningEventService.findOne(), 'dataValues');
+
+  const image_names = happeningEvent.image_name;
+
+  res.render('admin/happening-event', { admin, happeningEvent, image_names });
+};
+
+adminController.changeNewEvent = async (req, res) => {
+  const admin = req.cookies.admin;
+  const time = {
+    date: moment().format('YYYY-MM-DD'),
+  };
+
+  const events = await annualEventService.findAll();
+  const dataEvents = events.map(event => event.dataValues);
+
+  res.render('admin/change-happening-event', { admin, time, dataEvents });
+};
+
+adminController.changeNewEventPost = async (req, res) => {
+  try {
+    // const sheet = await googleService.getDataSheet(
+    //   '1jKTEkfec6hUDZwct3T_0rpa2wBPLILx3nsJfQAr6Ngk',
+    //   'HỌP MẶT TRUYỀN THỐNG 2022'
+    // );
+
+    // console.log(sheet.data.values);
+    let files = [];
+    await req.files.map(file => files.push(file.filename));
     const event = {
-        title: req.body.title,
-        description: req.body.description,
-        video_id: req.body.video_id,
-    }
-
-    await annualEventService.createOne(event);
-    res.redirect('/admin/annual-events')
-}
-
-adminController.happeningEvent = async(req, res) => {
-    const admin = req.cookies.admin;
-
-    const happeningEvent = _.get((await happeningEventService.findOne()), 'dataValues');
-
-    const image_names = happeningEvent.image_name
-
-    res.render('admin/happening-event', { admin, happeningEvent, image_names })
-}
-
-adminController.changeNewEvent = async(req, res) => {
-    const admin = req.cookies.admin;
-    const time = { 
-        date: moment().format("YYYY-MM-DD"),
+      title: req.body.title,
+      description: req.body.description,
+      image_name: files,
+      action_time: req.body.action_time,
+      place: req.body.place,
+      event_type_id: req.body.event_type_id,
     };
-
-    const events = await annualEventService.findAll();
-    const dataEvents = events.map(event => event.dataValues);
-
-    res.render('admin/change-happening-event', { admin, time, dataEvents })
-}
-
-adminController.changeNewEventPost = async(req, res) => {
-    try {
-        let files = [];
-        await req.files.map((file) => files.push(file.filename));
-
-        const event = {
-            title: req.body.title,
-            description: req.body.description,
-            image_name: files,
-            action_time: req.body.action_time,
-            place: req.body.place,
-            event_type_id: req.body.event_type_id
-        }
-
-        const happeningEvent = await happeningEventService.findOne();
-        const happeningEventData = _.get(happeningEvent, 'dataValues');
-
-        delete happeningEventData["id"]
-
-        await recentEventService.createOne(happeningEventData);
-        await happeningEventService.removeEvent();
-        await happeningEventService.createOne(event);
-    
-        res.redirect('/admin/happening-event');
-    } catch (err) {
-        console.log(err);
-    }
-}
-
-adminController.editHappeningEventPage = async(req, res) => {
-    const admin = req.cookies.admin;
     const happeningEvent = await happeningEventService.findOne();
     const happeningEventData = _.get(happeningEvent, 'dataValues');
+    delete happeningEventData['id'];
+    await recentEventService.createOne(happeningEventData);
+    await happeningEventService.removeEvent();
+    await happeningEventService.createOne(event);
+    res.redirect('/admin/happening-event');
+  } catch (err) {
+    console.log(err);
+  }
+};
 
-    const image_names = happeningEventData.image_name
+adminController.editHappeningEventPage = async (req, res) => {
+  const admin = req.cookies.admin;
+  const happeningEvent = await happeningEventService.findOne();
+  const happeningEventData = _.get(happeningEvent, 'dataValues');
 
-    res.render('admin/edit-happening-event', { admin, happeningEventData, image_names })
-}
+  const image_names = happeningEventData.image_name;
 
-adminController.editHappeningEventPagePost = async(req, res) => {
-    let files = [];
-    await req.files.map((file) => files.push(file.filename));
+  res.render('admin/edit-happening-event', { admin, happeningEventData, image_names });
+};
 
-    const event = {
-        title: req.body.title,
-        description: req.body.description,
-        image_name: files,
-        action_time: req.body.action_time,
-        place: req.body.place
-    }
+adminController.editHappeningEventPagePost = async (req, res) => {
+  let files = [];
+  await req.files.map(file => files.push(file.filename));
 
-    const id = req.query.id
+  const event = {
+    title: req.body.title,
+    description: req.body.description,
+    image_name: files,
+    action_time: req.body.action_time,
+    place: req.body.place,
+  };
 
-    await happeningEventService.updateEvent(event, id);
+  const id = req.query.id;
+
+  await happeningEventService.updateEvent(event, id);
+
+  res.redirect('/admin/happening-event');
+};
+
+adminController.setupMailEvent = async (req, res) => {
+  const admin = req.cookies.admin;
+  const happeningEvent = await happeningEventService.findOne();
+  const happeningEventData = _.get(happeningEvent, 'dataValues');
+  const statusMail = happeningEventData.status_mail;
+
+  res.render('admin/setup-event-mail', { admin, statusMail });
+};
+
+adminController.sendMailHappeningEvent = async (req, res) => {
+  try {
+    const mailSubject = req.body.subject;
+    const mailContent = req.body.content;
+    const happeningEvent = await happeningEventService.findOne();
+    const happeningEventData = _.get(happeningEvent, 'dataValues');
+    const titleSheet = happeningEventData.title;
+
+    const sheet = await googleService.getDataSheet(process.env.GOOGLE_SPREADSHEET_ID, titleSheet);
+    const dataSheet = sheet.data.values;
+    dataSheet.map(async data => {
+      await mailHelper.sendMail(data[0], mailContent, mailSubject);
+    });
+    await happeningEventService.updateStatusMail();
 
     res.redirect('/admin/happening-event');
-}
+  } catch (err) {
+    console.log(err);
+    res.redirect('/admin/happening-event');
+  }
+};
 
-adminController.setupMailEvent = async(req, res) => {
-    const admin = req.cookies.admin;
-    const happeningEvent = await happeningEventService.findOne();
-    const happeningEventData = _.get(happeningEvent, 'dataValues');
-    const statusMail = happeningEventData.status_mail
+adminController.recentEventPage = async (req, res) => {
+  const events = await recentEventService.findAll();
+  const dataEvents = events.map(event => event.dataValues);
+  const admin = req.cookies.admin;
 
-    res.render('admin/setup-event-mail', { admin, statusMail })
-}
+  const data = _.head(dataEvents);
 
-adminController.sendMailHappeningEvent = async(req, res) => {
-    try {
-        const mailSubject = req.body.subject;
-        const mailContent = req.body.content;
-        const happeningEvent = await happeningEventService.findOne();
-        const happeningEventData = _.get(happeningEvent, 'dataValues');
-        const titleSheet = happeningEventData.title
+  const image_names = data.image_name;
 
-        const sheet = await googleService.getDataSheet(process.env.GOOGLE_SPREADSHEET_ID , titleSheet);
-        const dataSheet = sheet.data.values
-        dataSheet.map(async(data) => {
-           await mailHelper.sendMail(data[0], mailContent, mailSubject);
-        })
-        await happeningEventService.updateStatusMail();
+  res.render('admin/recent-events', { admin, data, image_names });
+};
 
-        res.redirect('/admin/happening-event');
-    } catch (err) {
-        console.log(err);
-        res.redirect('/admin/happening-event');
-    }
-}
+adminController.saveRecentEvent = async (req, res) => {
+  let recentEvent = await recentEventService.findById(req.query.id);
+  recentEvent = _.get(recentEvent, 'dataValues');
+  if (req.file) {
+    recentEvent.image_name = req.file.filename;
+  }
+  recentEvent.description = req.body.description;
 
-adminController.recentEventPage = async(req, res) => {
-    const events = await recentEventService.findAll()
-    const dataEvents = events.map(event => event.dataValues);
-    const admin = req.cookies.admin;
+  Object.assign(recentEvent, { year: _.head(_.split(recentEvent.action_time, '-')) });
 
-    const data = _.head(dataEvents);
+  delete recentEvent['id'];
 
-    const image_names = data.image_name
+  await happenedEventService.createOne(recentEvent);
+  await recentEventService.removeEventByTitle(recentEvent.title);
 
-    res.render('admin/recent-events', { admin, data, image_names })
-}
+  res.redirect('/admin/recent-events');
+};
 
-adminController.saveRecentEvent = async(req, res) => {
-    let recentEvent = await recentEventService.findById(req.query.id);
-    recentEvent = _.get(recentEvent, 'dataValues');
-    if (req.file) {
-        recentEvent.image_name = req.file.filename;
-    }
-    recentEvent.description = req.body.description
+adminController.chartEvent = async (req, res) => {
+  const admin = req.cookies.admin;
 
-    Object.assign(recentEvent, { year: _.head(_.split(recentEvent.action_time, '-'))})
+  res.render('admin/chartEvent', { admin });
+};
 
-    delete recentEvent["id"]
+adminController.login = async (req, res) => {
+  const login = { login: 'login' };
 
-    await happenedEventService.createOne(recentEvent);
-    await recentEventService.removeEventByTitle(recentEvent.title);
+  res.render('admin/login', { login });
+};
 
-    res.redirect('/admin/recent-events');
-}
+adminController.loginPost = async (req, res) => {
+  res.clearCookie('google_account_id');
 
-adminController.chartEvent = async(req,res) => {
-    const admin = req.cookies.admin;
-    
-    res.render('admin/chartEvent', { admin });
-}
+  const account = _.get(await admin.findOne({ account: req.body.account }), 'dataValues');
 
-adminController.login = async(req,res) => {
-    const login = { login: 'login' }
-    
+  if (account && account.password === req.body.password && req.body.password) {
+    res.cookie('admin', 'account.account');
+    res.redirect('/admin');
 
-    res.render('admin/login', { login })
-}
+    return true;
+  }
+};
 
-adminController.loginPost = async(req,res) => {
-    res.clearCookie('google_account_id');
+adminController.logout = async (req, res) => {
+  res.clearCookie('google_account_id');
+  res.clearCookie('admin');
 
-    const account = _.get(await admin.findOne({ account: req.body.account}), 'dataValues');
-
-    if (account && account.password === req.body.password && req.body.password) {
-        res.cookie('admin', 'account.account');
-        res.redirect('/admin');
-
-        return true;
-    }
-}
-
-adminController.logout = async(req,res) => {
-    res.clearCookie('google_account_id');
-    res.clearCookie('admin');
-
-    res.redirect('/admin/login')
-}
+  res.redirect('/admin/login');
+};

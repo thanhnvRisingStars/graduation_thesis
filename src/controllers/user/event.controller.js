@@ -48,6 +48,12 @@ eventController.eventPage = async(req, res) => {
     return event.dataValues;
     });
 
+    await dataHappenEvents.map(event => {
+        const getEvent = dataEvents.find(typeEvent => event.event_type_id = typeEvent.id);
+
+        return event.typeEvent = getEvent.title;
+    });
+
     const years = [];
     for(i = 2010; i <= moment().year(); i++) {
         years.push({ year: i});
@@ -119,10 +125,69 @@ eventController.homepage = async(req, res) => {
 eventController.filterEvent = async(req, res) => {
     try {
         const year = req.body.year;
+
+        const events = await annualEventService.findAll();
+        const dataEvents = events.map(event => event.dataValues);
+
         const happened_events = await happenedEventService.filter({ year });
         const filtered_events = happened_events.map(event => _.get(event, 'dataValues'));
-    
-        res.json(filtered_events);
+
+        if (req.body.type === 'Loại sự kiện') {
+            await filtered_events.map(event => {
+                const getEvent = dataEvents.find(typeEvent => event.event_type_id = typeEvent.id);
+
+                Object.assign(event, { type: getEvent.title })
+            })
+            res.json(filtered_events);
+            return true;
+        }
+
+        const eventss = [];
+
+        const getEvent = dataEvents.find(typeEvent => typeEvent.title = req.body.type);
+
+        await filtered_events.map(event => {
+            if (event.event_type_id === getEvent.id) {
+                Object.assign(event, { type : getEvent.title});
+
+                eventss.push(event);
+            }
+        });
+
+        res.json(eventss);
+    } catch (err) {
+        console.log(err);
+    }
+}
+
+eventController.filterEventByType = async(req, res) => {
+    try {
+        const year = req.body.year;
+
+        const eventType = await annualEventService.findByTitle(req.body.type.trim());
+        const dataEvent = _.get(eventType, 'dataValues')
+
+        const happened_events = await happenedEventService.filter({ event_type_id: dataEvent.id });
+        const filtered_events = happened_events.map(event => _.get(event, 'dataValues'));
+
+        if (req.body.year === 'Năm tổ chức') {
+            await filtered_events.map(event => Object.assign(event, { type: req.body.type }))
+            res.json(filtered_events);
+            return true;
+        }
+
+        const eventss = [];
+
+        await filtered_events.map(event => {
+            if (event.year === req.body.year) {
+                Object.assign(event, { type: req.body.type});
+                eventss.push(event);
+            }
+        });
+
+        console.log(eventss);
+
+        res.json(eventss);
     } catch (err) {
         console.log(err);
     }

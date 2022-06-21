@@ -6,12 +6,12 @@ module.exports = function(sequelize, Sequelize) {
             primaryKey: true,
             type: Sequelize.INTEGER
         },
-        user_id: {
-            type: Sequelize.INTEGER,
+        google_account_id: {
+            type: Sequelize.STRING,
             notEmpty: true
         },
-        event_id: {
-            type: Sequelize.INTEGER,
+        event_title: {
+            type: Sequelize.STRING,
             notEmpty: true
         },
     });

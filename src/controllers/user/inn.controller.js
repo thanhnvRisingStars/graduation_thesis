@@ -111,7 +111,6 @@ InnController.detailMotel = async(req, res) => {
     res.render('user/detailMotel', { post, googleId , dataEvents, user});
 }
 
-
 InnController.editDetailPost = async(req, res) => {
     
     const googleId = req.cookies['google_account_id'];
@@ -199,6 +198,26 @@ InnController.allInns = async(req, res) => {
     let inns = (await innService.findAll()).map(post => _.get(post, 'dataValues'));
 
     inns = inns.concat(post);
+
+    let length = null;
+
+    const pageNum = {
+        pre : parseInt(req.query.page) - 1,
+        next: parseInt(req.query.page) + 1,
+        next2: parseInt(req.query.page) + 2,
+        now: req.query.page
+    };
+
+    if (req.query.page) {
+        inns = inns.slice((parseInt(req.query.page)-1)*10+1, parseInt(req.query.page)*10-1);
+        if (parseInt(req.query.page) > 1) {
+            length = ['value'];
+        }
+    }
+    else {
+        inns = inns.slice(0,9);
+    }
+
     let user= {
         email: ''
     };
@@ -211,6 +230,8 @@ InnController.allInns = async(req, res) => {
     if (!pattern.test(user.avatar_link)) {
         user.avatar_link = `/images/${user.avatar_link}`;
     }
+
     
-    res.render('user/allInns', { inns, googleId, dataEvents, user });
+    
+    res.render('user/allInns', { inns, googleId, dataEvents, user, length, pageNum});
 }

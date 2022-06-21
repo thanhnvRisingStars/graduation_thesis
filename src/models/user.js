@@ -35,7 +35,11 @@ module.exports = function(sequelize, Sequelize) {
             type: Sequelize.STRING,
             allowNull: true
         },
-        facebookLink: {
+        zalo: {
+            type: Sequelize.STRING,
+            allowNull: true
+        },
+        facebook: {
             type: Sequelize.STRING,
             allowNull: true
         },
