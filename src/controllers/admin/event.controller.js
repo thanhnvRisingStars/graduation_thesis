@@ -9,11 +9,14 @@ const {
 } = require('../../service/index.service');
 const mailHelper = require('../../helpers/mail');
 
+const { admin } = require('../../models')
+
 const adminController = module.exports
 
 adminController.adminPage = async(req, res) => {
     res.cookie('admin','admin');
     const admin = req.cookies.admin;
+
     res.render('admin/homepage', { admin });
 }
 
@@ -211,6 +214,27 @@ adminController.chartEvent = async(req,res) => {
 
 adminController.login = async(req,res) => {
     const login = { login: 'login' }
+    
 
     res.render('admin/login', { login })
+}
+
+adminController.loginPost = async(req,res) => {
+    res.clearCookie('google_account_id');
+
+    const account = _.get(await admin.findOne({ account: req.body.account}), 'dataValues');
+
+    if (account && account.password === req.body.password && req.body.password) {
+        res.cookie('admin', 'account.account');
+        res.redirect('/admin');
+
+        return true;
+    }
+}
+
+adminController.logout = async(req,res) => {
+    res.clearCookie('google_account_id');
+    res.clearCookie('admin');
+
+    res.redirect('/admin/login')
 }

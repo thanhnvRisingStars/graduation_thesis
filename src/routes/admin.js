@@ -36,6 +36,8 @@ router.get('/inn', innAdminController.getInn);
 // chart
 router.get('/chart', adminController.chartEvent);
 router.get('/login', adminController.login);
+router.post('/login', adminController.loginPost);
+router.get('/logout', adminController.logout);
 
 
 // Admin Main Page

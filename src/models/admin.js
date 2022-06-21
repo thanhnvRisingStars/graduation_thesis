@@ -15,6 +15,9 @@ module.exports = function(sequelize, Sequelize) {
             type: Sequelize.STRING,
             notEmpty: true
         },
+        avatar: {
+            type: Sequelize.STRING
+        },
     });
 
     return Admin;

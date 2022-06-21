@@ -36,24 +36,16 @@
             {{!-- login --}}
             <li class="nav-item d-flex flex-align-center flex-1">
               <div class="flex-1"></div>
-              {{#if googleId}}
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0 align-middle flex-end">
                   <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                    <img src="https://s3.eu-central-1.amazonaws.com/bootstrapbaymisc/blog/24_days_bootstrap/fox.jpg" width="40" height="40" class="rounded-circle">
+                          <img src="https://haycafe.vn/wp-content/uploads/2021/11/Anh-avatar-dep-chat-lam-hinh-dai-dien.jpg" width="40" height="40" class="rounded-circle">
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <li><a class="dropdown-item" href="/edit-profile">Trang cá nhân</a></li>
-                        <li><a class="dropdown-item" href="/account/{{googleId}}">Quản lý bài đăng</a></li>
-                        <li><hr class="dropdown-divider"></li>
-                        <li><a class="dropdown-item" href="/logout">Đăng xuất</a></li>
+                        <li><a class="dropdown-item" href="/admin/logout">Đăng xuất</a></li>
                     </ul>
                   </li>
                 </ul>
-              {{else}}
-                    {{!-- <a href="/auth/google" class="nav-item nav-link">Login</a> --}}
-                    <h1></h1>
-              {{/if}}
             </li>
           </ul>
         </div>
