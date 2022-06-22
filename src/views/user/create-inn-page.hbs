@@ -34,13 +34,18 @@
             </div>
           </div>
           <div class='form-control mt-4'>
-            <input
-              type='text'
-              class='height-input width-input border-none'
-              id='exampleInputPassword1'
-              placeholder='Ex: K92 H06/41 Đinh Tiên Hoàng'
-              name='address'
-            />
+            <label for='' class='t-c'>Đà Nẵng /</label>
+            <select name='cars' id='cars' class='height-input t-c border-none'>
+              <option value='Quận'>Quận</option>
+              <option value='Hải Châu'>Hải Châu</option>
+              <option value='Cẩm Lệ'>Cẩm Lệ</option>
+              <option value='Thanh Khê'>Thanh Khê</option>
+              <option value='Liên Chiểu'>Liên Chiểu</option>
+              <option value='Ngũ Hành Sơn'>Ngũ Hành Sơn</option>
+              <option value='Sơn Trà'>Sơn Trà</option>
+              <option value='Hòa Vang'>Hòa Vang</option>
+              <option value='Hoàng Sa'>Hoàng Sa</option>
+            </select>
             <label for='' class='t-c'>/</label>
             <select name='cars' id='cars' class='height-input t-c border-none'>
               <option value='volvo'>Phường</option>
@@ -48,15 +53,13 @@
               <option value='mercedes'>Mercedes</option>
               <option value='audi'>Audi</option>
             </select>
-            <label for='' class='t-c'>/</label>
-            <select name='cars' id='cars' class='height-input t-c border-none'>
-              <option value='volvo'>Quận</option>
-              <option value='saab'>Saab</option>
-              <option value='mercedes'>Mercedes</option>
-              <option value='audi'>Audi</option>
-            </select>
-            <label for='' class='t-c'>/ Đà Nẵng</label>
-
+            <input
+              type='text'
+              class='height-input width-input border-none'
+              id='exampleInputPassword1'
+              placeholder='Ex: K92 H06/41 Đinh Tiên Hoàng'
+              name='address'
+            />
           </div>
         </div>
       </div>
@@ -129,3 +132,18 @@
     </form>
   </div>
 {{/with}}
+
+<script>
+  const showEvent = async(e) => { const yearEvent = e.childNodes[0].innerHTML const ulId =
+  document.getElementById('fetch'); const ulId2 = document.getElementById('fetchEvent'); ulId.innerHTML = yearEvent;
+  const data_filter = await fetch('http://localhost:3000/events/filterEvents',{ method: "POST", headers: {
+  'Content-Type': 'application/json' }, body: JSON.stringify({ year: yearEvent, type: ulId2.innerHTML.trim()}) }) const
+  events = await data_filter.json(); let eventTransformHtml = ""; events.map(event => { eventTransformHtml += `<tr> <th
+  scope="row"> ${event.action_time} </th> <td> ${event.type} </td> <td> <a
+  href="/events/action-year?year=${event.action_time}&&event_name=${event.title}"> ${event.title} </a> </td> </tr>` })
+  const listEvent = document.getElementById("tbody"); const noEvent = document.getElementById("noEvent")
+  noEvent.innerHTML = ''; if(!eventTransformHtml) { eventTransformHtml = ''; if (ulId2.innerHTML.trim() === 'Loại sự
+  kiện') { noEvent.innerHTML = `Năm <b>${yearEvent}</b> đã không có bất kì sự kiện nào được diễn ra hoặc chưa được cập
+  nhật` } else { noEvent.innerHTML = `Năm <b>${yearEvent}</b> <b>${ulId2.innerHTML.trim()}</b> đã không được tổ chức
+  hoặc chưa được cập nhật` }; } listEvent.innerHTML = eventTransformHtml; }
+</script>
