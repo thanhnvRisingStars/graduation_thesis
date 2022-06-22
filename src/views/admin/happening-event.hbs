@@ -54,29 +54,43 @@
     {{#with happeningEvent}}
     <div class="col-10 p-4 shadow">
 <div class="t-c">
-    <div class="w-100 t-align-center">
+    <div class="w-100 t-align-center mt-20">
       <h3>
-        <p>{{this.title}}</p> 
+        <span class="button-hover p-4" style="font-size: 20px">{{this.title}}</span> 
       </h3>
     </div>
-    <p>
-        Đơn vị tổ chức: Hội đồng hương học sinh - sinh viên huyện Bình Sơn tại thành phố Đà Nẵng
-        <br>
-        Thời gian: {{this.action_time}}
-        <br>
-        Địa điểm: Nhà hàng Anh Hoàng Long, lô 7 đường 30/4 phường Thạch Tín , quận Hải Châu, thành phố Đà Nẵng
-        <br>
-        Thành phần tham dự: học sinh - sinh viên Bình Sơn đang sinh sống và làm việc tại thành phố Đà Nẵng
-    </p>
-    <p>
-        Với sự góp mặt của nhiều đơn vị có tầm vỡ trong và ngoài huyện nhà, đơn vị tại thành phố Đà Nẵng điển hình như 
-        {{this.description}}
-    </p>
-{{/with}}
 
-    <div class="wrap mt-20 p-2">
-  </div>
-    <div class="shadow p-4 mt-20">
+
+    <div>
+      <div class="mt-50 flex-align-center">
+        <div class="w-16">
+          <b>Đơn vị tổ chức</b><br>
+          <b>Thời gian</b><br>
+          <b>Địa điểm</b><br>
+        </div>
+        <div class="w-2">
+          <b>:</b><br>
+          <b>:</b><br>
+          <b>:</b><br>
+        </div>
+        <div class="mr-3">
+            <span>Hội đồng hương học sinh - sinh viên huyện Bình Sơn tại thành phố Đà Nẵng</span><br>
+            <span>{{this.action_time}}</span><br>
+            <span>{{this.place}}</span><br>
+        </div>
+      </p>
+      </div>
+      
+      <div class="mt-20 p-4">
+        <div class="pt-2 pb-2 border-bot-top t-j">
+            <p>
+              {{this.description}}
+            </p>
+        </div>
+      </div>
+    </div>
+{{/with}}
+   <div class="p-4">
         <div class="container-div">
         <div class="swiper mySwiper bg-c-w">
           <div class="swiper-wrapper">
@@ -107,6 +121,11 @@
     slidesPerView: 3,
     grid: {
         rows: 2,
+    },
+    speed: 2000,
+    autoplay: {
+      delay: 4000,
+      disableOnInteraction: false,
     },
     spaceBetween: 30,
     pagination: {

@@ -1,70 +1,131 @@
-<div class="shadow w-100 p-container p-100 t-align-left">
-    <form method="POST" enctype="multipart/form-data" action="/add-new-inn">
-    {{!-- Tiêu đề --}}
-    <div class="shadow p-4-20 mt-4">
-        <div class="form-group">
-            <label for="exampleInputPassword1"><h6 class="t-c m-f-20 mb-0">Thông tin cơ bản</h6></label>
-            <input type="text" class="form-control mt-1" id="exampleInputPassword1" placeholder="Tiêu đề" name="title">
-            <div class="mt-20 flex">
-                <div class="w-48 ">
-                    <input type="text" class=" form-control" id="exampleInputPassword1" placeholder="Ex: 2.1                                                                            Triệu/Tháng" name="price">
-                </div>
-                <div class="w-48 ml-auto">
-                    <input type="text" class="form-control" id="exampleInputPassword1" placeholder="Ex: 20.1                                                                                          m2" name="acreage">
-                </div>                  
+<script>
+  $(function() { var imagesPreview = function(input, placeToInsertImagePreview) { if (input.files) { var filesAmount =
+  input.files.length; for (i = 0; i < filesAmount; i++) { var reader = new FileReader(); reader.onload = function(event)
+  { $($.parseHTML('<img>')) .attr('src', event.target.result) .attr('class', 'image-wh')
+  .appendTo(placeToInsertImagePreview); }; reader.readAsDataURL(input.files[i]); } } }
+  $('#gallery-photo-add4').on('change', function() { imagesPreview(this, 'div.gallery4'); }) })
+</script>
+{{#with user}}
+  <div class='shadow w-100 p-container p-100 t-align-left'>
+    <form method='POST' enctype='multipart/form-data' action='/add-new-inn'>
+      {{! Tiêu đề }}
+      <div class='shadow p-4-20 mt-4'>
+        <div class='form-group'>
+          <label for='exampleInputPassword1'><h6 class='t-c m-f-20 mb-0'>Thông tin cơ bản</h6></label>
+          <input type='text' class='form-control mt-1' id='exampleInputPassword1' placeholder='Tiêu đề' name='title' />
+          <div class='mt-20 flex'>
+            <div class='w-48'>
+              <input
+                type='text'
+                class='form-control'
+                id='exampleInputPassword1'
+                placeholder='Ex: 2.1                                                                            Triệu/Tháng'
+                name='price'
+              />
             </div>
-            <div class="form-control mt-4 ">
-                <input type="text" class="height-input width-input border-none" id="exampleInputPassword1" placeholder="Ex: K92 H06/41 Đinh Tiên Hoàng" name="address">
-                <label for="" class="t-c">/</label>
-                <select name="cars" id="cars" class="height-input t-c border-none">
-                    <option value="volvo">Phường</option>
-                    <option value="saab">Saab</option>
-                    <option value="mercedes">Mercedes</option>
-                    <option value="audi">Audi</option>
-                </select>
-                <label for="" class="t-c">/</label>
-                <select name="cars" id="cars" class="height-input t-c border-none">
-                    <option value="volvo">Quận</option>
-                    <option value="saab">Saab</option>
-                    <option value="mercedes">Mercedes</option>
-                    <option value="audi">Audi</option>
-                </select>
-                <label for="" class="t-c">/ Đà Nẵng</label>
-                
+            <div class='w-48 ml-auto'>
+              <input
+                type='text'
+                class='form-control'
+                id='exampleInputPassword1'
+                placeholder='Ex: 20.1                                                                                          m2'
+                name='acreage'
+              />
             </div>
-        </div>
-    </div>
+          </div>
+          <div class='form-control mt-4'>
+            <input
+              type='text'
+              class='height-input width-input border-none'
+              id='exampleInputPassword1'
+              placeholder='Ex: K92 H06/41 Đinh Tiên Hoàng'
+              name='address'
+            />
+            <label for='' class='t-c'>/</label>
+            <select name='cars' id='cars' class='height-input t-c border-none'>
+              <option value='volvo'>Phường</option>
+              <option value='saab'>Saab</option>
+              <option value='mercedes'>Mercedes</option>
+              <option value='audi'>Audi</option>
+            </select>
+            <label for='' class='t-c'>/</label>
+            <select name='cars' id='cars' class='height-input t-c border-none'>
+              <option value='volvo'>Quận</option>
+              <option value='saab'>Saab</option>
+              <option value='mercedes'>Mercedes</option>
+              <option value='audi'>Audi</option>
+            </select>
+            <label for='' class='t-c'>/ Đà Nẵng</label>
 
-    <div class="shadow p-4-20 mt-30">
-        <div class="form-group">
-            <label for="exampleInputPassword1"><h6 class="t-c m-f-20 mb-0">Thông tin mô tả</h6></label>
-            <textarea class="form-control mt-1"  name="description" id="" cols="10" rows="5"></textarea>
+          </div>
         </div>
-    </div>
+      </div>
 
-    <div class="shadow p-4-20 mt-30">
-        <div class="form-group">
-            <label for="exampleInputPassword1"><h6 class="t-c m-f-20 mb-0">Liên hệ</h6></label>
-            <input type="text" class="form-control mt-1" id="exampleInputPassword1" placeholder="Tên" name="name">
-            <input type="text" class="form-control mt-1" id="exampleInputPassword1" placeholder="Facebook" name="facebook">
-            <input type="text" class="form-control mt-1" id="exampleInputPassword1" placeholder="Số điện thoại" name="phoneNumber">
-            <input type="text" class="form-control mt-1" id="exampleInputPassword1" placeholder="Zalo" name="zalo">
+      <div class='shadow p-4-20 mt-30'>
+        <div class='form-group'>
+          <label for='exampleInputPassword1'><h6 class='t-c m-f-20 mb-0'>Thông tin mô tả</h6></label>
+          <textarea class='form-control mt-1' name='description' id='' cols='10' rows='5'></textarea>
         </div>
-    </div>
+      </div>
 
-    <div class="shadow p-4-20 mt-30">
-        <div class="w-100 mt-4">
-        <div>
-        <input type="file" name="uploaded_file"  >
+      <div class='shadow p-4-20 mt-30'>
+        <div class='form-group'>
+          <label for='exampleInputPassword1'><h6 class='t-c m-f-20 mb-0'>Liên hệ</h6></label>
+          <input
+            type='text'
+            class='form-control mt-1'
+            id='exampleInputPassword1'
+            placeholder='Tên'
+            name='name'
+            value='{{this.name}}'
+          />
+          <input
+            type='text'
+            class='form-control mt-1'
+            id='exampleInputPassword1'
+            placeholder='Facebook'
+            name='facebook'
+            value='{{this.facebook}}'
+          />
+          <input
+            type='text'
+            class='form-control mt-1'
+            id='exampleInputPassword1'
+            placeholder='Số điện thoại'
+            name='phoneNumber'
+            value='phone_number'
+          />
+          <input
+            type='text'
+            class='form-control mt-1'
+            id='exampleInputPassword1'
+            placeholder='Zalo'
+            name='zalo'
+            value='{{this.zalo}}'
+          />
         </div>
-        <label class="custom-file-upload">
-            <input type="file" name="uploaded_file"/>
-            Thêm ảnh
-        </label>
-    </div>
-    </div>
-    <div class="flex-align-center">
-        <input type="submit" value="Thêm mới bài đăng trọ" class="mt-4 button flex-align-center button-width">
-    </div>
-</form>
-</div>
+      </div>
+
+      <div class='shadow p-4-20 mt-30'>
+        <div class='w-100 mt-4'>
+          <div>
+            <input type='file' name='uploaded_file' />
+          </div>
+          <div class='flex'>
+            <div>
+              <label class='custom-file-upload'>
+                <input type='file' multiple name='uploaded_file' id='gallery-photo-add4' class='t-c' />
+                Thêm ảnh
+              </label>
+            </div>
+            <div class='flex-1 ml-20px image-container-height gallery pl-2 t-align-center gallery4'>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class='flex-align-center'>
+        <input type='submit' value='Thêm mới bài đăng trọ' class='mt-4 button flex-align-center button-width' />
+      </div>
+    </form>
+  </div>
+{{/with}}

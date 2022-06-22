@@ -5,23 +5,38 @@
 {{>siderBarHappeningEvent}}
         <div class="col-10 p-4 shadow">
             {{#if statusMail}}
-                <h1>Mail su kien lan nay da gui , thanks !!!</h1>
+            <div class="t-align-center">
+                <span class="t-c">Thư sự kiện dang diễn ra đã được gửi, cảm ơn bạn về sự cống hiến của mình</span>
+            </div>
+            <div class="flex-align-center">
+                <img src="/images/logo/LOGO.png" alt="" style="width:160px;height:160px">
+            </div>
             {{else}}
                 <form method="POST" action="/admin/send-mail">
-                <div class="form-group">
-                    <label for="exampleInputPassword1"><h6 class="t-c m-f-20 mb-0">Tiêu đề thư sự kiện</h6></label>
-                    <input type="text" class="form-control mt-1" id="exampleInputPassword1" placeholder="Tiêu đề" name="title">
+                {{#with happeningEventData}}
+                    <div class="form-group w-100">
+                        <input type="text " class=" mt-1 w-100 bottom-line t-bold t-c" id="exampleInputPassword1" placeholder="Tiêu đề" name="subject" value="{{this.title}}">
+                    </div>
+                {{/with}}
+                <div class="ml-2 mt-20">
+                    <b class="ml-2 t-c mt-20">Thân gửi anh chị (auto) !</b>
                 </div>
-                <div class="form-group mt-4">
-                    <label for="exampleFormControlTextarea4"><h6 class="t-c m-f-20 mb-0">Nội dung thư sự kiện</h6></label>
-                    <textarea class="form-control" id="exampleFormControlTextarea4" rows="12" name="content"></textarea>
+                <div class="form-group w-100">
+                    <textarea class="t-c w-100 bottom-line textarea" id="exampleFormControlTextarea4" oninput="auto_grow(this)" name="content">Nội dung tại đây...</textarea>
                 </div>
 
                 <div class="wrap mt-4">
-                    <input type="submit" value="Nhấn để gửi thư" class="button flex-align-center">
+                    <input type="submit" value="Nhấn để gửi thư" class="button flex-align-center button-width">
                 </div>
                 </form>
             {{/if}}
     </div>
 </div>
 </div>
+
+<script>
+    function auto_grow(element) {
+    element.style.height = "5px";
+    element.style.height = (element.scrollHeight)+"px";
+}
+</script>

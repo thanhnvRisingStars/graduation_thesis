@@ -6,10 +6,11 @@ const {
   googleService,
   recentEventService,
   happenedEventService,
+  userService,
 } = require('../../service/index.service');
 const mailHelper = require('../../helpers/mail');
 
-const { admin } = require('../../models');
+const { admin, event_register } = require('../../models');
 
 const adminController = module.exports;
 
@@ -89,12 +90,22 @@ adminController.changeNewEvent = async (req, res) => {
 
 adminController.changeNewEventPost = async (req, res) => {
   try {
-    // const sheet = await googleService.getDataSheet(
-    //   '1jKTEkfec6hUDZwct3T_0rpa2wBPLILx3nsJfQAr6Ngk',
-    //   'HỌP MẶT TRUYỀN THỐNG 2022'
-    // );
+    const spreadsheetId = process.env.GOOGLE_SPREADSHEET_ID;
+    const happeningEvent = await happeningEventService.findOne();
+    const happeningEventData = _.get(happeningEvent, 'dataValues');
 
-    // console.log(sheet.data.values);
+    const registers = (await googleService.getDataSheet(spreadsheetId, happeningEventData.title)).data.values;
+
+    await registers.map(register =>
+      event_register.create({
+        email: _.head(register),
+        event_title: happeningEventData.title,
+        year: happeningEventData.action_time,
+      })
+    );
+
+    await googleService.addSheet(spreadsheetId, happeningEventData.title);
+
     let files = [];
     await req.files.map(file => files.push(file.filename));
     const event = {
@@ -105,8 +116,6 @@ adminController.changeNewEventPost = async (req, res) => {
       place: req.body.place,
       event_type_id: req.body.event_type_id,
     };
-    const happeningEvent = await happeningEventService.findOne();
-    const happeningEventData = _.get(happeningEvent, 'dataValues');
     delete happeningEventData['id'];
     await recentEventService.createOne(happeningEventData);
     await happeningEventService.removeEvent();
@@ -152,29 +161,30 @@ adminController.setupMailEvent = async (req, res) => {
   const happeningEventData = _.get(happeningEvent, 'dataValues');
   const statusMail = happeningEventData.status_mail;
 
-  res.render('admin/setup-event-mail', { admin, statusMail });
+  res.render('admin/setup-event-mail', { admin, statusMail, happeningEventData });
 };
 
 adminController.sendMailHappeningEvent = async (req, res) => {
   try {
     const mailSubject = req.body.subject;
-    const mailContent = req.body.content;
+    let mailContent = req.body.content;
     const happeningEvent = await happeningEventService.findOne();
     const happeningEventData = _.get(happeningEvent, 'dataValues');
     const titleSheet = happeningEventData.title;
 
-    const sheet = await googleService.getDataSheet(process.env.GOOGLE_SPREADSHEET_ID, titleSheet);
-    const dataSheet = sheet.data.values;
-    dataSheet.map(async data => {
-      await mailHelper.sendMail(data[0], mailContent, mailSubject);
+    const registers = (await googleService.getDataSheet(process.env.GOOGLE_SPREADSHEET_ID, titleSheet)).data.values;
+
+    registers.map(async register => {
+      const user = await userService.findByEmail(_.head(register).trim());
+      mailContent = `Thân gửi anh/chị ${user.name} <br> ${mailContent}`;
+
+      await mailHelper.sendMail(_.head(register), mailContent, mailSubject);
     });
     await happeningEventService.updateStatusMail();
-
-    res.redirect('/admin/happening-event');
   } catch (err) {
     console.log(err);
-    res.redirect('/admin/happening-event');
   }
+  res.redirect('/admin/happening-event');
 };
 
 adminController.recentEventPage = async (req, res) => {

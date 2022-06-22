@@ -147,22 +147,26 @@ homeController.logout = async (req, res) => {
 };
 
 homeController.profile = async (req, res) => {
-  const googleId = req.cookies['google_account_id'];
-  const events = await annualEventService.findAll();
-  const dataEvents = events.map(event => event.dataValues);
+  try {
+    const googleId = req.cookies['google_account_id'];
+    const events = await annualEventService.findAll();
+    const dataEvents = events.map(event => event.dataValues);
 
-  const user = _.get(await userService.findByGoogleAccountId(req.cookies['google_account_id']), 'dataValues');
+    const user = _.get(await userService.findByGoogleAccountId(req.cookies['google_account_id']), 'dataValues');
 
-  const pattern = /http/g;
-  if (!pattern.test(user.avatar_link)) {
-    user.avatar_link = `/images/${user.avatar_link}`;
+    const pattern = /http/g;
+    if (!pattern.test(user.avatar_link)) {
+      user.avatar_link = `/images/${user.avatar_link}`;
+    }
+
+    const joinEvents = (await event_register.findAll({ where: { email: user.email } })).map(event =>
+      _.get(event, 'dataValues')
+    );
+
+    res.render('user/profile', { googleId, user, dataEvents, joinEvents });
+  } catch (err) {
+    console.log(err);
   }
-
-  const joinEvents = (
-    await event_register.findAll({ where: { google_account_id: req.cookies['google_account_id'] } })
-  ).map(event => _.get(event, 'dataValues'));
-
-  res.render('user/profile', { googleId, user, dataEvents, joinEvents });
 };
 
 homeController.editProfile = async (req, res) => {
