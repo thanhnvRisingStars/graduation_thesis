@@ -195,6 +195,10 @@ InnController.newInn = async (req, res) => {
       const contactPoster = $('.post-contact .section-content');
       contact = contactPoster.children('table').toString();
 
+      price = price.replace('triệu/tháng', '');
+      address = address.replace('Địa chỉ: ', '');
+      acreage = acreage.replace('m2', '');
+
       post = {
         title,
         price,
@@ -206,7 +210,6 @@ InnController.newInn = async (req, res) => {
         contact,
       };
     });
-
     Object.assign(post, req.query);
     await innService.createOne(post);
 

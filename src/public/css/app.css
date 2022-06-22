@@ -833,3 +833,11 @@ body {
   border-top: 1px solid rgb(21, 172, 172);
   border-bottom: 1px solid rgb(21, 172, 172);
 }
+
+.margin-bottom p {
+  margin-bottom: 10px;
+}
+
+.div-table table {
+  color: rgb(99, 96, 96);
+}

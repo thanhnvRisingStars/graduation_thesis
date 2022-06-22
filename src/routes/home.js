@@ -3,12 +3,12 @@ const router = express.Router();
 const homeController = require('../controllers/user/home.controller');
 const InnController = require('../controllers/user/inn.controller');
 
-const { upload } = require('../helpers/multer')
+const { upload } = require('../helpers/multer');
 
 // profile
 router.post('/edit-profile', upload.single('uploaded_file'), homeController.editProfile);
 router.get('/edit-profile', homeController.profile);
- 
+
 // inn
 router.get('/:googleId/edit/:id', InnController.editDetailPost);
 router.post('/delete-inn-post', InnController.deleteInnPost);
@@ -22,7 +22,6 @@ router.get('/detail/:googleId/:id', InnController.detailMotel);
 router.get('/DaNang-inns', InnController.DaNangInns);
 router.get('/BinhSon-inns', InnController.BinhSonInns);
 router.get('/all-inns', InnController.allInns);
-
 
 // event
 router.get('/happening-event/:slug', homeController.happeningEvent);
